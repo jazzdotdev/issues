@@ -4,4 +4,3 @@ print("rule respond_to_any_request")
     print("respond_to_any_request triggered the event")
     events["request_received"]:trigger(req)
 --end
-end
