@@ -1,6 +1,4 @@
-
-print("rule respond_to_any_request")
---if req.method == "GET" and req.path:match("*") then
-    print("respond_to_any_request triggered the event")
-    events["request_received"]:trigger(req)
---end
+priority: 10
+if true then
+	events["request_received"]:trigger(request)
+end
