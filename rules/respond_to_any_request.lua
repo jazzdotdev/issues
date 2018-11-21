@@ -1,4 +1,5 @@
-priority: 10
-if true then
-	events["request_received"]:trigger(request)
-end
+priority: 3
+input_parameter: "request"
+events_table: ["request_received"]
+
+true
