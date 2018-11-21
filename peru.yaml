@@ -1,0 +1,6 @@
+imports:
+  lighttouch-base: lighttouch-base/
+  
+git module lighttouch-base:
+  url: https://github.com/foundpatterns/lighttouch-base.git
+  recursive: true

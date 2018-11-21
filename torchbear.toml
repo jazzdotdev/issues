@@ -1,0 +1,5 @@
+[web-server]
+host = "0.0.0.0:3000"
+
+[general]
+init = "lighttouch-base/init.lua"
