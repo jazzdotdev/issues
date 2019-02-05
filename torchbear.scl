@@ -5,5 +5,5 @@ web-server = {
 }
 
 general = {
-  init = "lighttouch-base/init.lua"
+  app-name = "lighttouch",
 }
