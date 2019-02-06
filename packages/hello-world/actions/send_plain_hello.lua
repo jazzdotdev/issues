@@ -1,6 +1,6 @@
-event: ["request_received"]
-priority: 1
-input_parameters: ["request"]
+event = ["request_received"]
+priority = 1
+input_parameters = ["request"]
 
 response = {
   headers = {
