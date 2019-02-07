@@ -1,4 +1,4 @@
-setting = {
+settings = {
   theme = "base-theme",
   log_level = "trace",
   sitename = "Lighttouch",

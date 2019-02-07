@@ -1,0 +1,7 @@
+imports = {
+  base-theme = "themes/base-theme",
+}
+
+base-theme = {
+  url = "https://github.com/foundpatterns/base-theme",
+}

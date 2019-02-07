@@ -6,7 +6,7 @@ response = {
   headers = {
     ["content-type"] = "text/plain",
   },
-  body = "hello"
+  body = render("index.html")
 }
 
 return response
