@@ -4,9 +4,9 @@ input_parameters = ["request"]
 
 response = {
   headers = {
-    ["content-type"] = "text/plain",
+    ["content-type"] = "text/html",
   },
-  body = render("index.html")
+  body = render("index.html", {SITENAME="Hello World"})
 }
 
 return response
