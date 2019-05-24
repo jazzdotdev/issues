@@ -5,20 +5,21 @@
 </head>
 <body>
   <h1>Issues</h1>
-  <article>
-    <h2>Title</h2>
-    <div>
-      <a href="#">repository</a>
-    </div>
-    <p>
-      Description
-    </p>
-    <h3>Tags</h3>
-    <ul>
-      <li>
-        <strong>Tag</strong>: value
-      </li>
-    </ul>
-  </article>
+  {% for issue in issues %}
+    <article>
+      <h2>{{ issue.title }}</h2>
+      <div>
+        <a href="{{issue.repository_url}}">{{issue.repository_url}}</a>
+      </div>
+      <p> {{ issue.body }} </p>
+      <ul>
+        {% for name, value in issue.tags %}
+          <li>
+            <strong>{{name}}</strong>: {{value}}
+          </li>
+        {% endfor %}
+      </ul>
+    </article>
+  {% endfor %}
 </body>
 </html>
