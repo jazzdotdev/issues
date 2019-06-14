@@ -2,24 +2,44 @@
 <html>
 <head>
   <title>Issues</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    {% include 'scss/styles.css' %}
+  </style>
 </head>
 <body>
-  <h1>Issues</h1>
-  {% for issue in issues %}
-    <article>
-      <h2>{{ issue.title }}</h2>
-      <div>
-        <a href="{{issue.repository_url}}">{{issue.repository_url}}</a>
-      </div>
-      <p> {{ issue.body }} </p>
-      <ul>
-        {% for name, value in issue.tags %}
-          <li>
-            <strong>{{name}}</strong>: {{value}}
-          </li>
-        {% endfor %}
-      </ul>
-    </article>
-  {% endfor %}
+  <h1 title >Issues</h1>
+  <div grid_table_container>
+    <ul header>
+      <li cell_header >Title</li>
+      <li cell_header >URL</li>
+      <li cell_header >Body</li>
+      <li cell_header >Labels</li>
+    </ul>
+    {% for issue in issues %}
+      <article row>
+        <div cell>
+          <h2 >{{ issue.title }}</h2> <!-- Title  -->
+        </div>
+        <div cell>
+          <div> <!-- URL   -->
+            <a href="{{issue.html_url}}">{{issue.html_url}}</a>
+          </div>
+        </div>
+        <div cell>
+          <p> {{ issue.body }} </p> <!-- Body  -->
+        </div>
+        <div cell>
+          <ul> <!-- Labels  -->
+            {% for name, value in issue.tags %}
+              <li>
+                <strong>{{name}}</strong>: {{value}}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
 </body>
 </html>
