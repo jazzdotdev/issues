@@ -1,5 +1,17 @@
 .grid_container {
   display: grid;
-  grid-template-columns: repeat(3, minmax(20px, 100%)); }
+  grid-template-columns: repeat(1, minmax(20px, 100%)); }
+  @media (min-width: 768px) {
+    .grid_container {
+      grid-template-columns: repeat(3, minmax(20px, 100%)); } }
+  @media (min-width: 992px) {
+    .grid_container {
+      grid-template-columns: repeat(5, minmax(20px, 100%)); } }
+
+.grid_container.headers {
+  display: none; }
+  @media (min-width: 768px) {
+    .grid_container.headers {
+      display: grid; } }
 
 /*# sourceMappingURL=styles.css.map */

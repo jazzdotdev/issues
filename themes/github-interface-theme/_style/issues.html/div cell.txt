@@ -1,0 +1,4 @@
+break-words
+p-1
+border
+border-gray-500

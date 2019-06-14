@@ -17,20 +17,30 @@
       <li cell_header >Labels</li>
     </ul>
     {% for issue in issues %}
-      <article row>
+      {% if loop.index % 2 == 0 %}
+      <article pair_row  >
+      
+      {% else %}
+      <article row  >
+      
+      {% endif %}
+
         <div cell>
-          <h2 >{{ issue.title }}</h2> <!-- Title  -->
+          <h2 title>{{ issue.title }}</h2> <!-- Title  -->
         </div>
+
         <div cell>
           <div> <!-- URL   -->
-            <a href="{{issue.html_url}}">{{issue.html_url}}</a>
+            <a html_url href="{{issue.html_url}}">{{issue.html_url}}</a>
           </div>
         </div>
+
         <div cell>
-          <p> {{ issue.body }} </p> <!-- Body  -->
+          <p body > {{ issue.body }} </p> <!-- Body  -->
         </div>
+
         <div cell>
-          <ul> <!-- Labels  -->
+          <ul labels> <!-- Labels  -->
             {% for name, value in issue.tags %}
               <li>
                 <strong>{{name}}</strong>: {{value}}
@@ -38,6 +48,7 @@
             {% endfor %}
           </ul>
         </div>
+
       </article>
     {% endfor %}
   </div>
