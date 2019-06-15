@@ -1,4 +1,5 @@
 break-words
-p-1
+p-2
 border
 border-gray-500
+overflow-hidden

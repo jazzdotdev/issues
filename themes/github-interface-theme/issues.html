@@ -11,28 +11,35 @@
   <h1 title >Issues</h1>
   <div grid_table_container>
     <ul header>
-      <li cell_header >Title</li>
-      <li cell_header >URL</li>
+      <div group_cell >
+        <li cell_header >Title</li>
+        <li cell_header >URL</li>
+      
+      </div>
+
       <li cell_header >Body</li>
       <li cell_header >Labels</li>
     </ul>
     {% for issue in issues %}
       {% if loop.index % 2 == 0 %}
       <article pair_row  >
-      
+
       {% else %}
       <article row  >
-      
+
       {% endif %}
 
-        <div cell>
-          <h2 title>{{ issue.title }}</h2> <!-- Title  -->
-        </div>
-
-        <div cell>
-          <div> <!-- URL   -->
-            <a html_url href="{{issue.html_url}}">{{issue.html_url}}</a>
+        <div group_cell> 
+          <div cell>
+            <h2 title>{{ issue.title }}</h2> <!-- Title  -->
           </div>
+
+          <div cell>
+            <div> <!-- URL   -->
+              <a html_url href="{{issue.html_url}}">{{issue.html_url}}</a>
+            </div>
+          </div>
+
         </div>
 
         <div cell>

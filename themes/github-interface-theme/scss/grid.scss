@@ -1,24 +1,40 @@
 %grid_container {
     display: grid;
-    grid-template-columns: repeat(1, minmax(20px, 100%)); //Wrap all in One column in small sie
+    grid-template-columns: 1fr ; //Wrap all in One column in small sie
 
     @include screen_md() {
-        grid-template-columns: repeat(3, minmax(20px, 100%)); //Wrap all in 4 columns in medium size
-
+        grid-template-columns: 1fr 1.5fr 1fr;
     }
 
     @include screen_lg() {
         //for lg and bigger sizes
-        grid-template-columns: repeat(5, minmax(20px, 100%)); //Wrap all in 6 columns in large and extra largge sizes
+        grid-template-columns: 2fr 1.5fr 1fr ;
 
     }
+
+    @include screen_xl() {
+        //for lg and bigger sizes
+        grid-template-columns: 2fr 2fr 1fr ;
+
+    }
+
 
 }
 
 .grid_container {
 
     @extend %grid_container;
-    
+
+    .cell_group_pair {
+        display: grid;
+        grid-template-columns: 1fr ; //wrap one on top of the other
+
+        @include screen_lg() {
+            //for lg and bigger sizes
+            grid-template-columns: 1fr 1fr; // wrap one next to the other
+        }
+    }
+
     &.headers{
         display: none;
 
