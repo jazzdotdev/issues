@@ -1,4 +1,7 @@
-text-center
+flex
+items-center
+justify-center
+
 font-bold
 p-4
 border

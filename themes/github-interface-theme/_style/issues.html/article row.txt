@@ -1,2 +1,5 @@
 grid_container
 hover:bg-teal-200
+bg-white
+my-4
+md:my-0

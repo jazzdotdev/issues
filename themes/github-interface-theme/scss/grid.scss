@@ -18,6 +18,14 @@
 
     }
 
+    .cell_group_pair {
+        display: grid;
+        grid-template-columns: 1fr ; //wrap one on top of the other
+        @include screen_lg() {
+            //for lg and bigger sizes
+            grid-template-columns: 1fr 1fr; // wrap one next to the other
+        }
+    }
 
 }
 
@@ -25,15 +33,20 @@
 
     @extend %grid_container;
 
-    .cell_group_pair {
-        display: grid;
-        grid-template-columns: 1fr ; //wrap one on top of the other
+    .cell_data {
 
-        @include screen_lg() {
-            //for lg and bigger sizes
-            grid-template-columns: 1fr 1fr; // wrap one next to the other
+        &::before {
+            content: attr(title_of_data) ": ";
+            font-weight: bolder;
+            width: 60px;
+            margin-right: 10px;
+            display: inline-block;
+            @include screen_md() {
+                content: none;
+            }
         }
     }
+
 
     &.headers{
         display: none;
