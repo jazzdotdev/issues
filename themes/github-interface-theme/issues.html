@@ -10,7 +10,7 @@
 <body>
   <div page>
     <h1 title >Issues</h1>
-    <div grid_table_container>
+    <div container>
       <ul header>
         <div group_cell >
           <li cell_header >Title</li>
@@ -19,8 +19,12 @@
 
         <li cell_header >Body</li>
         <li cell_header >Labels</li>
+
+        <!-- <li cell_header >Test</li> -->
       </ul>
+      <!-- Rows below -->
       {% for issue in issues %}
+        {# to give different color depending of the row number#}
         {% if loop.index % 2 == 0 %}
         <article pair_row  >
 
@@ -30,11 +34,11 @@
         {% endif %}
 
           <div group_cell> 
-            <div cell title_of_data="Title">
+            <div cell data_label="Title">
               <h2 title>{{ issue.title }}</h2> <!-- Title  -->
             </div>
 
-            <div cell title_of_data="URL">
+            <div cell data_label="URL">
               <div url> <!-- URL   -->
                 <a html_url href="{{issue.html_url}}">{{issue.html_url}}</a>
               </div>
@@ -42,11 +46,11 @@
 
           </div>
 
-          <div cell title_of_data="Body">
+          <div cell_body  data_label="Body">
             <p body > {{ issue.body }} </p> <!-- Body  -->
           </div>
 
-          <div cell title_of_data="Labels">
+          <div cell  data_label="Labels">
             <ul labels> <!-- Labels  -->
               {% for name, value in issue.tags %}
                 <li>
@@ -55,6 +59,10 @@
               {% endfor %}
             </ul>
           </div>
+
+          <!-- <div cell  data_label="Test">
+            Lorem
+          </div> -->
 
         </article>
       {% endfor %}

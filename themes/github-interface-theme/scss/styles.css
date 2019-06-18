@@ -1,35 +1,220 @@
 .grid_container {
-  display: grid;
-  grid-template-columns: 1fr; }
+  display: grid; }
+  .grid_container.columns-1 {
+    grid-template-columns: repeat(1, minmax(100px, 10fr)); }
+  @media (min-width: 576px) {
+    .grid_container.sm\:columns-1 {
+      grid-template-columns: repeat(1, minmax(100px, 10fr)); } }
   @media (min-width: 768px) {
-    .grid_container {
-      grid-template-columns: 1fr 1.5fr 1fr; } }
+    .grid_container.md\:columns-1 {
+      grid-template-columns: repeat(1, minmax(100px, 10fr)); } }
   @media (min-width: 992px) {
-    .grid_container {
-      grid-template-columns: 2fr 1.5fr 1fr; } }
+    .grid_container.lg\:columns-1 {
+      grid-template-columns: repeat(1, minmax(100px, 10fr)); } }
   @media (min-width: 1200px) {
-    .grid_container {
-      grid-template-columns: 2fr 2fr 1fr; } }
+    .grid_container.xl\:columns-1 {
+      grid-template-columns: repeat(1, minmax(100px, 10fr)); } }
+  .grid_container.columns-2 {
+    grid-template-columns: repeat(2, minmax(100px, 10fr)); }
+  @media (min-width: 576px) {
+    .grid_container.sm\:columns-2 {
+      grid-template-columns: repeat(2, minmax(100px, 10fr)); } }
+  @media (min-width: 768px) {
+    .grid_container.md\:columns-2 {
+      grid-template-columns: repeat(2, minmax(100px, 10fr)); } }
+  @media (min-width: 992px) {
+    .grid_container.lg\:columns-2 {
+      grid-template-columns: repeat(2, minmax(100px, 10fr)); } }
+  @media (min-width: 1200px) {
+    .grid_container.xl\:columns-2 {
+      grid-template-columns: repeat(2, minmax(100px, 10fr)); } }
+  .grid_container.columns-3 {
+    grid-template-columns: repeat(3, minmax(100px, 10fr)); }
+  @media (min-width: 576px) {
+    .grid_container.sm\:columns-3 {
+      grid-template-columns: repeat(3, minmax(100px, 10fr)); } }
+  @media (min-width: 768px) {
+    .grid_container.md\:columns-3 {
+      grid-template-columns: repeat(3, minmax(100px, 10fr)); } }
+  @media (min-width: 992px) {
+    .grid_container.lg\:columns-3 {
+      grid-template-columns: repeat(3, minmax(100px, 10fr)); } }
+  @media (min-width: 1200px) {
+    .grid_container.xl\:columns-3 {
+      grid-template-columns: repeat(3, minmax(100px, 10fr)); } }
+  .grid_container.columns-4 {
+    grid-template-columns: repeat(4, minmax(100px, 10fr)); }
+  @media (min-width: 576px) {
+    .grid_container.sm\:columns-4 {
+      grid-template-columns: repeat(4, minmax(100px, 10fr)); } }
+  @media (min-width: 768px) {
+    .grid_container.md\:columns-4 {
+      grid-template-columns: repeat(4, minmax(100px, 10fr)); } }
+  @media (min-width: 992px) {
+    .grid_container.lg\:columns-4 {
+      grid-template-columns: repeat(4, minmax(100px, 10fr)); } }
+  @media (min-width: 1200px) {
+    .grid_container.xl\:columns-4 {
+      grid-template-columns: repeat(4, minmax(100px, 10fr)); } }
+  .grid_container.columns-5 {
+    grid-template-columns: repeat(5, minmax(100px, 10fr)); }
+  @media (min-width: 576px) {
+    .grid_container.sm\:columns-5 {
+      grid-template-columns: repeat(5, minmax(100px, 10fr)); } }
+  @media (min-width: 768px) {
+    .grid_container.md\:columns-5 {
+      grid-template-columns: repeat(5, minmax(100px, 10fr)); } }
+  @media (min-width: 992px) {
+    .grid_container.lg\:columns-5 {
+      grid-template-columns: repeat(5, minmax(100px, 10fr)); } }
+  @media (min-width: 1200px) {
+    .grid_container.xl\:columns-5 {
+      grid-template-columns: repeat(5, minmax(100px, 10fr)); } }
+  .grid_container.columns-6 {
+    grid-template-columns: repeat(6, minmax(100px, 10fr)); }
+  @media (min-width: 576px) {
+    .grid_container.sm\:columns-6 {
+      grid-template-columns: repeat(6, minmax(100px, 10fr)); } }
+  @media (min-width: 768px) {
+    .grid_container.md\:columns-6 {
+      grid-template-columns: repeat(6, minmax(100px, 10fr)); } }
+  @media (min-width: 992px) {
+    .grid_container.lg\:columns-6 {
+      grid-template-columns: repeat(6, minmax(100px, 10fr)); } }
+  @media (min-width: 1200px) {
+    .grid_container.xl\:columns-6 {
+      grid-template-columns: repeat(6, minmax(100px, 10fr)); } }
+  .grid_container.columns-7 {
+    grid-template-columns: repeat(7, minmax(100px, 10fr)); }
+  @media (min-width: 576px) {
+    .grid_container.sm\:columns-7 {
+      grid-template-columns: repeat(7, minmax(100px, 10fr)); } }
+  @media (min-width: 768px) {
+    .grid_container.md\:columns-7 {
+      grid-template-columns: repeat(7, minmax(100px, 10fr)); } }
+  @media (min-width: 992px) {
+    .grid_container.lg\:columns-7 {
+      grid-template-columns: repeat(7, minmax(100px, 10fr)); } }
+  @media (min-width: 1200px) {
+    .grid_container.xl\:columns-7 {
+      grid-template-columns: repeat(7, minmax(100px, 10fr)); } }
+  .grid_container.columns-8 {
+    grid-template-columns: repeat(8, minmax(100px, 10fr)); }
+  @media (min-width: 576px) {
+    .grid_container.sm\:columns-8 {
+      grid-template-columns: repeat(8, minmax(100px, 10fr)); } }
+  @media (min-width: 768px) {
+    .grid_container.md\:columns-8 {
+      grid-template-columns: repeat(8, minmax(100px, 10fr)); } }
+  @media (min-width: 992px) {
+    .grid_container.lg\:columns-8 {
+      grid-template-columns: repeat(8, minmax(100px, 10fr)); } }
+  @media (min-width: 1200px) {
+    .grid_container.xl\:columns-8 {
+      grid-template-columns: repeat(8, minmax(100px, 10fr)); } }
+  .grid_container.columns-9 {
+    grid-template-columns: repeat(9, minmax(100px, 10fr)); }
+  @media (min-width: 576px) {
+    .grid_container.sm\:columns-9 {
+      grid-template-columns: repeat(9, minmax(100px, 10fr)); } }
+  @media (min-width: 768px) {
+    .grid_container.md\:columns-9 {
+      grid-template-columns: repeat(9, minmax(100px, 10fr)); } }
+  @media (min-width: 992px) {
+    .grid_container.lg\:columns-9 {
+      grid-template-columns: repeat(9, minmax(100px, 10fr)); } }
+  @media (min-width: 1200px) {
+    .grid_container.xl\:columns-9 {
+      grid-template-columns: repeat(9, minmax(100px, 10fr)); } }
+  .grid_container.columns-10 {
+    grid-template-columns: repeat(10, minmax(100px, 10fr)); }
+  @media (min-width: 576px) {
+    .grid_container.sm\:columns-10 {
+      grid-template-columns: repeat(10, minmax(100px, 10fr)); } }
+  @media (min-width: 768px) {
+    .grid_container.md\:columns-10 {
+      grid-template-columns: repeat(10, minmax(100px, 10fr)); } }
+  @media (min-width: 992px) {
+    .grid_container.lg\:columns-10 {
+      grid-template-columns: repeat(10, minmax(100px, 10fr)); } }
+  @media (min-width: 1200px) {
+    .grid_container.xl\:columns-10 {
+      grid-template-columns: repeat(10, minmax(100px, 10fr)); } }
+  .grid_container.columns-11 {
+    grid-template-columns: repeat(11, minmax(100px, 10fr)); }
+  @media (min-width: 576px) {
+    .grid_container.sm\:columns-11 {
+      grid-template-columns: repeat(11, minmax(100px, 10fr)); } }
+  @media (min-width: 768px) {
+    .grid_container.md\:columns-11 {
+      grid-template-columns: repeat(11, minmax(100px, 10fr)); } }
+  @media (min-width: 992px) {
+    .grid_container.lg\:columns-11 {
+      grid-template-columns: repeat(11, minmax(100px, 10fr)); } }
+  @media (min-width: 1200px) {
+    .grid_container.xl\:columns-11 {
+      grid-template-columns: repeat(11, minmax(100px, 10fr)); } }
+  .grid_container.columns-12 {
+    grid-template-columns: repeat(12, minmax(100px, 10fr)); }
+  @media (min-width: 576px) {
+    .grid_container.sm\:columns-12 {
+      grid-template-columns: repeat(12, minmax(100px, 10fr)); } }
+  @media (min-width: 768px) {
+    .grid_container.md\:columns-12 {
+      grid-template-columns: repeat(12, minmax(100px, 10fr)); } }
+  @media (min-width: 992px) {
+    .grid_container.lg\:columns-12 {
+      grid-template-columns: repeat(12, minmax(100px, 10fr)); } }
+  @media (min-width: 1200px) {
+    .grid_container.xl\:columns-12 {
+      grid-template-columns: repeat(12, minmax(100px, 10fr)); } }
+  .grid_container.columns-13 {
+    grid-template-columns: repeat(13, minmax(100px, 10fr)); }
+  @media (min-width: 576px) {
+    .grid_container.sm\:columns-13 {
+      grid-template-columns: repeat(13, minmax(100px, 10fr)); } }
+  @media (min-width: 768px) {
+    .grid_container.md\:columns-13 {
+      grid-template-columns: repeat(13, minmax(100px, 10fr)); } }
+  @media (min-width: 992px) {
+    .grid_container.lg\:columns-13 {
+      grid-template-columns: repeat(13, minmax(100px, 10fr)); } }
+  @media (min-width: 1200px) {
+    .grid_container.xl\:columns-13 {
+      grid-template-columns: repeat(13, minmax(100px, 10fr)); } }
+  .grid_container.columns-14 {
+    grid-template-columns: repeat(14, minmax(100px, 10fr)); }
+  @media (min-width: 576px) {
+    .grid_container.sm\:columns-14 {
+      grid-template-columns: repeat(14, minmax(100px, 10fr)); } }
+  @media (min-width: 768px) {
+    .grid_container.md\:columns-14 {
+      grid-template-columns: repeat(14, minmax(100px, 10fr)); } }
+  @media (min-width: 992px) {
+    .grid_container.lg\:columns-14 {
+      grid-template-columns: repeat(14, minmax(100px, 10fr)); } }
+  @media (min-width: 1200px) {
+    .grid_container.xl\:columns-14 {
+      grid-template-columns: repeat(14, minmax(100px, 10fr)); } }
   .grid_container .cell_group_pair {
     display: grid;
     grid-template-columns: 1fr; }
     @media (min-width: 992px) {
       .grid_container .cell_group_pair {
         grid-template-columns: 1fr 1fr; } }
-
-.grid_container .cell_data::before {
-  content: attr(title_of_data) ": ";
-  font-weight: bolder;
-  width: 60px;
-  margin-right: 10px;
-  display: inline-block; }
-  @media (min-width: 768px) {
-    .grid_container .cell_data::before {
-      content: none; } }
-.grid_container.headers {
-  display: none; }
-  @media (min-width: 768px) {
-    .grid_container.headers {
-      display: grid; } }
+  .grid_container .cell_data::before {
+    content: attr(data_label) ": ";
+    font-weight: bolder;
+    width: 60px;
+    margin-right: 10px;
+    display: inline-block; }
+    @media (min-width: 768px) {
+      .grid_container .cell_data::before {
+        content: none; } }
+  .grid_container.headers {
+    display: none; }
+    @media (min-width: 768px) {
+      .grid_container.headers {
+        display: grid; } }
 
 /*# sourceMappingURL=styles.css.map */

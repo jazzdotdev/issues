@@ -1,47 +1,74 @@
-%grid_container {
+$columns: 14;
+
+.grid_container {
     display: grid;
-    grid-template-columns: 1fr ; //Wrap all in One column in small sie
 
-    @include screen_md() {
-        grid-template-columns: 1fr 1.5fr 1fr;
+    @for $i from 1 to $columns + 1 {
+        &.columns-#{$i}{
+            grid-template-columns: repeat($i, minmax(100px,10fr));
+        }
+        &.sm#{'\\'}:columns-#{$i} {
+            @include screen_sm(){
+                grid-template-columns: repeat($i, minmax(100px,10fr));
+            }
+        }
+        &.md#{'\\'}:columns-#{$i} {
+            @include screen_md() {
+                grid-template-columns: repeat($i, minmax(100px,10fr));
+            }
+        }
+        &.lg#{'\\'}:columns-#{$i} {
+            @include screen_lg() {
+                grid-template-columns: repeat($i, minmax(100px,10fr));
+            }
+        }
+        &.xl#{'\\'}:columns-#{$i} {
+            @include screen_xl() {
+                grid-template-columns: repeat($i, minmax(100px,10fr));
+            }
+        }
     }
 
-    @include screen_lg() {
-        //for lg and bigger sizes
-        grid-template-columns: 2fr 1.5fr 1fr ;
+    // grid-template-columns: 1fr; //Wrap all in One column in small sie
 
-    }
+    // @include screen_sm(){
 
-    @include screen_xl() {
-        //for lg and bigger sizes
-        grid-template-columns: 2fr 2fr 1fr ;
+    // }
+    // @include screen_md() {
+    //     grid-template-columns: 1fr 1.5fr 1fr;
+    // }
 
-    }
+    // @include screen_lg() {
+    //     //for lg and bigger sizes
+    //     grid-template-columns: 2fr 1.5fr 1fr;
+
+    // }
+
+    // @include screen_xl() {
+    //     //for lg and bigger sizes
+    //     grid-template-columns: 2fr 2fr 1fr;
+
+    // }
 
     .cell_group_pair {
         display: grid;
-        grid-template-columns: 1fr ; //wrap one on top of the other
+        grid-template-columns: 1fr; //wrap one on top of the other
+
         @include screen_lg() {
             //for lg and bigger sizes
             grid-template-columns: 1fr 1fr; // wrap one next to the other
         }
     }
 
-}
-
-.grid_container {
-
-    @extend %grid_container;
-
-    .cell_data {
-
+    .cell_data { //data title for small sizes
         &::before {
-            content: attr(title_of_data) ": ";
+            content: attr(data_label) ": ";
             font-weight: bolder;
             width: 60px;
             margin-right: 10px;
             display: inline-block;
-            @include screen_md() {
+
+            @include screen_md() { //only visble in small size screen
                 content: none;
             }
         }
@@ -55,5 +82,8 @@
             display: grid;
         }
     }
-    // .grid_element {}
+
+    // .cell_body{
+    //     grid-column: 1.5
+    // }
 }
