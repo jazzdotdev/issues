@@ -1,0 +1,93 @@
+$columns: 14;
+$group_columns: 5;
+
+.grid_container {
+    display: grid;
+    // grid-template-rows: minmax(1fr, 500px);
+
+    @for $i from 1 to $columns+1 {
+        &.columns-#{$i} {
+            grid-template-columns: repeat($i, minmax(100px, 2fr));
+        }
+
+        &.sm#{'\\'}:columns-#{$i} {
+            @include screen_sm() {
+                grid-template-columns: repeat($i, minmax(100px, 2fr));
+            }
+        }
+
+        &.md#{'\\'}:columns-#{$i} {
+            @include screen_md() {
+                grid-template-columns: repeat($i, minmax(100px, 2fr));
+            }
+        }
+
+        &.lg#{'\\'}:columns-#{$i} {
+            @include screen_lg() {
+                grid-template-columns: repeat($i, minmax(100px, 2fr));
+            }
+        }
+
+        &.xl#{'\\'}:columns-#{$i} {
+            @include screen_xl() {
+                grid-template-columns: repeat($i, minmax(100px, 2fr));
+            }
+        }
+
+        .column-fill-#{$i}{
+            grid-column: span $i;
+        }
+
+        .sm#{'\\'}:column-fill-#{$i} {
+            @include screen_xl() {
+                grid-column: span $i;
+            }
+        }
+
+        .md#{'\\'}:column-fill-#{$i} {
+            @include screen_xl() {
+                grid-column: span $i;
+            }
+        }
+
+        .lg#{'\\'}:column-fill-#{$i} {
+            @include screen_xl() {
+                grid-column: span $i;
+            }
+        }
+
+        .xl#{'\\'}:column-fill-#{$i} {
+            @include screen_xl() {
+                grid-column: span $i;
+            }
+        }
+
+    }
+
+    .cell_data {
+
+        //data title for small sizes
+        &::before {
+            content: attr(data_label) ": ";
+            font-weight: bolder;
+            width: 60px;
+            margin-right: 10px;
+            display: inline-block;
+
+            @include screen_md() {
+                //only visble in small size screen
+                content: none;
+            }
+        }
+    }
+
+
+    &.grid_headers {
+        display: none;
+
+        @include screen_md() {
+            display: grid;
+        }
+    }
+
+}

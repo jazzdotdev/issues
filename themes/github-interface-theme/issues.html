@@ -12,15 +12,18 @@
     <h1 title >Issues</h1>
     <div container>
       <ul header>
-        <div group_cell >
+        <div title_group >
           <li cell_header >Title</li>
           <li cell_header >URL</li>
+
         </div>
 
-        <li cell_header >Body</li>
-        <li cell_header >Labels</li>
+        <div body_cell>
+          <li cell_header> Body</li>
 
-        <!-- <li cell_header >Test</li> -->
+        </div>
+
+        <li cell_header >Labels</li>
       </ul>
       <!-- Rows below -->
       {% for issue in issues %}
@@ -29,25 +32,27 @@
         <article pair_row  >
 
         {% else %}
-        <article row  >
+        <article odd_row  >
 
         {% endif %}
-
-          <div group_cell> 
+          <div title_group > 
             <div cell data_label="Title">
               <h2 title>{{ issue.title }}</h2> <!-- Title  -->
             </div>
 
             <div cell data_label="URL">
-              <div url> <!-- URL   -->
+              <div > <!-- URL   -->
                 <a html_url href="{{issue.html_url}}">{{issue.html_url}}</a>
               </div>
             </div>
 
           </div>
 
-          <div cell_body  data_label="Body">
-            <p body > {{ issue.body }} </p> <!-- Body  -->
+          <div body_cell >
+            <div cell  data_label="Body">
+              <p body > {{ issue.body }} </p> <!-- Body  -->
+            </div>
+
           </div>
 
           <div cell  data_label="Labels">
@@ -60,9 +65,6 @@
             </ul>
           </div>
 
-          <!-- <div cell  data_label="Test">
-            Lorem
-          </div> -->
 
         </article>
       {% endfor %}

@@ -1,7 +1,6 @@
 grid_container
-
 columns-1
-md:columns-3
+md:columns-5
 
 hover:bg-teal-200
 bg-gray-200
