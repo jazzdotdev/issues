@@ -23,7 +23,8 @@
 
         </div>
 
-        <li cell_header >Labels</li>
+        <li cell_header>Labels</li>
+        <li cell_header > Comments </li>
       </ul>
       <!-- Rows below -->
       {% for issue in issues %}
@@ -63,6 +64,18 @@
                 </li>
               {% endfor %}
             </ul>
+          </div>
+          <div cell>
+            <ul>
+            {% if issue.el_comments %}
+              {% for comment in issue.el_comments %}
+                <li>
+                  <strong>{{comment.author}}</strong>: {{comment.body}}
+                </li>
+              {% endfor %}
+            {% endif %}
+            </ul>
+
           </div>
 
 

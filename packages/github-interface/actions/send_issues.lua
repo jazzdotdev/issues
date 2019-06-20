@@ -3,7 +3,6 @@ priority = 1
 input_parameters = ["request"]
 
 local url = "https://api.github.com/search/issues?q={lighttouch}"
-
 local github_response = send_request(url)
 
 local issues = github_response.body.items
@@ -15,8 +14,22 @@ for _, issue in ipairs(issues) do
       issue.tags[name] = value
     end
   end
-end
+  -- Issue comments
 
+  issue.el_comments = {}
+  if issue.comments > 0 then
+    local comment_response = send_request(issue.comments_url)
+    local comments = comment_response.body
+    for _,comment in ipairs(comments) do
+      table.insert(issue.el_comments,{
+          author = comment.user.login,
+          body = comment.body
+        }
+      )
+    end
+  end -- end Issue comments
+
+end
 
 
 

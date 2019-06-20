@@ -910,4 +910,8 @@
       .grid_container.grid_headers {
         display: grid; } }
 
+.text_elipsis {
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
 /*# sourceMappingURL=styles.css.map */
