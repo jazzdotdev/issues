@@ -54,7 +54,7 @@
             {% if issue.body %}
               <p body > {{ issue.body }} </p> <!-- Body  -->
 
-              <label show_more for="">Show More</label>
+              <label show_more for="{{issue.id}}_body">Show More</label>
             {% endif %}
 
             </div>
@@ -62,7 +62,6 @@
 
           <div cell  data_label="Labels">
             <ul labels> <!-- Labels  -->
-              <li> labels here</li>
               {% for name, value in issue.tags %}
                 <li>
                   <strong>{{name}}</strong>: {{value}}
@@ -84,7 +83,7 @@
                 {% endfor %}
 
               </ul>
-              <label show_more for="">Show More</label>
+              <label show_more for="{{issue.id}}_comments">Show More</label>
 
               {% endif %}
             </div>
