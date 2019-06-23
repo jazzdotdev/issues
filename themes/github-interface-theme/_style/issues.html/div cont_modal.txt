@@ -1,0 +1,6 @@
+hidden
+modal_container
+justify-center
+items-center
+inset-0
+fixed

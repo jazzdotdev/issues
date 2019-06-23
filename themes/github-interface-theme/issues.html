@@ -54,6 +54,15 @@
             {% if issue.body %}
               <p body > {{ issue.body }} </p> <!-- Body  -->
 
+              <input hidden id="{{issue.id}}_body" type="checkbox">
+              <label shadow for="{{issue.id}}_body"></label>
+
+              <div cont_modal>
+                <div modal data_label="Body">
+                  <p> {{ issue.body }} </p> <!-- Body  -->
+                
+                </div>
+              </div>
               <label show_more for="{{issue.id}}_body">Show More</label>
             {% endif %}
 
@@ -83,6 +92,23 @@
                 {% endfor %}
 
               </ul>
+              <input hidden id="{{issue.id}}_comments" type="checkbox">
+              <label shadow for="{{issue.id}}_comments"></label>
+
+              <div cont_modal>
+                <div modal data_label="comments">
+                  <ul>
+                    {% for comment in issue.el_comments %}
+                      <li>
+                        <strong>{{comment.author}}</strong>: {{comment.body}}
+                      </li>
+                      <br>
+
+                    {% endfor %}
+                  </ul>
+                
+                </div>
+              </div>
               <label show_more for="{{issue.id}}_comments">Show More</label>
 
               {% endif %}

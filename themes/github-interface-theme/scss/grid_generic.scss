@@ -70,6 +70,8 @@ $column_size: minmax(10px, 1fr);
         &::before {
             content: attr(data_label) ": ";
             font-weight: bolder;
+            text-transform: capitalize;
+
             margin-right: 10px;
             display: inline-block;
 
