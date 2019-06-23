@@ -1,5 +1,5 @@
 @mixin screen_sm() {
-    @media (min-width: 576px) {
+    @media (min-width: 640px) {
         @content;
     }
 }
@@ -11,13 +11,47 @@
 }
 
 @mixin screen_lg() {
-    @media (min-width: 992px) {
+    @media (min-width: 1024px) {
         @content;
     }
 }
 
 @mixin screen_xl() {
-    @media (min-width: 1200px) {
+    @media (min-width: 1280px) {
         @content;
     }
+}
+
+@mixin keyframes($name) {
+    @-webkit-keyframes #{unquote($name)} {
+        @content;
+    }
+
+    @-moz-keyframes #{unquote($name)} {
+        @content;
+
+    }
+
+    @-ms-keyframes #{unquote($name)} {
+        @content;
+
+    }
+
+    @-o-keyframes #{unquote($name)} {
+        @content;
+
+    }
+
+    @keyframes #{unquote($name)} {
+        @content;
+
+    }
+}
+
+@mixin multi_browser($name, $value) {
+    -webkit-#{unquote($name)}: unquote($value);
+    -moz-#{unquote($name)}: unquote($value);
+    -ms-#{unquote($name)}: unquote($value);
+    -o-#{unquote($name)}: unquote($value);
+    #{unquote($name)}: unquote($value);
 }

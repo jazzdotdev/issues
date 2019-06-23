@@ -23,7 +23,8 @@
 
         </div>
 
-        <li cell_header >Labels</li>
+        <li cell_header>Labels</li>
+        <li cell_header > Comments </li>
       </ul>
       <!-- Rows below -->
       {% for issue in issues %}
@@ -50,9 +51,22 @@
 
           <div body_cell >
             <div cell  data_label="Body">
+            {% if issue.body %}
               <p body > {{ issue.body }} </p> <!-- Body  -->
-            </div>
 
+              <input hidden id="{{issue.id}}_body" type="checkbox">
+              <label shadow for="{{issue.id}}_body"></label>
+
+              <div cont_modal>
+                <div modal data_label="Body">
+                  <p> {{ issue.body }} </p> <!-- Body  -->
+                
+                </div>
+              </div>
+              <label show_more for="{{issue.id}}_body">Show More</label>
+            {% endif %}
+
+            </div>
           </div>
 
           <div cell  data_label="Labels">
@@ -63,6 +77,44 @@
                 </li>
               {% endfor %}
             </ul>
+          </div>
+
+          <div cell data_label="Comments">
+            <div>
+              {% if issue.el_comments %}
+              <ul comments>
+                {% for comment in issue.el_comments %}
+                  <li>
+                    <strong>{{comment.author}}</strong>: {{comment.body}}
+                  </li>
+                  <br>
+
+                {% endfor %}
+
+              </ul>
+              <input hidden id="{{issue.id}}_comments" type="checkbox">
+              <label shadow for="{{issue.id}}_comments"></label>
+
+              <div cont_modal>
+                <div modal data_label="comments">
+                  <ul>
+                    {% for comment in issue.el_comments %}
+                      <li>
+                        <strong>{{comment.author}}</strong>: {{comment.body}}
+                      </li>
+                      <br>
+
+                    {% endfor %}
+                  </ul>
+                
+                </div>
+              </div>
+              <label show_more for="{{issue.id}}_comments">Show More</label>
+
+              {% endif %}
+            </div>
+
+
           </div>
 
 
