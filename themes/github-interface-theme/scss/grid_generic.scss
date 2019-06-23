@@ -39,19 +39,19 @@ $column_size: minmax(10px, 1fr);
         }
 
         .sm#{'\\'}:column-fill-#{$i} {
-            @include screen_xl() {
+            @include screen_sm() {
                 grid-column: span $i;
             }
         }
 
         .md#{'\\'}:column-fill-#{$i} {
-            @include screen_xl() {
+            @include screen_md() {
                 grid-column: span $i;
             }
         }
 
         .lg#{'\\'}:column-fill-#{$i} {
-            @include screen_xl() {
+            @include screen_lg() {
                 grid-column: span $i;
             }
         }
