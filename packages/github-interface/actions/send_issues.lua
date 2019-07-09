@@ -32,7 +32,7 @@ local url = addAuth("https://api.github.com/search/issues?q={lighttouch}")
 local github_response = send_request(url)
 
 local issues = github_response.body.items
-
+local all_tags = {}
 
 for _, issue in ipairs(issues) do
   issue.tags = {}
@@ -40,10 +40,11 @@ for _, issue in ipairs(issues) do
     local name, value = label.name:match("^(.+)/(.+)$")
     if name then
       issue.tags[name] = value
+      all_tags[name] = name
     end
   end
-  -- Issue comments
 
+  -- Issue comments
   issue.el_comments = {}
   if issue.comments > 0 then
     local comment_response = send_request(addAuth(issue.comments_url))
@@ -68,7 +69,7 @@ response = {
   headers = {
     ["content-type"] = "text/html",
   },
-  body = render("issues.html", {issues = issues})
+  body = render("issues.html", {issues = issues,all_tags = all_tags })
 }
 
 return response

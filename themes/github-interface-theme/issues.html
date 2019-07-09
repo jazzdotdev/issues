@@ -19,12 +19,18 @@
         </div>
 
         <div body_cell>
-          <li cell_header> Body</li>
+          <li cell_header> body</li>
 
         </div>
 
         <li cell_header>Labels</li>
+
         <li cell_header > Comments </li>
+
+        {% for key,tag in all_tags %}
+          <li cell_header>{{tag}}</li>
+        {% endfor %}
+
       </ul>
       <!-- Rows below -->
       {% for issue in issues %}
@@ -60,7 +66,7 @@
               <div cont_modal>
                 <div modal data_label="Body">
                   <p> {{ issue.body }} </p> <!-- Body  -->
-                
+
                 </div>
               </div>
               <label show_more for="{{issue.id}}_body">Show More</label>
@@ -106,21 +112,32 @@
 
                     {% endfor %}
                   </ul>
-                
                 </div>
               </div>
               <label show_more for="{{issue.id}}_comments">Show More</label>
 
               {% endif %}
             </div>
-
-
           </div>
 
+          {% for key, tag in all_tags %}
+            <div cell data_label="{{tag | capitalize }}">
+              {% if issue.tags[tag] %}
+                <strong>{{issue.tags[tag]}}</strong>
+              {% else %}
+                <strong>----</strong>
 
+              {% endif %}
+            </div>
+          {% endfor %}
         </article>
       {% endfor %}
     </div>
   </div>
+  <!-- {% for key, tag in all_tags %}
+    <p>
+      {{loop.index}}. {{tag}} . {{key}}
+    </p>
+  {% endfor %} -->
 </body>
 </html>
