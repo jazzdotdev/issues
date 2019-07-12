@@ -2,14 +2,30 @@
 
 Lighttouch app to better visualize github issues
 
-## Filter writing params in the url
+## Filters writing params in the url
 
-The filter work adding the name of the column double points `:` and the value to be searched
+The filter work adding the name of the field then double points `:` and the value to be searched
 
-Example
+Example: `title:lighttouch`
+
+The url will also accept multiple filters at once, with each different filter separated with a comma.
+
+Example:
 
 ```url
 http://localhost:3000/issues?filters=model:change,size:0.5
 ```
 
-Currently only works with the label tags and values, where the label ```model/change```, would be seached as in the example.
+Note: also the page will fail to load if given an uncomplete filter or a filter with a wrong format.
+
+## Filters
+
+`lorem` can be any given text
+
+| Filter Tag | GitHub API result | Searches for  |
+|---|---|---|
+| `title:lorem` | `"lorem" in:title`  | Issues that have the selected word in the title  |
+| `body:lorem` | `"lorem" in:body`  | Issues that have the selected word in the body  |
+| `comments:lorem` | `"lorem" in:comments`  | Issues that have the selected word in the comments  |
+| `label:lorem`  | `label:"lorem"`  | Issues that have that label  |
+| `lorem1:lorem2`  | `label:"lorem1/lorem2"`  | Using the tag system for labels this will help search for any label that uses the system of name and value like this `name/value`, and will search for issues that have this label  |
