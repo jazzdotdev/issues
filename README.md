@@ -7,8 +7,9 @@ Lighttouch app to better visualize github issues
 The filter work adding the name of the column double points `:` and the value to be searched
 
 Example
+
 ```url
-http://localhost:3000/issues?filters=model:change
+http://localhost:3000/issues?filters=model:change,size:0.5
 ```
 
 Currently only works with the label tags and values, where the label ```model/change```, would be seached as in the example.

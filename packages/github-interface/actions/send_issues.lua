@@ -55,14 +55,14 @@ function addFilters( _filters )
     return _filters
   end
   local result = ""
-  local labels = split(_filters," ")
+  local labels = split(_filters,",")--spliting in a table the filter text by commas ,
   for _,field in pairs(labels) do
     result = result .. ' label:\"' .. string.gsub( field,":","/") ..  '\"'
   end
   return result
 end
 
-local url = "https://api.github.com/search/issues?q={lighttouch ".. addFilters(filters) .."}"
+local url = "https://api.github.com/search/issues?q={lighttouch type:issue ".. addFilters(filters) .."}"
 
 url = addAuth(url)
 
@@ -109,7 +109,6 @@ response = {
   body = render("issues.html", {
     issues = issues,
     all_tags = all_tags,
-    filters = filters,
   })
 }
 
