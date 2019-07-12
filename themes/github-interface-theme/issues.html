@@ -11,27 +11,30 @@
   <div page>
     <h1 title >Issues</h1>
     <div container>
-      <ul header>
-        <div title_group >
-          <li cell_header >Title</li>
-          <li cell_header >URL</li>
-
-        </div>
-
-        <div body_cell>
-          <li cell_header> body</li>
-
-        </div>
-
-        <li cell_header>Labels</li>
-
-        <li cell_header > Comments </li>
-
-        {% for key,tag in all_tags %}
-          <li cell_header>{{tag}}</li>
-        {% endfor %}
-
-      </ul>
+      <form action="">
+        <ul header>
+          <div title_group >
+            <li cell_header >Title</li>
+  
+            <li cell_header >URL</li>
+  
+          </div>
+  
+          <div body_cell>
+            <li cell_header> body</li>
+  
+          </div>
+  
+          <li cell_header>Labels</li>
+  
+          <li cell_header > Comments </li>
+  
+          {% for key,tag in all_tags %}
+            <li cell_header>{{tag}}</li>
+          {% endfor %}
+  
+        </ul>
+      </form>
       <!-- Rows below -->
       {% if issues[0] %}
       

@@ -3340,15 +3340,8 @@
       .grid_container.grid_headers {
         display: grid; } }
 
-.text_elipsis {
-  overflow: hidden;
-  text-overflow: ellipsis; }
-
 .content_max_height {
   max-height: 200px; }
-
-.row_max_height {
-  overflow: hidden; }
 
 .modal_controller:checked ~ .modal_container {
   display: flex;
