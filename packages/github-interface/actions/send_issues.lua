@@ -2,16 +2,13 @@ event = ["issues_request_received"]
 priority = 1
 input_parameters = ["request"]
 
+local filters
 -- to avoid null pointer if the value is not present it will be an empty string
-function isStringPresent( string )
-  if string then
-    return string
-  else
-    return ""
-  end
+if request.query.filters then
+  filters = request.query.filters
+else
+  filters = ""
 end
-
-local filters = isStringPresent(request.query.filters)
 
 --Method to add extra parameters to a github request
 function addParameterToURL( url,name,value)
@@ -59,20 +56,26 @@ function addFilters( _filters )
   for _,field in pairs(labels) do
     local name, value = field:match("^(.+):(.+)$")
     if name == "body" or name == "title" or name == "comments" then
+      --adding filter when it is body,title or comments
+      -- it will filter issues that have the written text whitin the field
       result = result .. ' \"' .. value .. '\" in:' .. name
-
+    elseif name == "label" then
+      -- will filter for the specific written label
+      result = result .. ' ' .. name .. ':\"' .. value .. '\"'
     else
+      -- if not any of the previous ones will assume it is a custom tag based of a label
+      -- the label will be replace the name/value
       result = result .. ' label:\"' .. name .. "/".. value ..  '\"'
     end
   end
   return result
 end
 
-local url = "https://api.github.com/search/issues?q={ type:issue ".. addFilters(filters) .." lighttouch }"
+local url = "https://api.github.com/search/issues?q={ type:issue ".. addFilters(filters) .." lighttouch }" --adding query filters in the url before making the requests
 
-url = addAuth(url)
+url = addAuth(url) --adding github app auth if it was added in the lighttouch.scl
 
-local github_response = send_request(url)
+local github_response = send_request(url) --get request to the api
 
 local issues = github_response.body.items
 local all_tags = {}
@@ -83,14 +86,16 @@ for _, issue in ipairs(issues) do
     local name, value = label.name:match("^(.+)/(.+)$")
     if name then
       issue.tags[name] = value
-      all_tags[name] = name
+      all_tags[name] = name --all the custom fields names are in variable to show them in columns
     end
   end
 
   -- Issue comments
+  --structuring comments in a table of all comments of the issue with
+  -- the fields author and body
   issue.el_comments = {}
   if issue.comments > 0 then
-    local comment_response = send_request(addAuth(issue.comments_url))
+    local comment_response = send_request(addAuth(issue.comments_url)) --get request to the comments
     local comments = comment_response.body
     for _,comment in ipairs(comments) do
       table.insert(issue.el_comments,{
