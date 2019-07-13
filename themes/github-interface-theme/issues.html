@@ -14,7 +14,11 @@
       <form action="">
         <ul header>
           <div title_group >
-            <li cell_header >Title</li>
+            {% set column_name = "title" %}
+            {% include "chunks/column_header.html" %}
+            <!-- <li cell_header >
+            </li> -->
+
   
             <li cell_header >URL</li>
   

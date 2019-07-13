@@ -3343,6 +3343,21 @@
 .content_max_height {
   max-height: 200px; }
 
+.table_header__filter:checked ~ .header__popup {
+  display: block;
+  visibility: visible; }
+
+.table_header__filter ~ .header__popup {
+  display: none;
+  visibility: hidden;
+  position: absolute;
+  bottom: -50px;
+  z-index: 3;
+  height: 50px;
+  width: 50px;
+  background-color: #fff;
+  border: 1px solid #000; }
+
 .modal_controller:checked ~ .modal_container {
   display: flex;
   position: fixed;
