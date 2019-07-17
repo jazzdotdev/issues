@@ -11,13 +11,14 @@
   <div page>
     <h1 title >Issues</h1>
     <div container>
-      <form action="">
+      <form>
         <ul header>
           <div title_group >
+
             {% set col_name = "title" %}
             {% include "chunks/column_header.html" %}
 
-            {% set col_name = "URL" %}
+            {% set col_name = "url" %}
             {% include "chunks/column_header.html" %}
 
           </div>
@@ -28,10 +29,10 @@
 
           </div>
 
-          {% set col_name = "Labels" %}
+          {% set col_name = "labels" %}
           {% include "chunks/column_header.html" %}
 
-          {% set col_name = "Comments" %}
+          {% set col_name = "comments" %}
           {% include "chunks/column_header.html" %}
 
           {% for key,tag in all_tags %}

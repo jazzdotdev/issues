@@ -1,7 +1,6 @@
 flex
 items-center
 justify-center
-capitalize
 font-bold
 p-4
 border

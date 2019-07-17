@@ -127,6 +127,7 @@ end
 print("Status: ", github_response.status)
 print("Content length: ", #github_response.body_raw)
 
+
 response = {
   headers = {
     ["content-type"] = "text/html",
@@ -134,6 +135,7 @@ response = {
   body = render("issues.html", {
     issues = issues,
     all_tags = all_tags,
+    track = track
   })
 }
 

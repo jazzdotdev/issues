@@ -3375,10 +3375,9 @@
 .table_header__filter ~ .header__popup {
   display: none;
   visibility: hidden;
-  bottom: -90px;
+  top: 50px;
   z-index: 3;
-  height: 100px;
-  width: 100px;
+  width: 115px;
   background-color: #fff;
   border: 1px solid #000; }
 

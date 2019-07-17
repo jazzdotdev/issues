@@ -1,17 +1,18 @@
-<div cell_header >
-    <label for="{{col_name}}__table__header">
+<li cell_header >
+    <label cell_name for="{{col_name}}__table__header">
         {{col_name}}
     </label>
     <input filter_control type="checkbox" id="{{col_name}}__table__header">
     <div header_popup>
-        {% if col_options %}
-            <ul>
+        <p>Show Only</p>
+        <ul options>
+            {% if col_options %}
                 {% for key,option in col_options %}
-                    <li>
-                        {{key}}
+                    <li option>
+                        {{option}}
                     </li>
                 {% endfor %}
-            </ul>
-        {% endif %}
+            {% endif %}
+        </ul>
     </div>
-</div>
+</li>
