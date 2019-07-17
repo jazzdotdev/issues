@@ -3375,11 +3375,10 @@
 .table_header__filter ~ .header__popup {
   display: none;
   visibility: hidden;
-  position: absolute;
-  bottom: -50px;
+  bottom: -90px;
   z-index: 3;
-  height: 50px;
-  width: 50px;
+  height: 100px;
+  width: 100px;
   background-color: #fff;
   border: 1px solid #000; }
 

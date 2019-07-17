@@ -85,8 +85,22 @@ for _, issue in ipairs(issues) do
   for _, label in ipairs(issue.labels) do
     local name, value = label.name:match("^(.+)/(.+)$")
     if name then
+      -- each name "issue, value, size, etc.."
       issue.tags[name] = value
-      all_tags[name] = name --all the custom fields names are in variable to show them in columns
+
+      -- if the name storage is nil create it
+      if all_tags[name] == nil then
+        all_tags[name] = {} --all the custom fields names are in variable to show them in columns
+      end
+      -- if the values storage is nil create it
+      if all_tags[name]['values'] == nil then
+        all_tags[name]['values'] = {}
+      end
+      -- for each name store the name
+      all_tags[name]['name'] = name
+      -- for each name store all possible values
+      all_tags[name]['values'][value] = value
+
     end
   end
 

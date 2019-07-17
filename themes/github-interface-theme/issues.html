@@ -14,34 +14,35 @@
       <form action="">
         <ul header>
           <div title_group >
-            {% set column_name = "title" %}
+            {% set col_name = "title" %}
             {% include "chunks/column_header.html" %}
-            <!-- <li cell_header >
-            </li> -->
 
-  
-            <li cell_header >URL</li>
-  
+            {% set col_name = "URL" %}
+            {% include "chunks/column_header.html" %}
+
           </div>
-  
+
           <div body_cell>
-            <li cell_header> body</li>
-  
+            {% set col_name = "body" %}
+            {% include "chunks/column_header.html" %}
+
           </div>
-  
-          <li cell_header>Labels</li>
-  
-          <li cell_header > Comments </li>
-  
+
+          {% set col_name = "Labels" %}
+          {% include "chunks/column_header.html" %}
+
+          {% set col_name = "Comments" %}
+          {% include "chunks/column_header.html" %}
+
           {% for key,tag in all_tags %}
-            <li cell_header>{{tag}}</li>
+            {% set col_name = tag.name %}
+            {% set col_options = tag.values %}
+            {% include "chunks/column_header.html" %}
           {% endfor %}
-  
         </ul>
       </form>
       <!-- Rows below -->
       {% if issues[0] %}
-      
         {% for issue in issues %}
           {# to give different color depending of the row number#}
           {% if loop.index % 2 == 0 %}
@@ -130,9 +131,9 @@
             </div>
 
             {% for key, tag in all_tags %}
-              <div cell data_label="{{tag | capitalize }}">
-                {% if issue.tags[tag] %}
-                  <strong>{{issue.tags[tag]}}</strong>
+              <div cell data_label="{{tag.name | capitalize }}">
+                {% if issue.tags[tag.name] %}
+                  <strong>{{issue.tags[tag.name]}}</strong>
                 {% else %}
                   <strong>----</strong>
 
