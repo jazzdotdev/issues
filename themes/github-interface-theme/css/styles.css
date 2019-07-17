@@ -2427,6 +2427,34 @@
     animation: unset !important;
     -webkit-transition: none !important;
     transition: none !important; } }
+.content_max_height {
+  max-height: 200px; }
+
+.modal_controller:checked ~ .modal_container {
+  display: flex;
+  position: fixed;
+  pointer-events: none;
+  z-index: 3; }
+  .modal_controller:checked ~ .modal_container .modal {
+    pointer-events: all;
+    display: block;
+    z-index: 4;
+    height: 95%;
+    max-width: 95%;
+    width: 90%; }
+    @media (min-width: 768px) {
+      .modal_controller:checked ~ .modal_container .modal {
+        width: 50%; } }
+    .modal_controller:checked ~ .modal_container .modal::before {
+      content: attr(data_label) ": ";
+      font-weight: bolder;
+      font-size: 2rem;
+      text-transform: capitalize; }
+.modal_controller:checked ~ .label_shadow {
+  display: block;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.5); }
+
 .grid_container {
   display: grid; }
   .grid_container.columns-1 {
@@ -3340,9 +3368,6 @@
       .grid_container.grid_headers {
         display: grid; } }
 
-.content_max_height {
-  max-height: 200px; }
-
 .table_header__filter:checked ~ .header__popup {
   display: block;
   visibility: visible; }
@@ -3357,30 +3382,5 @@
   width: 50px;
   background-color: #fff;
   border: 1px solid #000; }
-
-.modal_controller:checked ~ .modal_container {
-  display: flex;
-  position: fixed;
-  pointer-events: none;
-  z-index: 3; }
-  .modal_controller:checked ~ .modal_container .modal {
-    pointer-events: all;
-    display: block;
-    z-index: 4;
-    height: 95%;
-    max-width: 95%;
-    width: 90%; }
-    @media (min-width: 768px) {
-      .modal_controller:checked ~ .modal_container .modal {
-        width: 50%; } }
-    .modal_controller:checked ~ .modal_container .modal::before {
-      content: attr(data_label) ": ";
-      font-weight: bolder;
-      font-size: 2rem;
-      text-transform: capitalize; }
-.modal_controller:checked ~ .label_shadow {
-  display: block;
-  z-index: 2;
-  background-color: rgba(0, 0, 0, 0.5); }
 
 /*# sourceMappingURL=styles.css.map */
