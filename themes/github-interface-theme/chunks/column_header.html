@@ -4,12 +4,17 @@
     </label>
     <input filter_control type="checkbox" id="{{col_name}}__table__header">
     <div header_popup>
-        <p>Show Only</p>
+        <p>Show Only:</p>
         <ul options>
             {% if col_options %}
                 {% for key,option in col_options %}
                     <li option>
-                        {{option}}
+                        <form action="">
+                            <input hidden name="filters" value="{{col_name}}:{{option}}" type="text">
+                            <button type="submit">
+                                {{option}}
+                            </button>
+                        </form>
                     </li>
                 {% endfor %}
             {% endif %}

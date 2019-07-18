@@ -9,9 +9,9 @@
 </head>
 <body>
   <div page>
+    {{query | safe }}
     <h1 title >Issues</h1>
     <div container>
-      <form>
         <ul header>
           <div title_group >
 
@@ -41,7 +41,6 @@
             {% include "chunks/column_header.html" %}
           {% endfor %}
         </ul>
-      </form>
       <!-- Rows below -->
       {% if issues[0] %}
         {% for issue in issues %}
