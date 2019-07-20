@@ -1,21 +1,54 @@
+$popup_width: 100px;
 .table_header__filter:checked {
     ~.header__popup {
+        display: block;
+        visibility: visible;
+    }
+
+    ~.label__close_popup {
         display: block;
         visibility: visible;
     }
 }
 
 .table_header__filter{
+
     ~.header__popup{
         display: none;
         visibility: hidden;
 
-        // position: absolute;
-        // bottom: -90px;
         top: 50px;
         z-index: 3;
-        width: 100px;
+        width: $popup_width;
         background-color: #fff;
         border: 1px solid #000;
+        .selection {
+            position: relative;
+            .options {
+                display: none;
+                visibility: hidden;
+
+                top: 20px;
+                position: absolute;
+                right: 0;
+                background-color: #fff;
+                border: 1px solid #000;
+            }
+            &:hover{
+
+                .options {
+                    display: block;
+                    visibility: visible;
+                }
+            }
+        }
     }
+    ~.label__close_popup{
+        display: none;
+        visibility: hidden;
+        background: transparent;
+        z-index: 2;
+    }
+    
+    
 }

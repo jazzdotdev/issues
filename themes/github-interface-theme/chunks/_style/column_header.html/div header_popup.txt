@@ -1,4 +1,3 @@
 header__popup
 absolute
-p-1
-text-xs
+text-sm

@@ -3371,6 +3371,9 @@
 .table_header__filter:checked ~ .header__popup {
   display: block;
   visibility: visible; }
+.table_header__filter:checked ~ .label__close_popup {
+  display: block;
+  visibility: visible; }
 
 .table_header__filter ~ .header__popup {
   display: none;
@@ -3380,5 +3383,23 @@
   width: 100px;
   background-color: #fff;
   border: 1px solid #000; }
+  .table_header__filter ~ .header__popup .selection {
+    position: relative; }
+    .table_header__filter ~ .header__popup .selection .options {
+      display: none;
+      visibility: hidden;
+      top: 20px;
+      position: absolute;
+      right: 0;
+      background-color: #fff;
+      border: 1px solid #000; }
+    .table_header__filter ~ .header__popup .selection:hover .options {
+      display: block;
+      visibility: visible; }
+.table_header__filter ~ .label__close_popup {
+  display: none;
+  visibility: hidden;
+  background: transparent;
+  z-index: 2; }
 
 /*# sourceMappingURL=styles.css.map */
