@@ -94,7 +94,7 @@ function addFilters( _filters , previous_filters)
 
   if previous_filters then --add the previous filters if there are any
     for _,filter in pairs(split(previous_filters," ")) do
-      result = sanitizeString(result,filter)
+      result = sanitizeString(result," " .. filter)
     end
   end
 
