@@ -2427,6 +2427,21 @@
     animation: unset !important;
     -webkit-transition: none !important;
     transition: none !important; } }
+.triangle-sm {
+  position: relative;
+  content: ""; }
+  .triangle-sm::after {
+    content: "";
+    box-sizing: border-box;
+    height: 8px;
+    width: 8px;
+    border-style: solid;
+    position: absolute;
+    left: 8px;
+    top: 4px;
+    border-color: transparent transparent transparent #000;
+    border-width: calc(8px/2) 0 calc(8px/2) 8px; }
+
 .content_max_height {
   max-height: 200px; }
 

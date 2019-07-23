@@ -2,7 +2,6 @@ flex
 items-center
 justify-center
 font-bold
-p-4
 border
 border-black
 relative
