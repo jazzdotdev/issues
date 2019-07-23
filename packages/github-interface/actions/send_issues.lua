@@ -166,7 +166,6 @@ response = {
   body = render("issues.html", {
     issues = issues,
     all_tags = all_tags,
-    query =  json.from_table(request.query),
     previous_filters = currentfilters,
   })
 }
