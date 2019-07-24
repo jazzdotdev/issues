@@ -2461,7 +2461,6 @@
       .modal_controller:checked ~ .modal_container .modal {
         width: 50%; } }
     .modal_controller:checked ~ .modal_container .modal::before {
-      content: attr(data_label) ": ";
       font-weight: bolder;
       font-size: 2rem;
       text-transform: capitalize; }
@@ -3416,5 +3415,12 @@
   visibility: hidden;
   background: transparent;
   z-index: 2; }
+
+.box_underline::after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1rem;
+  border-bottom: 1px #edf2f7 solid; }
 
 /*# sourceMappingURL=styles.css.map */

@@ -24,7 +24,7 @@
             }
 
             &::before{
-                content: attr(data_label) ": ";
+                // content: attr(data_label) ": ";
                 font-weight: bolder;
                 font-size: 2rem;
                 text-transform: capitalize;

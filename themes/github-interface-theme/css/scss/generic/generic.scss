@@ -1,0 +1,9 @@
+.box_underline{
+    &::after{
+        display: block;
+        content: "";
+        width: 100%;
+        height: 1rem;
+        border-bottom: 1px #edf2f7 solid;
+    }
+}

@@ -25,13 +25,10 @@
           </div>
 
           <div body_cell>
-            {% set col_name = "body" %}
+            {% set col_name = "Body + Comments" %}
             {% include "chunks/column_header.html" %}
 
           </div>
-
-          {% set col_name = "comments" %}
-          {% include "chunks/column_header.html" %}
 
           {% for key,tag in all_tags %}
             {% set col_name = tag.name %}
@@ -72,9 +69,25 @@
                 <label shadow for="{{issue.id}}_body"></label>
 
                 <div cont_modal>
-                  <div modal data_label="Body">
-                    <p> {{ issue.body }} </p> <!-- Body  -->
+                  <div modal >
+                    <h1 body_modal_title>{{ issue.title }} </h1>
+                    <h2 subtitle_modal>
+                      Body:
+                    </h2>
+                    <p>{{ issue.body }}</p> <!-- Body  -->
+                    {% if issue.el_comments %}
+                      <h2 subtitle_modal>Comments</h2>
+                      <ul>
+                        {% for comment in issue.el_comments %}
+                        <li>
+                          <strong>{{comment.author}}</strong>: {{comment.body}}
+                        </li>
+                        <br>
 
+                        {% endfor %}
+
+                      </ul>
+                    {% endif %}
                   </div>
                 </div>
                 <label show_more for="{{issue.id}}_body">Show More</label>
@@ -83,7 +96,7 @@
               </div>
             </div>
 
-            <div cell data_label="Comments">
+            <!-- <div cell data_label="Comments">
               <div>
                 {% if issue.el_comments %}
                 <ul comments>
@@ -116,7 +129,7 @@
 
                 {% endif %}
               </div>
-            </div>
+            </div> -->
 
             {% for key, tag in all_tags %}
               <div cell data_label="{{tag.name | capitalize }}">
