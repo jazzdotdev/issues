@@ -30,9 +30,6 @@
 
           </div>
 
-          {% set col_name = "labels" %}
-          {% include "chunks/column_header.html" %}
-
           {% set col_name = "comments" %}
           {% include "chunks/column_header.html" %}
 
@@ -84,16 +81,6 @@
               {% endif %}
 
               </div>
-            </div>
-
-            <div cell  data_label="Labels">
-              <ul labels> <!-- Labels  -->
-                {% for name, value in issue.tags %}
-                  <li>
-                    <strong>{{name}}</strong>: {{value}}
-                  </li>
-                {% endfor %}
-              </ul>
             </div>
 
             <div cell data_label="Comments">
