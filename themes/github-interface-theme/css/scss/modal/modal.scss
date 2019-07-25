@@ -22,14 +22,14 @@
                 width: 50%;
 
             }
+            .modal__content{
+                .modal__body{
+                    height: 60%;
+                }
+                .modal__footer{
+                }
 
-            &::before{
-                // content: attr(data_label) ": ";
-                font-weight: bolder;
-                font-size: 2rem;
-                text-transform: capitalize;
             }
-
         }
 
     }

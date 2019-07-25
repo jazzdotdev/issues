@@ -1,0 +1,5 @@
+modal
+bg-white
+m-4
+shadow-lg
+overflow-hidden

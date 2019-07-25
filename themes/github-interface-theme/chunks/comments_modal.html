@@ -1,0 +1,35 @@
+<input hidden id="{{issue.id}}_body" type="checkbox">
+<label shadow for="{{issue.id}}_body"></label>
+
+<div container_modal>
+    <div modal>
+        <div content_modal>
+            <h1 title_modal>{{ issue.title }} </h1>
+            <div body_modal>
+                <h2 subtitle_modal>
+                    Body:
+                </h2>
+                <p body>{{ issue.body }}</p> <!-- Body  -->
+                {% if issue.el_comments %}
+                <h2 subtitle_modal>Comments</h2>
+                <ul>
+                    {% for comment in issue.el_comments %}
+                    <li comment>
+                        <h3>
+                            <strong>{{comment.author}}</strong>
+                        </h3>
+                        <p>{{comment.body}}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <div footer_modal>
+                <label for="{{issue.id}}_body">
+                    OK
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<label show_more for="{{issue.id}}_body">Show More</label>

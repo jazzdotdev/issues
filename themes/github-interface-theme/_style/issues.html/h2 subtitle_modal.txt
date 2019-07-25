@@ -1,3 +1,0 @@
-font-bold
-text-xl
-py-1

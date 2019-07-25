@@ -1,0 +1,5 @@
+font-bold
+text-lg
+border-b
+border-gray-400
+my-2

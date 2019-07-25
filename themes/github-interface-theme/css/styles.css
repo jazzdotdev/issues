@@ -2460,10 +2460,8 @@
     @media (min-width: 768px) {
       .modal_controller:checked ~ .modal_container .modal {
         width: 50%; } }
-    .modal_controller:checked ~ .modal_container .modal::before {
-      font-weight: bolder;
-      font-size: 2rem;
-      text-transform: capitalize; }
+    .modal_controller:checked ~ .modal_container .modal .modal__content .modal__body {
+      height: 60%; }
 .modal_controller:checked ~ .label_shadow {
   display: block;
   z-index: 2;

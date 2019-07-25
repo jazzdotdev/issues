@@ -4,3 +4,4 @@ justify-center
 items-center
 inset-0
 fixed
+text-gray-900
