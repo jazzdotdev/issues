@@ -3421,4 +3421,9 @@
   height: 1rem;
   border-bottom: 1px #edf2f7 solid; }
 
+.button__pressed--depth {
+  transition: transform .5s; }
+  .button__pressed--depth:active {
+    transform: scale(0.95); }
+
 /*# sourceMappingURL=styles.css.map */

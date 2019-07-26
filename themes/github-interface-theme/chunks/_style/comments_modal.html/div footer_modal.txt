@@ -1,2 +1,9 @@
-bg-gray-300
+p-4
 modal__footer
+flex
+justify-center
+align-middle
+bottom-0
+bg-gray-100
+border-t
+border-gray-300
