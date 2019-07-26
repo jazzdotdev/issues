@@ -63,7 +63,7 @@
             <div body_cell >
               <div cell  data_label="Body">
               {% if issue.body %}
-                <p body > {{ issue.body }} </p> <!-- Body  -->
+                <p body> {{ issue.min_body }} </p> <!-- Body  -->
                 {% set issue = issue %}
                 {% include "chunks/comments_modal.html" %}
               {% endif %}

@@ -1,4 +1,4 @@
-<input hidden id="{{issue.id}}_body" type="checkbox">
+<input modal_controller id="{{issue.id}}_body" type="checkbox">
 <label shadow for="{{issue.id}}_body"></label>
 
 <div container_modal>
@@ -9,20 +9,32 @@
                 <h2 subtitle_modal>
                     Body:
                 </h2>
-                <p body>{{ issue.body }}</p> <!-- Body  -->
-                {% if issue.el_comments %}
-                <h2 subtitle_modal>Comments</h2>
-                <ul>
-                    {% for comment in issue.el_comments %}
-                    <li comment>
-                        <h3>
-                            <strong>{{comment.author}}</strong>
-                        </h3>
-                        <p>{{comment.body}}</p>
-                    </li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
+                <input preview_controller id="{{issue.id}}_body_preview" type="checkbox">
+                <div preview>
+                    <p body>{{ issue.min_body }}</p>
+                    <label preview_label for="{{issue.id}}_body_preview">
+                        Read more and {{issue.comments}} Comments
+                    </label>
+                </div>
+                <div view >
+                    <p body>{{ issue.body }}</p> <!-- Body  -->
+                    {% if issue.el_comments %}
+                    <h2 subtitle_modal>Comments</h2>
+                    <ul>
+                        {% for comment in issue.el_comments %}
+                        <li comment>
+                            <h3>
+                                <strong>{{comment.author}}</strong>
+                            </h3>
+                            <p>{{comment.body}}</p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <label preview_label for="{{issue.id}}_body_preview">
+                        Read less
+                    </label>
+                </div>
             </div>
             <div footer_modal>
                 <label close_modal for="{{issue.id}}_body">

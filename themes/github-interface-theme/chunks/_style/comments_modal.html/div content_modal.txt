@@ -1,3 +1,4 @@
 flex
 flex-col
 h-full
+modal__content

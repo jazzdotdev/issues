@@ -112,6 +112,9 @@ local issues = github_response.body.items
 local all_tags = {}
 
 for _, issue in ipairs(issues) do
+
+  issue.min_body = string.sub(issue.body,0,150)
+
   issue.tags = {}
   for _, label in ipairs(issue.labels) do
     local name, value = label.name:match("^(.+)/(.+)$")

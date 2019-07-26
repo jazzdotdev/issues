@@ -2460,12 +2460,25 @@
     @media (min-width: 768px) {
       .modal_controller:checked ~ .modal_container .modal {
         width: 50%; } }
-    .modal_controller:checked ~ .modal_container .modal .modal__content .modal__body {
-      height: 60%; }
 .modal_controller:checked ~ .label_shadow {
   display: block;
   z-index: 2;
   background-color: rgba(0, 0, 0, 0.5); }
+
+.modal_container .modal__content .modal__body {
+  height: 60%; }
+  .modal_container .modal__content .modal__body .view {
+    display: none;
+    visibility: hidden; }
+  .modal_container .modal__content .modal__body .preview {
+    display: block;
+    visibility: visible; }
+  .modal_container .modal__content .modal__body .preview_controller:checked ~ .view {
+    display: block;
+    visibility: visible; }
+  .modal_container .modal__content .modal__body .preview_controller:checked ~ .preview {
+    display: none;
+    visibility: hidden; }
 
 .grid_container {
   display: grid; }

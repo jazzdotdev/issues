@@ -8,36 +8,52 @@
         .modal{
             @extend .animated ;
             @extend .fadeIn ;
-
             pointer-events: all;
             display: block;
-
             z-index: 4;
             height: 95%;
             max-width: 95%;
-            
             width: 90%;
-
             @include screen_md(){
                 width: 50%;
 
             }
-            .modal__content{
-                .modal__body{
-                    height: 60%;
-                }
-                .modal__footer{
-                }
-
-            }
         }
-
     }
     ~ .label_shadow{
         display: block;
         z-index: 2;
         background-color: rgba(0, 0, 0, 0.5);
-
     }
+}
 
+.modal_container{
+    .modal__content {
+
+        .modal__body {
+            height: 60%;
+
+            .view{
+                display: none;
+                visibility: hidden;
+            }
+            .preview{
+                display: block;
+                visibility: visible;
+            }
+
+            .preview_controller:checked{
+                ~{
+                    .view {
+                        display: block;
+                        visibility: visible;
+                    }
+                    .preview {
+                        display: none;
+                        visibility: hidden;
+                    }
+                }
+            }
+        }
+    }
 }
