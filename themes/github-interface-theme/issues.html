@@ -29,11 +29,21 @@
             {% include "chunks/column_header.html" %}
 
           </div>
-
           {% for key,tag in all_tags %}
+            {% if (loop.index - 1) % 3 == 0 or loop.index == 1 %}
+              {% if loop.index > 1  %}
+                </div>
+              {% endif %}
+              <div three_cell_group >
+            {% endif %}
+
             {% set col_name = tag.name %}
             {% set col_options = tag.values %}
             {% include "chunks/column_header.html" %}
+            
+            {% if loop.last %}
+              </div>
+            {% endif %}
           {% endfor %}
         </ul>
       <!-- Rows below -->
@@ -70,16 +80,24 @@
 
               </div>
             </div>
+            {% for key,tag in all_tags %}
+              {% if (loop.index - 1) % 3 == 0 or loop.index == 1 %}
+                {% if loop.index > 1  %}
+                  </div>
+                {% endif %}
+                <div three_cell_group >
+              {% endif %}
 
-            {% for key, tag in all_tags %}
               <div cell data_label="{{tag.name | capitalize }}">
                 {% if issue.tags[tag.name] %}
                   <strong>{{issue.tags[tag.name]}}</strong>
                 {% else %}
                   <strong>----</strong>
-
                 {% endif %}
               </div>
+              {% if loop.last %}
+                </div>
+              {% endif %}
             {% endfor %}
           </article>
         {% endfor %}
