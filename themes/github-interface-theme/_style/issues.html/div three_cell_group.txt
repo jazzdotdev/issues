@@ -6,4 +6,5 @@ columns-1
 lg:columns-3
 
 column-fill-1
-md:column-fill-3
+md:column-fill-2
+lg:column-fill-3

@@ -15,19 +15,29 @@
     <div container>
         <ul header>
           <div title_group >
+            {% set searchable = true -%}
 
             {% set col_name = "title" %}
+            {% set col_field = "title" %}
             {% include "chunks/column_header.html" %}
 
-            {% set col_name = "url" %}
-            {% include "chunks/column_header.html" %}
+            <li cell_header>
+              <p cell_name>
+                url
+              </p>
+            </li>
+            {# set col_name = "url" #}
+            {# include "chunks/column_header.html" #}
 
           </div>
 
           <div body_cell>
+            {% set searchable = true -%}
             {% set col_name = "Body + Comments" %}
+            {% set col_field = "body" %}
             {% include "chunks/column_header.html" %}
 
+            {% set searchable = false -%}
           </div>
           {% for key,tag in all_tags %}
             {% if (loop.index - 1) % 3 == 0 or loop.index == 1 %}

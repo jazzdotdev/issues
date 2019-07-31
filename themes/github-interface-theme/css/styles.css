@@ -3421,6 +3421,8 @@
     .table_header__filter ~ .header__popup .selection:hover .options {
       display: block;
       visibility: visible; }
+  .table_header__filter ~ .header__popup .col_header__input {
+    width: 90px; }
 .table_header__filter ~ .label__close_popup {
   display: none;
   visibility: hidden;

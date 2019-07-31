@@ -2,7 +2,8 @@ m-0
 p-0
 grid_container
 
+column-fill-1
 sm:column-fill-1
-md:column-fill-2
+md:column-fill-3
 lg:column-fill-2
 xl:column-fill-2
