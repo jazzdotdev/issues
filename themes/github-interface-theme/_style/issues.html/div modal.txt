@@ -1,7 +1,0 @@
-modal
-bg-white
-m-4
-p-6
-rounded
-overflow-y-scroll
-shadow-lg

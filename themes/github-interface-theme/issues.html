@@ -25,21 +25,25 @@
           </div>
 
           <div body_cell>
-            {% set col_name = "body" %}
+            {% set col_name = "Body + Comments" %}
             {% include "chunks/column_header.html" %}
 
           </div>
-
-          {% set col_name = "labels" %}
-          {% include "chunks/column_header.html" %}
-
-          {% set col_name = "comments" %}
-          {% include "chunks/column_header.html" %}
-
           {% for key,tag in all_tags %}
+            {% if (loop.index - 1) % 3 == 0 or loop.index == 1 %}
+              {% if loop.index > 1  %}
+                </div>
+              {% endif %}
+              <div three_cell_group >
+            {% endif %}
+
             {% set col_name = tag.name %}
             {% set col_options = tag.values %}
             {% include "chunks/column_header.html" %}
+            
+            {% if loop.last %}
+              </div>
+            {% endif %}
           {% endfor %}
         </ul>
       <!-- Rows below -->
@@ -69,77 +73,31 @@
             <div body_cell >
               <div cell  data_label="Body">
               {% if issue.body %}
-                <p body > {{ issue.body }} </p> <!-- Body  -->
-
-                <input hidden id="{{issue.id}}_body" type="checkbox">
-                <label shadow for="{{issue.id}}_body"></label>
-
-                <div cont_modal>
-                  <div modal data_label="Body">
-                    <p> {{ issue.body }} </p> <!-- Body  -->
-
-                  </div>
-                </div>
-                <label show_more for="{{issue.id}}_body">Show More</label>
+                <p body> {{ issue.min_body }} </p> <!-- Body  -->
+                {% set issue = issue %}
+                {% include "chunks/comments_modal.html" %}
               {% endif %}
 
               </div>
             </div>
-
-            <div cell  data_label="Labels">
-              <ul labels> <!-- Labels  -->
-                {% for name, value in issue.tags %}
-                  <li>
-                    <strong>{{name}}</strong>: {{value}}
-                  </li>
-                {% endfor %}
-              </ul>
-            </div>
-
-            <div cell data_label="Comments">
-              <div>
-                {% if issue.el_comments %}
-                <ul comments>
-                  {% for comment in issue.el_comments %}
-                    <li>
-                      <strong>{{comment.author}}</strong>: {{comment.body}}
-                    </li>
-                    <br>
-
-                  {% endfor %}
-
-                </ul>
-                <input hidden id="{{issue.id}}_comments" type="checkbox">
-                <label shadow for="{{issue.id}}_comments"></label>
-
-                <div cont_modal>
-                  <div modal data_label="comments">
-                    <ul>
-                      {% for comment in issue.el_comments %}
-                        <li>
-                          <strong>{{comment.author}}</strong>: {{comment.body}}
-                        </li>
-                        <br>
-
-                      {% endfor %}
-                    </ul>
+            {% for key,tag in all_tags %}
+              {% if (loop.index - 1) % 3 == 0 or loop.index == 1 %}
+                {% if loop.index > 1  %}
                   </div>
-                </div>
-                <label show_more for="{{issue.id}}_comments">Show More</label>
-
                 {% endif %}
-              </div>
-            </div>
+                <div three_cell_group >
+              {% endif %}
 
-            {% for key, tag in all_tags %}
               <div cell data_label="{{tag.name | capitalize }}">
                 {% if issue.tags[tag.name] %}
                   <strong>{{issue.tags[tag.name]}}</strong>
                 {% else %}
                   <strong>----</strong>
-
                 {% endif %}
               </div>
+              {% if loop.last %}
+                </div>
+              {% endif %}
             {% endfor %}
           </article>
         {% endfor %}

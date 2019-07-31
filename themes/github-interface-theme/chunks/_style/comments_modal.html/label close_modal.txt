@@ -1,0 +1,8 @@
+py-4
+px-12
+cursor-pointer
+bg-gray-900
+text-gray-100
+font-extrabold
+uppercase
+button__pressed--depth
