@@ -1,0 +1,11 @@
+p-0
+m-0
+
+columns-1
+lg:columns-2
+grid_container
+
+sm:column-fill-1
+md:column-fill-2
+lg:column-fill-2
+xl:column-fill-2

@@ -1,0 +1,6 @@
+break-words
+cell_data
+p-2
+border
+border-gray-500
+overflow-hidden

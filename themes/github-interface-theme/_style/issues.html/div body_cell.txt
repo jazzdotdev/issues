@@ -1,0 +1,8 @@
+m-0
+p-0
+grid_container
+
+sm:column-fill-1
+md:column-fill-2
+lg:column-fill-2
+xl:column-fill-2

@@ -1,0 +1,7 @@
+grid_container
+columns-1
+md:columns-6
+grid_headers
+
+hover:bg-yellow-300
+bg-yellow-200

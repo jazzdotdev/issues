@@ -1,0 +1,6 @@
+p-0
+m-0
+
+grid_container
+columns-1
+md:columns-2

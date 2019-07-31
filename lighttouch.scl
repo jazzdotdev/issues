@@ -5,4 +5,6 @@ settings = {
   slideshow = "c800a360-d198-4a87-877e-b353f7dd0a9d",
   user = "admin",
   password = "admin",
+  github_client_id = "",
+  github_client_secret = "",
 }

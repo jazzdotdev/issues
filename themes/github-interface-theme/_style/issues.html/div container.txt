@@ -1,0 +1,4 @@
+p-1
+bg-indigo-100
+overflow-hidden
+w-full
