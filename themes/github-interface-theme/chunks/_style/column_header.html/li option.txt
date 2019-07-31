@@ -1,0 +1,4 @@
+hover:text-blue-600
+hover:bg-yellow-200
+cursor-pointer
+p-1

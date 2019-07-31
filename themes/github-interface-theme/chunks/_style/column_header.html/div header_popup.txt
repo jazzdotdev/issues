@@ -1,0 +1,3 @@
+header__popup
+absolute
+text-sm

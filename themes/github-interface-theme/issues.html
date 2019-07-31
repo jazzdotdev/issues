@@ -2,39 +2,48 @@
 <html>
 <head>
   <title>Issues</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    {% include 'scss/styles.css' %}
+    {% include 'css/styles.css' %}
+  </style>
+  <style>
+    {% include 'css/tailwind.min.css' %}
   </style>
 </head>
 <body>
   <div page>
     <h1 title >Issues</h1>
     <div container>
-      <ul header>
-        <div title_group >
-          <li cell_header >Title</li>
-          <li cell_header >URL</li>
+        <ul header>
+          <div title_group >
 
-        </div>
+            {% set col_name = "title" %}
+            {% include "chunks/column_header.html" %}
 
-        <div body_cell>
-          <li cell_header> body</li>
+            {% set col_name = "url" %}
+            {% include "chunks/column_header.html" %}
 
-        </div>
+          </div>
 
-        <li cell_header>Labels</li>
+          <div body_cell>
+            {% set col_name = "body" %}
+            {% include "chunks/column_header.html" %}
 
-        <li cell_header > Comments </li>
+          </div>
 
-        {% for key,tag in all_tags %}
-          <li cell_header>{{tag}}</li>
-        {% endfor %}
+          {% set col_name = "labels" %}
+          {% include "chunks/column_header.html" %}
 
-      </ul>
+          {% set col_name = "comments" %}
+          {% include "chunks/column_header.html" %}
+
+          {% for key,tag in all_tags %}
+            {% set col_name = tag.name %}
+            {% set col_options = tag.values %}
+            {% include "chunks/column_header.html" %}
+          {% endfor %}
+        </ul>
       <!-- Rows below -->
       {% if issues[0] %}
-      
         {% for issue in issues %}
           {# to give different color depending of the row number#}
           {% if loop.index % 2 == 0 %}
@@ -123,9 +132,9 @@
             </div>
 
             {% for key, tag in all_tags %}
-              <div cell data_label="{{tag | capitalize }}">
-                {% if issue.tags[tag] %}
-                  <strong>{{issue.tags[tag]}}</strong>
+              <div cell data_label="{{tag.name | capitalize }}">
+                {% if issue.tags[tag.name] %}
+                  <strong>{{issue.tags[tag.name]}}</strong>
                 {% else %}
                   <strong>----</strong>
 

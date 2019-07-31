@@ -1,0 +1,7 @@
+flex
+items-center
+justify-center
+font-bold
+border
+border-black
+relative

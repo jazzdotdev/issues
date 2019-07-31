@@ -1,0 +1,35 @@
+=triangle($size: 10px,$direction: "right",$color: #000)
+  box-sizing: border-box
+  height: $size
+  width: $size
+  border-style: solid
+  position: absolute
+  left: $size
+  top: #{$size/2 }
+
+  +triangle_color($color,$direction)
+
+  @if $direction == "right"
+      $border_shape: calc(#{$size}/2) 0 calc(#{$size}/2) $size
+      border-width: $border_shape
+
+  @else if $direction == "left"
+    $border_shape: calc(#{$size}/2) $size calc(#{$size}/2) 0
+    border-width: $border_shape
+
+
+=triangle_color($color: #000 ,$direction: "right")
+
+  @if $direction == "right"
+    border-color: transparent transparent transparent $color
+
+  @else if $direction == "left"
+    border-color: transparent $color transparent transparent
+
+
+.triangle-sm
+  position: relative
+  content: ""
+  &::after
+    content: ""
+    +triangle(8px,"right",#000)

@@ -2427,6 +2427,49 @@
     animation: unset !important;
     -webkit-transition: none !important;
     transition: none !important; } }
+.triangle-sm {
+  position: relative;
+  content: ""; }
+  .triangle-sm::after {
+    content: "";
+    box-sizing: border-box;
+    height: 8px;
+    width: 8px;
+    border-style: solid;
+    position: absolute;
+    left: 8px;
+    top: 4px;
+    border-color: transparent transparent transparent #000;
+    border-width: calc(8px/2) 0 calc(8px/2) 8px; }
+
+.content_max_height {
+  max-height: 200px; }
+
+.modal_controller:checked ~ .modal_container {
+  display: flex;
+  position: fixed;
+  pointer-events: none;
+  z-index: 3; }
+  .modal_controller:checked ~ .modal_container .modal {
+    pointer-events: all;
+    display: block;
+    z-index: 4;
+    height: 95%;
+    max-width: 95%;
+    width: 90%; }
+    @media (min-width: 768px) {
+      .modal_controller:checked ~ .modal_container .modal {
+        width: 50%; } }
+    .modal_controller:checked ~ .modal_container .modal::before {
+      content: attr(data_label) ": ";
+      font-weight: bolder;
+      font-size: 2rem;
+      text-transform: capitalize; }
+.modal_controller:checked ~ .label_shadow {
+  display: block;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.5); }
+
 .grid_container {
   display: grid; }
   .grid_container.columns-1 {
@@ -3340,39 +3383,38 @@
       .grid_container.grid_headers {
         display: grid; } }
 
-.text_elipsis {
-  overflow: hidden;
-  text-overflow: ellipsis; }
-
-.content_max_height {
-  max-height: 200px; }
-
-.row_max_height {
-  overflow: hidden; }
-
-.modal_controller:checked ~ .modal_container {
-  display: flex;
-  position: fixed;
-  pointer-events: none;
-  z-index: 3; }
-  .modal_controller:checked ~ .modal_container .modal {
-    pointer-events: all;
-    display: block;
-    z-index: 4;
-    height: 95%;
-    max-width: 95%;
-    width: 90%; }
-    @media (min-width: 768px) {
-      .modal_controller:checked ~ .modal_container .modal {
-        width: 50%; } }
-    .modal_controller:checked ~ .modal_container .modal::before {
-      content: attr(data_label) ": ";
-      font-weight: bolder;
-      font-size: 2rem;
-      text-transform: capitalize; }
-.modal_controller:checked ~ .label_shadow {
+.table_header__filter:checked ~ .header__popup {
   display: block;
-  z-index: 2;
-  background-color: rgba(0, 0, 0, 0.5); }
+  visibility: visible; }
+.table_header__filter:checked ~ .label__close_popup {
+  display: block;
+  visibility: visible; }
+
+.table_header__filter ~ .header__popup {
+  display: none;
+  visibility: hidden;
+  top: 50px;
+  z-index: 3;
+  width: 100px;
+  background-color: #fff;
+  border: 1px solid #000; }
+  .table_header__filter ~ .header__popup .selection {
+    position: relative; }
+    .table_header__filter ~ .header__popup .selection .options {
+      display: none;
+      visibility: hidden;
+      top: 20px;
+      position: absolute;
+      right: 0;
+      background-color: #fff;
+      border: 1px solid #000; }
+    .table_header__filter ~ .header__popup .selection:hover .options {
+      display: block;
+      visibility: visible; }
+.table_header__filter ~ .label__close_popup {
+  display: none;
+  visibility: hidden;
+  background: transparent;
+  z-index: 2; }
 
 /*# sourceMappingURL=styles.css.map */
