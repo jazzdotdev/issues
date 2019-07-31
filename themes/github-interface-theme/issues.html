@@ -19,108 +19,124 @@
         </div>
 
         <div body_cell>
-          <li cell_header> Body</li>
+          <li cell_header> body</li>
 
         </div>
 
         <li cell_header>Labels</li>
+
         <li cell_header > Comments </li>
+
+        {% for key,tag in all_tags %}
+          <li cell_header>{{tag}}</li>
+        {% endfor %}
+
       </ul>
       <!-- Rows below -->
-      {% for issue in issues %}
-        {# to give different color depending of the row number#}
-        {% if loop.index % 2 == 0 %}
-        <article pair_row  >
+      {% if issues[0] %}
+      
+        {% for issue in issues %}
+          {# to give different color depending of the row number#}
+          {% if loop.index % 2 == 0 %}
+          <article pair_row  >
 
-        {% else %}
-        <article odd_row  >
+          {% else %}
+          <article odd_row  >
 
-        {% endif %}
-          <div title_group > 
-            <div cell data_label="Title">
-              <h2 title>{{ issue.title }}</h2> <!-- Title  -->
-            </div>
-
-            <div cell data_label="URL">
-              <div > <!-- URL   -->
-                <a html_url href="{{issue.html_url}}">{{issue.html_url}}</a>
+          {% endif %}
+            <div title_group >
+              <div cell data_label="Title">
+                <h2 title>{{ issue.title }}</h2> <!-- Title  -->
               </div>
-            </div>
 
-          </div>
-
-          <div body_cell >
-            <div cell  data_label="Body">
-            {% if issue.body %}
-              <p body > {{ issue.body }} </p> <!-- Body  -->
-
-              <input hidden id="{{issue.id}}_body" type="checkbox">
-              <label shadow for="{{issue.id}}_body"></label>
-
-              <div cont_modal>
-                <div modal data_label="Body">
-                  <p> {{ issue.body }} </p> <!-- Body  -->
-                
+              <div cell data_label="URL">
+                <div > <!-- URL   -->
+                  <a html_url target="_blank" href="{{issue.html_url}}">{{issue.html_url}}</a>
                 </div>
               </div>
-              <label show_more for="{{issue.id}}_body">Show More</label>
-            {% endif %}
 
             </div>
-          </div>
 
-          <div cell  data_label="Labels">
-            <ul labels> <!-- Labels  -->
-              {% for name, value in issue.tags %}
-                <li>
-                  <strong>{{name}}</strong>: {{value}}
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
+            <div body_cell >
+              <div cell  data_label="Body">
+              {% if issue.body %}
+                <p body > {{ issue.body }} </p> <!-- Body  -->
 
-          <div cell data_label="Comments">
-            <div>
-              {% if issue.el_comments %}
-              <ul comments>
-                {% for comment in issue.el_comments %}
-                  <li>
-                    <strong>{{comment.author}}</strong>: {{comment.body}}
-                  </li>
-                  <br>
+                <input hidden id="{{issue.id}}_body" type="checkbox">
+                <label shadow for="{{issue.id}}_body"></label>
 
-                {% endfor %}
+                <div cont_modal>
+                  <div modal data_label="Body">
+                    <p> {{ issue.body }} </p> <!-- Body  -->
 
-              </ul>
-              <input hidden id="{{issue.id}}_comments" type="checkbox">
-              <label shadow for="{{issue.id}}_comments"></label>
-
-              <div cont_modal>
-                <div modal data_label="comments">
-                  <ul>
-                    {% for comment in issue.el_comments %}
-                      <li>
-                        <strong>{{comment.author}}</strong>: {{comment.body}}
-                      </li>
-                      <br>
-
-                    {% endfor %}
-                  </ul>
-                
+                  </div>
                 </div>
-              </div>
-              <label show_more for="{{issue.id}}_comments">Show More</label>
-
+                <label show_more for="{{issue.id}}_body">Show More</label>
               {% endif %}
+
+              </div>
             </div>
 
+            <div cell  data_label="Labels">
+              <ul labels> <!-- Labels  -->
+                {% for name, value in issue.tags %}
+                  <li>
+                    <strong>{{name}}</strong>: {{value}}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
 
-          </div>
+            <div cell data_label="Comments">
+              <div>
+                {% if issue.el_comments %}
+                <ul comments>
+                  {% for comment in issue.el_comments %}
+                    <li>
+                      <strong>{{comment.author}}</strong>: {{comment.body}}
+                    </li>
+                    <br>
 
+                  {% endfor %}
 
-        </article>
-      {% endfor %}
+                </ul>
+                <input hidden id="{{issue.id}}_comments" type="checkbox">
+                <label shadow for="{{issue.id}}_comments"></label>
+
+                <div cont_modal>
+                  <div modal data_label="comments">
+                    <ul>
+                      {% for comment in issue.el_comments %}
+                        <li>
+                          <strong>{{comment.author}}</strong>: {{comment.body}}
+                        </li>
+                        <br>
+
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+                <label show_more for="{{issue.id}}_comments">Show More</label>
+
+                {% endif %}
+              </div>
+            </div>
+
+            {% for key, tag in all_tags %}
+              <div cell data_label="{{tag | capitalize }}">
+                {% if issue.tags[tag] %}
+                  <strong>{{issue.tags[tag]}}</strong>
+                {% else %}
+                  <strong>----</strong>
+
+                {% endif %}
+              </div>
+            {% endfor %}
+          </article>
+        {% endfor %}
+      {% endif %}
     </div>
   </div>
+
 </body>
 </html>
