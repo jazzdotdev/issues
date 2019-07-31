@@ -23,10 +23,10 @@
                     <ul>
                         {% for comment in issue.el_comments %}
                         <li comment>
-                            <h3>
+                            <h3 author_comment>
                                 <strong>{{comment.author}}</strong>
                             </h3>
-                            <p>{{comment.body}}</p>
+                            <p comment_body >{{comment.body}}</p>
                         </li>
                         {% endfor %}
                     </ul>
