@@ -5,7 +5,6 @@
     <input filter_control type="checkbox" id="{{col_name}}__table__header">
     <label close_out for="{{col_name}}__table__header">
     </label>
-    
     <div header_popup>
         <div selection>
             {% if col_options %}
@@ -28,17 +27,17 @@
                     {% endfor %}
                 </ul>
             {% elif searchable %}
-                
                 <p tag>
                     Search for
                 </p>
                 <form action="">
                     <input hidden name="previous_filters" value="{{previous_filters}}" type="text">
-                    <input search placeholder="{{col_field}}"  type="text" name="{{col_field}}">
 
+                    <input search placeholder="{{col_field}}"  type="text" name="filters" value="{{col_field}}:">
+
+                    <button hidden type="submit"></button>
                 </form>
-                
-            {% else %} 
+            {% else %}
                 <p tag>
                     No filters
                 </p>

@@ -21,13 +21,9 @@
             {% set col_field = "title" %}
             {% include "chunks/column_header.html" %}
 
-            <li cell_header>
-              <p cell_name>
-                url
-              </p>
-            </li>
-            {# set col_name = "url" #}
-            {# include "chunks/column_header.html" #}
+            {% set col_name = "url" %}
+            {% set searchable = false -%}
+            {% include "chunks/column_header.html" %}
 
           </div>
 
