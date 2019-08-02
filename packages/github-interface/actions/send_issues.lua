@@ -40,6 +40,7 @@ end
 
 -- stops a string to have repeated patterns
 -- to avoid having multiple of the same filter
+-- if the pattern is not in the main string is it added
 function sanitizeString(main_s, added_s )
   if string.find( main_s, added_s, 1) then
     -- the added_s already belongs to the main_s
@@ -51,39 +52,39 @@ function sanitizeString(main_s, added_s )
   return main_s .. added_s
 end
 
---currently only filtering labels
-function addFilters( _filters , previous_filters)
-  -- if filters is nil and previous filters is not nil
-  if not _filters and previous_filters then
-    -- current filters is nil but previous ones are not
-    return previous_filters
+function combineFilters(filters , previous_filters) --combines previouse filters and current ones
+  local parsed_filters = ""
 
-  elseif not previous_filters then
-    --without previous filters or current filters
-    return ""
+  if filters then
+    for _,field in pairs(split(filters,",")) do
+      --cleaning current filters
+      parsed_filters = sanitizeString(parsed_filters,field .. ',')
+    end
   end
-
+  if previous_filters then
+    for _,field in pairs(split(previous_filters,",")) do
+      -- cleaning previous filters
+      parsed_filters = sanitizeString(parsed_filters,field .. ',')
+    end
+  end
+  return parsed_filters
+end
+function formatFilters( string_filter )
+  --formats the filter into the github query format
   local result = ""
-  -- local filter_labels = split(_filters,",")
-
-  --spliting the filters in a table from filter text separting by commas ,
-  for _,field in pairs(split(_filters,",")) do
+  for _,field in pairs(split(string_filter,",")) do
     local name, value = field:match("^(.+):(.+)$")
 
     if value then --if the filter has the right format value will not be null
-
       if name == "body" or name == "title" or name == "comments" then
-        --adding filter when it is body,title or comments
-        -- it will filter issues that have the written text whitin the field
+        -- filter for text in body or title or comments
         result = sanitizeString(result,' \"' .. value .. '\"in:' .. name)
 
       elseif name == "label" then
         -- will filter for the specific written label
         result = sanitizeString(result,' ' .. name .. ':\"' .. value .. '\"')
-
       else
-        -- if not any of the previous ones will assume it is a custom tag based of a label
-        -- the label will be replace the name/value
+        -- default filter is a label filter
         result = sanitizeString(result , ' label:\"' .. name .. "/".. value ..  '\"')
 
       end--end if types of filters
@@ -92,17 +93,20 @@ function addFilters( _filters , previous_filters)
 
   end -- end for adding filters
 
-  if previous_filters then --add the previous filters if there are any
-    for _,filter in pairs(split(previous_filters," ")) do
-      result = sanitizeString(result," " .. filter)
-    end
-  end
-
   return result
 end
 
-local currentfilters = addFilters(request.query.filters,request.query.previous_filters)
-local url = "https://api.github.com/search/issues?q={ type:issue ".. currentfilters .." lighttouch }" --adding query filters in the url before making the requests
+--currently only filtering labels
+function parseFilters( filters , previous_filters)
+  -- returns an array of the clean filters in the query format and in github format
+  local all_filters = ""
+
+  all_filters = combineFilters(filters , previous_filters)
+  return formatFilters(all_filters), all_filters
+end
+
+local github_filters, query_filters = parseFilters(request.query.filters,request.query.previous_filters)
+local url = "https://api.github.com/search/issues?q={ type:issue ".. github_filters .." lighttouch }" --adding query filters in the url before making the requests
 
 url = addAuth(url) --adding github app auth if it was added in the lighttouch.scl
 
@@ -169,7 +173,7 @@ response = {
   body = render("issues.html", {
     issues = issues,
     all_tags = all_tags,
-    previous_filters = currentfilters,
+    previous_filters = query_filters,
   })
 }
 

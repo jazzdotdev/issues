@@ -1,0 +1,5 @@
+rounded-r
+px-2
+bg-gray-300
+border
+border-gray-500

@@ -12,6 +12,13 @@
 <body>
   <div page>
     <h1 title >Issues</h1>
+    <form search action="">
+
+      <input search name="filters" value="{{previous_filters}}" type="text">
+
+      <button search type="submit">Search</button>
+    </form>
+
     <div container>
         <ul header>
           <div title_group >
@@ -46,7 +53,7 @@
             {% set col_name = tag.name %}
             {% set col_options = tag.values %}
             {% include "chunks/column_header.html" %}
-            
+
             {% if loop.last %}
               </div>
             {% endif %}
