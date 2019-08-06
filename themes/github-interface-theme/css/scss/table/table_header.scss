@@ -1,4 +1,4 @@
-$popup_width: 100px;
+$popup_width: 130px;
 .table_header__filter:checked {
     ~.header__popup {
         display: block;
@@ -22,6 +22,14 @@ $popup_width: 100px;
         width: $popup_width;
         background-color: #fff;
         border: 1px solid #000;
+
+        &.pos_left{
+            left: 0;
+        }
+        &.pos_right{
+            right: 0;
+        }
+
         .selection {
             position: relative;
             .options {

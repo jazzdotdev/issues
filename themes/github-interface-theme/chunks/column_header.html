@@ -5,6 +5,9 @@
     <input filter_control type="checkbox" id="{{col_name}}__table__header">
     <label close_out for="{{col_name}}__table__header">
     </label>
+    {% if pos_left %}
+    
+    {% endif %}
     <div header_popup>
         <div selection>
             {% if col_options %}
@@ -15,28 +18,25 @@
                 </p>
                 <ul options>
                     {% for key,option in col_options %}
-                        <li option>
-                            <form action="">
-                                <input hidden name="previous_filters" value="{{previous_filters}}" type="text">
-                                <input hidden name="filters" value="{{col_name}}:{{option}}" type="text">
-                                <button choose_option type="submit">
-                                    {{option}}
-                                </button>
-                            </form>
-                        </li>
+                        <label for="{{col_name}}_{{option}}">
+                            <li option>
+                                <input
+                                    type="checkbox"
+                                    id="{{col_name}}_{{option}}" name="selection_{{col_index}}_{{loop.index}}"
+                                    value="{{col_name}}:{{option}}">
+                                {{option}}
+                            </li>
+                        </label>
                     {% endfor %}
                 </ul>
             {% elif searchable %}
                 <p tag>
                     Search for
                 </p>
-                <form action="">
-                    <input hidden name="previous_filters" value="{{previous_filters}}" type="text">
 
-                    <input search placeholder="{{col_field}}"  type="text" name="filters" value="{{col_field}}:">
+                <!-- <input search placeholder="{{col_field}}"  type="text" name="filters" value="{{col_field}}:"> -->
 
-                    <button hidden type="submit"></button>
-                </form>
+                <button hidden type="submit"></button>
             {% else %}
                 <p tag>
                     No filters

@@ -165,6 +165,10 @@ end
 print("Status: ", github_response.status)
 print("Content length: ", #github_response.body_raw)
 
+print("Selections")
+print(json.from_table(request.query["selections[1]"]))
+print("Query")
+print(json.from_table(request.query))
 
 response = {
   headers = {

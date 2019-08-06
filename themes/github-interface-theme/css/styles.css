@@ -3405,9 +3405,13 @@
   visibility: hidden;
   top: 50px;
   z-index: 3;
-  width: 100px;
+  width: 130px;
   background-color: #fff;
   border: 1px solid #000; }
+  .table_header__filter ~ .header__popup.pos_left {
+    left: 0; }
+  .table_header__filter ~ .header__popup.pos_right {
+    right: 0; }
   .table_header__filter ~ .header__popup .selection {
     position: relative; }
     .table_header__filter ~ .header__popup .selection .options {
@@ -3422,7 +3426,7 @@
       display: block;
       visibility: visible; }
   .table_header__filter ~ .header__popup .col_header__input {
-    width: 90px; }
+    width: 120px; }
 .table_header__filter ~ .label__close_popup {
   display: none;
   visibility: hidden;

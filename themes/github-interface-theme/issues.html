@@ -20,45 +20,48 @@
     </form>
 
     <div container>
-        <ul header>
-          <div title_group >
+        <form action="">
+          <input hidden name="previous_filters" value="{{previous_filters}}" type="text">
+          <ul header><!-- Begin header-->
             {% set searchable = true -%}
-
             {% set col_name = "title" %}
             {% set col_field = "title" %}
             {% include "chunks/column_header.html" %}
 
-            {% set col_name = "url" %}
-            {% set searchable = false -%}
-            {% include "chunks/column_header.html" %}
+            <div body_cell>
+              {% set searchable = true -%}
+              {% set col_name = "Body + Comments" %}
+              {% set col_field = "body" %}
+              {% include "chunks/column_header.html" %}
 
-          </div>
+              {% set searchable = false -%}
+            </div>
 
-          <div body_cell>
-            {% set searchable = true -%}
-            {% set col_name = "Body + Comments" %}
-            {% set col_field = "body" %}
-            {% include "chunks/column_header.html" %}
+            {% for key,tag in all_tags %}
+              {% if (loop.index - 1) % 3 == 0 or loop.index == 1 %}
+                {% if loop.index > 1  %}
+                  </div>
+                {% endif %}
+                <div three_cell_group >
+              {% endif %}
+              
+              {% set col_name = tag.name %}
+              {% set col_options = tag.values %}
+              {% set col_index = loop.index %}
+              {% include "chunks/column_header.html" %}
 
-            {% set searchable = false -%}
-          </div>
-          {% for key,tag in all_tags %}
-            {% if (loop.index - 1) % 3 == 0 or loop.index == 1 %}
-              {% if loop.index > 1  %}
+              {% if loop.last %}
                 </div>
               {% endif %}
-              <div three_cell_group >
-            {% endif %}
-
-            {% set col_name = tag.name %}
-            {% set col_options = tag.values %}
-            {% include "chunks/column_header.html" %}
-
-            {% if loop.last %}
-              </div>
-            {% endif %}
-          {% endfor %}
-        </ul>
+            {% endfor %}
+            <li cell_header>
+              <button filter_search type="submit">
+                Submit search
+              </button>
+  
+            </li>
+          </ul> <!-- End header-->
+        </form>
       <!-- Rows below -->
       {% if issues[0] %}
         {% for issue in issues %}
@@ -70,17 +73,8 @@
           <article odd_row  >
 
           {% endif %}
-            <div title_group >
-              <div cell data_label="Title">
-                <h2 title>{{ issue.title }}</h2> <!-- Title  -->
-              </div>
-
-              <div cell data_label="URL">
-                <div > <!-- URL   -->
-                  <a html_url target="_blank" href="{{issue.html_url}}">{{issue.html_url}}</a>
-                </div>
-              </div>
-
+            <div cell data_label="Title">
+              <a title_issue href="{{issue.html_url}}" target="_blank">{{ issue.title }}</a><!-- Title  -->
             </div>
 
             <div body_cell >

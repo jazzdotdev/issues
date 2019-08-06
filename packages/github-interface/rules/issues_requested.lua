@@ -11,3 +11,5 @@ or
 request.query.filters
 or
 request.query.previous_filters
+or
+request.query.selections
