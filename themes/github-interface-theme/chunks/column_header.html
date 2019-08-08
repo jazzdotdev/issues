@@ -6,9 +6,11 @@
     <label close_out for="{{col_name}}__table__header">
     </label>
     {% if pos_left %}
-    
+    <div left_header_popup>
+    {% else %}
+    <div right_header_popup>
     {% endif %}
-    <div header_popup>
+
         <div selection>
             {% if col_options %}
                 <p tag>
@@ -18,13 +20,15 @@
                 </p>
                 <ul options>
                     {% for key,option in col_options %}
-                        <label for="{{col_name}}_{{option}}">
+                        <label for="{{col_name}}_{{option.value}}">
                             <li option>
-                                <input
+                                <input checkbox
                                     type="checkbox"
-                                    id="{{col_name}}_{{option}}" name="selection_{{col_index}}_{{loop.index}}"
-                                    value="{{col_name}}:{{option}}">
-                                {{option}}
+                                    id="{{col_name}}_{{option.value}}" name="selection_{{col_index}}_{{loop.index}}"
+                                    value="{{col_name}}:{{option.value}}"
+                                    {% if option.is_checked %}checked{% endif %}
+                                >
+                                {{option.value}}
                             </li>
                         </label>
                     {% endfor %}
@@ -33,9 +37,6 @@
                 <p tag>
                     Search for
                 </p>
-
-                <!-- <input search placeholder="{{col_field}}"  type="text" name="filters" value="{{col_field}}:"> -->
-
                 <button hidden type="submit"></button>
             {% else %}
                 <p tag>

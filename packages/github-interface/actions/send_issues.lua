@@ -44,30 +44,30 @@ end
 function sanitizeString(main_s, added_s )
   if string.find( main_s, added_s, 1) then
     -- the added_s already belongs to the main_s
-    log.debug("main" .. main_s)
+    -- log.debug("main" .. main_s)
     return main_s
   end
-  log.debug("concatenated" .. main_s .. added_s)
+  -- log.debug("concatenated" .. main_s .. added_s)
 
   return main_s .. added_s
 end
 
 function combineFilters(filters , previous_filters) --combines previouse filters and current ones
-  local parsed_filters = ""
+  local combined_filters = ""
 
   if filters then
     for _,field in pairs(split(filters,",")) do
       --cleaning current filters
-      parsed_filters = sanitizeString(parsed_filters,field .. ',')
+      combined_filters = sanitizeString(combined_filters,field .. ',')
     end
   end
   if previous_filters then
     for _,field in pairs(split(previous_filters,",")) do
       -- cleaning previous filters
-      parsed_filters = sanitizeString(parsed_filters,field .. ',')
+      combined_filters = sanitizeString(combined_filters,field .. ',')
     end
   end
-  return parsed_filters
+  return combined_filters
 end
 function formatFilters( string_filter )
   --formats the filter into the github query format
@@ -96,16 +96,37 @@ function formatFilters( string_filter )
   return result
 end
 
+-- filters selected with the checkbox inputs
+function selectionFilters(query)
+  local selected_filters = ""
+  for k,value in pairs(query) do
+    if string.find(k,"selection") then
+      selected_filters = selected_filters .. "," .. value
+    end
+  end
+  return selected_filters
+end
+
 --currently only filtering labels
-function parseFilters( filters , previous_filters)
+function parseFilters( filters , previous_filters,query)
   -- returns an array of the clean filters in the query format and in github format
   local all_filters = ""
 
   all_filters = combineFilters(filters , previous_filters)
+
+  all_filters = combineFilters(all_filters,selectionFilters(query)) -- filter of checkboxes
+
   return formatFilters(all_filters), all_filters
 end
 
-local github_filters, query_filters = parseFilters(request.query.filters,request.query.previous_filters)
+
+
+local github_filters, query_filters = parseFilters(
+  request.query.filters,
+  request.query.previous_filters,
+  request.query
+)
+
 local url = "https://api.github.com/search/issues?q={ type:issue ".. github_filters .." lighttouch }" --adding query filters in the url before making the requests
 
 url = addAuth(url) --adding github app auth if it was added in the lighttouch.scl
@@ -137,7 +158,9 @@ for _, issue in ipairs(issues) do
       -- for each name store the name
       all_tags[name]['name'] = name
       -- for each name store all possible values
-      all_tags[name]['values'][value] = value
+      all_tags[name]['values'][value] = {}
+      all_tags[name]['values'][value]['value'] = value
+      all_tags[name]['values'][value]['is_checked'] = false
 
     end
   end
@@ -162,13 +185,24 @@ end
 
 
 
-print("Status: ", github_response.status)
-print("Content length: ", #github_response.body_raw)
+log.debug("Status: ", github_response.status)
+log.debug("Content length: ", #github_response.body_raw)
 
-print("Selections")
-print(json.from_table(request.query["selections[1]"]))
-print("Query")
-print(json.from_table(request.query))
+log.debug("Query")
+log.debug(json.from_table(request.query))
+
+log.debug("Query cicle")
+for k,v in pairs(request.query) do
+  if string.find(k,"selection") then
+    local name, value = v:match("^(.+):(.+)$")
+    log.debug('name: ' .. name)
+    log.debug('value: ' .. value)
+    if all_tags[name]['values'][value] then
+      all_tags[name]['values'][value]['is_checked'] = true
+    end
+    log.debug(k,v)
+  end
+end
 
 response = {
   headers = {

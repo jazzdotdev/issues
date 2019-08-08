@@ -38,9 +38,16 @@ $popup_width: 130px;
 
                 top: 20px;
                 position: absolute;
-                right: 0;
                 background-color: #fff;
                 border: 1px solid #000;
+
+                &.pos_left {
+                    left: 0;
+                }
+
+                &.pos_right {
+                    right: 0;
+                }
             }
             &:hover{
 
@@ -50,9 +57,9 @@ $popup_width: 130px;
                 }
             }
         }
-        .col_header__input{
-            width: #{ $popup_width - 10px };
-        }
+        // .col_header__input{
+        //     width: #{ $popup_width - 10px };
+        // }
     }
     ~.label__close_popup{
         display: none;

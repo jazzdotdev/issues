@@ -3419,14 +3419,15 @@
       visibility: hidden;
       top: 20px;
       position: absolute;
-      right: 0;
       background-color: #fff;
       border: 1px solid #000; }
+      .table_header__filter ~ .header__popup .selection .options.pos_left {
+        left: 0; }
+      .table_header__filter ~ .header__popup .selection .options.pos_right {
+        right: 0; }
     .table_header__filter ~ .header__popup .selection:hover .options {
       display: block;
       visibility: visible; }
-  .table_header__filter ~ .header__popup .col_header__input {
-    width: 120px; }
 .table_header__filter ~ .label__close_popup {
   display: none;
   visibility: hidden;

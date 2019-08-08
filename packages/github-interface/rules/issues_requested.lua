@@ -12,4 +12,4 @@ request.query.filters
 or
 request.query.previous_filters
 or
-request.query.selections
+request.query.selection
