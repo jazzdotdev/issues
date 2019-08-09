@@ -47,32 +47,14 @@ end
 function sanitizeString(main_s, added_s )
   if string.find( main_s, added_s, 1) then
     -- the added_s already belongs to the main_s
-    -- log.debug("main" .. main_s)
     return main_s
   end
-  -- log.debug("concatenated" .. main_s .. added_s)
 
   return main_s .. added_s
 end
 
 
-function combineFilters(filters_1 , filters_2) --combines previouse filters and current ones
-  local combined_filters = ""
 
-  if filters_1 then
-    for _,field in pairs(split(filters_1,",")) do
-      --cleaning current filters
-      combined_filters = sanitizeString(combined_filters,field .. ',')
-    end
-  end
-  if filters_2 then
-    for _,field in pairs(split(filters_2,",")) do
-      -- cleaning previous filters
-      combined_filters = sanitizeString(combined_filters,field .. ',')
-    end
-  end
-  return combined_filters
-end
 
 
 function formatFilters( string_filter )
@@ -103,6 +85,8 @@ function formatFilters( string_filter )
 end
 
 
+
+
 -- filters selected with the checkbox inputs
 function selectionFilters(query)
   local selected_filters = ""
@@ -114,6 +98,24 @@ function selectionFilters(query)
   return selected_filters
 end
 
+
+function combineFilters(filters_1 , filters_2) --combines previouse filters and current ones
+  local combined_filters = ""
+
+  if filters_1 then
+    for _,field in pairs(split(filters_1,",")) do
+      --cleaning current filters
+      combined_filters = sanitizeString(combined_filters,field .. ',')
+    end
+  end
+  if filters_2 then
+    for _,field in pairs(split(filters_2,",")) do
+      -- cleaning previous filters
+      combined_filters = sanitizeString(combined_filters,field .. ',')
+    end
+  end
+  return combined_filters
+end
 
 --currently only filtering labels
 function createFilters( filters ,query)
@@ -189,17 +191,32 @@ for _, issue in ipairs(issues) do
 end
 
 
+-- log.debug("Status: ", github_response.status)
+-- log.debug("Content length: ", #github_response.body_raw)
 
-log.debug("Status: ", github_response.status)
-log.debug("Content length: ", #github_response.body_raw)
-
-log.debug("Query")
-log.debug(json.from_table(request.query))
+log.debug("Query: " .. json.from_table(request.query))
 
 for k,v in pairs(request.query) do
   if string.find(k,"selection") then
     local name, value = v:match("^(.+):(.+)$")
-    if all_tags[name]['values'][value] then
+
+    -- especial check for empty values
+    if all_tags[name] == nil then
+      all_tags[name] = {}
+      all_tags[name]['name'] = name
+      all_tags[name]['values'] = {}
+      all_tags[name]['values'][value] = {}
+    end
+    if all_tags[name]['values'][value] == nil then
+      all_tags[name]['values'][value] = {}
+    end
+    if all_tags[name]['values'][value]['value'] == nil  then
+      all_tags[name]['values'][value]['value'] = value
+    end
+    -- end special check for empty values
+
+    --average check for values
+    if all_tags[name]['values'][value]['value'] then
       all_tags[name]['has_checked'] = true
       all_tags[name]['values'][value]['is_checked'] = true
     end

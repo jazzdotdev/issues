@@ -3,46 +3,47 @@
     <button filter_search type="submit">
         Search
     </button>
-    <input search name="_filters" value="{{previous_filters}}" type="text">
+    <!-- <input search name="_filters" value="{{previous_filters}}" type="text"> -->
 </div>
 <ul header><!-- Begin header-->
     {% set pos_left = true -%}
-    {% set searchable = true -%}
+    {# set searchable = true -#}
     {% set col_name = "title" -%}
     {% set col_field = "title" -%}
     {% include "chunks/column_header.html" %}
 
     <div body_cell>
         {% set pos_left = false -%}
-        {% set searchable = true -%}
+        {# set searchable = true -#}
         {% set col_name = "Body + Comments" -%}
         {% set col_field = "body" -%}
         {% include "chunks/column_header.html" %}
 
-        {% set searchable = false -%}
+        {# set searchable = false -#}
     </div>
-
-    {% for key,tag in all_tags %}
-        {% if (loop.index - 1) % 3 == 0 or loop.index == 1 %}
-            {% if loop.index > 1  %}
-            </div>
+    {% if all_tags %}
+        {% for key,tag in all_tags %}
+            {% if (loop.index - 1) % 3 == 0 or loop.index == 1 %}
+                {% if loop.index > 1  %}
+                </div>
+                {% endif %}
+                <div three_cell_group >
             {% endif %}
-            <div three_cell_group >
-        {% endif %}
-        {% set col_name = tag.name %}
-        {% set col_options = tag.values %}
+            {% set col_name = tag.name %}
+            {% set col_options = tag.values %}
 
-        {% if tag.has_checked %}
-            {% set has_selected = tag.has_checked %}
-        {% else %}
-            {% set has_selected = false %}
-        {% endif %}
+            {% if tag.has_checked %}
+                {% set has_selected = tag.has_checked %}
+            {% else %}
+                {% set has_selected = false %}
+            {% endif %}
 
-        {% set col_index = loop.index %}
-        {% include "chunks/column_header.html" %}
+            {% set col_index = loop.index %}
+            {% include "chunks/column_header.html" %}
 
-        {% if loop.last %}
-            </div>
-        {% endif %}
-    {% endfor %}
+            {% if loop.last %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 </ul> <!-- End header-->

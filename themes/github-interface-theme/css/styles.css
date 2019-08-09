@@ -3434,6 +3434,66 @@
   background: transparent;
   z-index: 2; }
 
+.bg__blue {
+  background-color: #007bff; }
+
+.text__blue {
+  color: #007bff; }
+
+.bg__indigo {
+  background-color: #6610f2; }
+
+.text__indigo {
+  color: #6610f2; }
+
+.bg__purple {
+  background-color: #6f42c1; }
+
+.text__purple {
+  color: #6f42c1; }
+
+.bg__pink {
+  background-color: #e83e8c; }
+
+.text__pink {
+  color: #e83e8c; }
+
+.bg__red {
+  background-color: #dc3545; }
+
+.text__red {
+  color: #dc3545; }
+
+.bg__orange {
+  background-color: #fd7e14; }
+
+.text__orange {
+  color: #fd7e14; }
+
+.bg__yellow {
+  background-color: #ffc107; }
+
+.text__yellow {
+  color: #ffc107; }
+
+.bg__green {
+  background-color: #28a745; }
+
+.text__green {
+  color: #28a745; }
+
+.bg__teal {
+  background-color: #20c997; }
+
+.text__teal {
+  color: #20c997; }
+
+.bg__cyan {
+  background-color: #17a2b8; }
+
+.text__cyan {
+  color: #17a2b8; }
+
 .box_underline::after {
   display: block;
   content: "";

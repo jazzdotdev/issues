@@ -1,4 +1,8 @@
+{% if has_selected %}
+<li selected_cell_header >
+{% else %}
 <li cell_header >
+{% endif %}
     <label cell_name for="{{col_name}}__table__header">
         {{col_name}}
     </label>
@@ -9,10 +13,6 @@
     <div left_header_popup>
     {% else %}
     <div right_header_popup>
-    {% endif %}
-
-    {% if has_selected %}
-        {{has_selected}}
     {% endif %}
 
         <div selection>
@@ -37,15 +37,15 @@
                         </label>
                     {% endfor %}
                 </ul>
-            {% elif searchable %}
-                <p tag>
+            {# elif searchable #}
+                <!-- <p tag>
                     Search for
                 </p>
-                <button hidden type="submit"></button>
+                <button hidden type="submit"></button> -->
             {% else %}
-                <p tag>
+                <!-- <p tag>
                     No filters
-                </p>
+                </p> -->
             {% endif %}
         </div>
     </div>

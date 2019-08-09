@@ -1,5 +1,6 @@
 border
 border-gray-500
 p-1
-rounded-l
-w-1/2
+px-3
+rounded-tl-lg
+w-1/3
