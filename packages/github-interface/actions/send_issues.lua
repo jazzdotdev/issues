@@ -2,6 +2,7 @@ event = ["issues_request_received"]
 priority = 1
 input_parameters = ["request"]
 
+
 --Method to add extra parameters to a github request
 function addParameterToURL( url,name,value)
   local url_c = url
@@ -16,6 +17,7 @@ function addParameterToURL( url,name,value)
   return url_c
 end
 
+
 -- Method to add client secret and client id for request authentication of the github api
 function addAuth( param_url )
   --adding client id to the request url
@@ -28,6 +30,7 @@ function addAuth( param_url )
   end
   return param_url
 end
+
 
 -- Split a string in a table based of a delimiter
 function split(s, delimiter)--split a string
@@ -52,23 +55,26 @@ function sanitizeString(main_s, added_s )
   return main_s .. added_s
 end
 
-function combineFilters(filters , previous_filters) --combines previouse filters and current ones
+
+function combineFilters(filters_1 , filters_2) --combines previouse filters and current ones
   local combined_filters = ""
 
-  if filters then
-    for _,field in pairs(split(filters,",")) do
+  if filters_1 then
+    for _,field in pairs(split(filters_1,",")) do
       --cleaning current filters
       combined_filters = sanitizeString(combined_filters,field .. ',')
     end
   end
-  if previous_filters then
-    for _,field in pairs(split(previous_filters,",")) do
+  if filters_2 then
+    for _,field in pairs(split(filters_2,",")) do
       -- cleaning previous filters
       combined_filters = sanitizeString(combined_filters,field .. ',')
     end
   end
   return combined_filters
 end
+
+
 function formatFilters( string_filter )
   --formats the filter into the github query format
   local result = ""
@@ -96,6 +102,7 @@ function formatFilters( string_filter )
   return result
 end
 
+
 -- filters selected with the checkbox inputs
 function selectionFilters(query)
   local selected_filters = ""
@@ -107,23 +114,21 @@ function selectionFilters(query)
   return selected_filters
 end
 
+
 --currently only filtering labels
-function parseFilters( filters , previous_filters,query)
+function createFilters( filters ,query)
   -- returns an array of the clean filters in the query format and in github format
   local all_filters = ""
 
-  all_filters = combineFilters(filters , previous_filters)
-
-  all_filters = combineFilters(all_filters,selectionFilters(query)) -- filter of checkboxes
+  all_filters = combineFilters(filters , selectionFilters(query))
 
   return formatFilters(all_filters), all_filters
 end
 
 
 
-local github_filters, query_filters = parseFilters(
+local github_filters, query_filters = createFilters(
   request.query.filters,
-  request.query.previous_filters,
   request.query
 )
 
@@ -191,16 +196,13 @@ log.debug("Content length: ", #github_response.body_raw)
 log.debug("Query")
 log.debug(json.from_table(request.query))
 
-log.debug("Query cicle")
 for k,v in pairs(request.query) do
   if string.find(k,"selection") then
     local name, value = v:match("^(.+):(.+)$")
-    log.debug('name: ' .. name)
-    log.debug('value: ' .. value)
     if all_tags[name]['values'][value] then
+      all_tags[name]['has_checked'] = true
       all_tags[name]['values'][value]['is_checked'] = true
     end
-    log.debug(k,v)
   end
 end
 

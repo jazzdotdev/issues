@@ -1,36 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Issues</title>
-  <style>
-    {% include 'css/styles.css' %}
-  </style>
-  <style>
-    {% include 'css/tailwind.min.css' %}
-  </style>
+    <title>Issues</title>
+    <style>
+        {% include 'css/styles.css' %}
+    </style>
+    <style>
+        {% include 'css/tailwind.min.css' %}
+    </style>
 </head>
 <body>
-  <div page>
-    <h1 title >Issues</h1>
-    <form action="">
-      <div search>
+    <div page>
+        <h1 title >Issues</h1>
+        <form action="">
 
-        <!-- <input search name="filters" value="{{previous_filters}}" type="text"> -->
+            <div container>
 
-        <button search type="submit">Search</button>
-      </div>
+                {% include 'chunks/table_header.html' %}
 
-      <div container>
+                <!-- Rows below -->
+                {% include 'chunks/table_rows.html' %}
 
-        {% include 'chunks/table_header.html' %}
+            </div>
+        </form>
 
-        <!-- Rows below -->
-        {% include 'chunks/table_rows.html' %}
-
-      </div>
-    </form>
-
-  </div>
+    </div>
 
 </body>
 </html>

@@ -1,1 +1,8 @@
 bg-gray-300
+p-2
+px-6
+cursor-pointer
+capitalize
+border
+border-gray-600
+rounded-tr-lg

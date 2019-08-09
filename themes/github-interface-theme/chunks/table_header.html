@@ -1,3 +1,10 @@
+
+<div fill>
+    <button filter_search type="submit">
+        Search
+    </button>
+    <input search name="_filters" value="{{previous_filters}}" type="text">
+</div>
 <ul header><!-- Begin header-->
     {% set pos_left = true -%}
     {% set searchable = true -%}
@@ -24,6 +31,13 @@
         {% endif %}
         {% set col_name = tag.name %}
         {% set col_options = tag.values %}
+
+        {% if tag.has_checked %}
+            {% set has_selected = tag.has_checked %}
+        {% else %}
+            {% set has_selected = false %}
+        {% endif %}
+
         {% set col_index = loop.index %}
         {% include "chunks/column_header.html" %}
 
@@ -31,10 +45,4 @@
             </div>
         {% endif %}
     {% endfor %}
-    <li cell_header>
-        <button filter_search type="submit">
-            Submit search
-        </button>
-
-    </li>
 </ul> <!-- End header-->

@@ -10,6 +10,4 @@ request.path_segments[1] == "issues"
 or
 request.query.filters
 or
-request.query.previous_filters
-or
 request.query.selection
