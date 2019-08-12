@@ -6,20 +6,23 @@
     <!-- <input search name="_filters" value="{{previous_filters}}" type="text"> -->
 </div>
 <ul header><!-- Begin header-->
-    {% set pos_left = true -%}
-    {# set searchable = true -#}
-    {% set col_name = "title" -%}
-    {% set col_field = "title" -%}
-    {% include "chunks/column_header.html" %}
 
-    <div body_cell>
-        {% set pos_left = false -%}
-        {# set searchable = true -#}
-        {% set col_name = "Body + Comments" -%}
-        {% set col_field = "body" -%}
+    <div title_cell>
+        {% set pos_left = true -%}
+        {% set col_name = "title" -%}
         {% include "chunks/column_header.html" %}
 
-        {# set searchable = false -#}
+        <div sub_body_cell >
+            {% set pos_left = false -%}
+            {% set col_name = "Id" -%}
+            {% include "chunks/column_header.html" %}
+
+            {% set col_name = "Body" -%}
+            {% include "chunks/column_header.html" %}
+
+            {% set col_name = "Author" -%}
+            {% include "chunks/column_header.html" %}
+        </div>
     </div>
     {% if all_tags %}
         {% for key,tag in all_tags %}

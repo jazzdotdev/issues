@@ -6,17 +6,18 @@
     <label cell_name for="{{col_name}}__table__header">
         {{col_name}}
     </label>
-    <input filter_control type="checkbox" id="{{col_name}}__table__header">
-    <label close_out for="{{col_name}}__table__header">
-    </label>
-    {% if pos_left %}
-    <div left_header_popup>
-    {% else %}
-    <div right_header_popup>
-    {% endif %}
+    {% if col_options %}
+        <input filter_control type="checkbox" id="{{col_name}}__table__header">
+        <label close_out for="{{col_name}}__table__header">
+        </label>
 
-        <div selection>
-            {% if col_options %}
+        {% if pos_left %}
+            <div left_header_popup>
+        {% else %}
+            <div right_header_popup>
+        {% endif %}
+
+            <div selection>
                 <p tag>
                     Show Only
                     <i triangle>
@@ -37,16 +38,7 @@
                         </label>
                     {% endfor %}
                 </ul>
-            {# elif searchable #}
-                <!-- <p tag>
-                    Search for
-                </p>
-                <button hidden type="submit"></button> -->
-            {% else %}
-                <!-- <p tag>
-                    No filters
-                </p> -->
-            {% endif %}
+            </div>
         </div>
-    </div>
+    {% endif %}
 </li>

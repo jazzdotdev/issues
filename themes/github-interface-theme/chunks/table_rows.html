@@ -8,18 +8,29 @@
         <article odd_row  >
 
     {% endif %}
-        <div cell data_label="Title">
-            <a title_issue href="{{issue.html_url}}" target="_blank">{{ issue.title }}</a><!-- Title  -->
-        </div>
 
-        <div body_cell >
-            <div cell  data_label="Body">
-            {% if issue.body %}
-                <p body> {{ issue.min_body }} </p> <!-- Body  -->
-                {% set issue = issue %}
-                {% include "chunks/comments_modal.html" %}
-            {% endif %}
+        <div title_cell >
+            <div cell data_label="Title">
+                <a title_issue href="{{issue.html_url}}" target="_blank">{{ issue.title }}</a><!-- Title  -->
+            </div>
+            <div sub_body_cell >
+                <div cell  data_label="Id">
+                    {{issue.id}}
+                </div>
 
+                <div cell  data_label="Body">
+                    {% if issue.body %}
+                        <p body> {{ issue.min_body }} </p> <!-- Body  -->
+                        {% set issue = issue %}
+                        {% include "chunks/comments_modal.html" %}
+                    {% endif %}
+                </div>
+
+                <div cell>
+                    <strong>
+                        {{ issue.user.login }}
+                    </strong>
+                </div>
             </div>
         </div>
             {% for key,tag in all_tags %}
