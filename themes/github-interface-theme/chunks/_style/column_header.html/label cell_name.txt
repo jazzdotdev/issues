@@ -1,4 +1,4 @@
 capitalize
 cursor-pointer
-
-p-4
+break-all
+font-bold

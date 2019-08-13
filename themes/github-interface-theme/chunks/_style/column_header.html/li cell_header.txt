@@ -1,5 +1,5 @@
 flex
 items-center
 justify-center
-font-bold
 relative
+p-2

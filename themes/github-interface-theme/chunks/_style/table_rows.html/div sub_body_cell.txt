@@ -1,6 +1,0 @@
-m-0
-p-0
-grid_container
-
-column-fill-1
-columns-3

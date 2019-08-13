@@ -89,6 +89,7 @@ $column_size: minmax(10px, 1fr);
         @include screen_md() {
             display: grid;
         }
+
     }
 
 }

@@ -1,28 +1,6 @@
 @import 'triangle';
+@import 'screens';
 
-@mixin screen_sm() {
-    @media (min-width: 640px)  {
-        @content;
-    }
-}
-
-@mixin screen_md() {
-    @media (min-width: 768px)  {
-        @content;
-    }
-}
-
-@mixin screen_lg() {
-    @media (min-width: 1024px) {
-        @content;
-    }
-}
-
-@mixin screen_xl() {
-    @media (min-width: 1280px) {
-        @content;
-    }
-}
 
 @mixin keyframes($name) {
     @-webkit-keyframes #{unquote($name)} {
