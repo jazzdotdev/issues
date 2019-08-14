@@ -4,9 +4,7 @@ grid_container
 
 column-fill-1
 sm:column-fill-1
-md:column-fill-4
-lg:column-fill-5
-xl:column-fill-5
+md:column-fill-5
 
 border
 border-transparent

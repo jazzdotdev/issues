@@ -2,13 +2,11 @@ grid_container
 columns-1
 md:columns-14
 
-hover:bg-teal-200
 bg-white
 mb-4
-md:my-0
-
-row_height
+md:mb-0
 
 border
 border-gray-500
+md:border-0
 md:border-transparent

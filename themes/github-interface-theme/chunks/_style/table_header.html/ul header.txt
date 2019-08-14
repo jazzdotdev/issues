@@ -4,5 +4,5 @@ md:columns-14
 
 grid_headers
 
-hover:bg-yellow-300
-bg-yellow-200
+bg-blue-200
+rounded-t-lg

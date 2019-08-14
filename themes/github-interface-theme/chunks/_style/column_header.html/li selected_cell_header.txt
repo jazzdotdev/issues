@@ -4,5 +4,5 @@ justify-center
 font-bold
 relative
 break-all
-bg-yellow-400
+bg-blue-400
 p-3

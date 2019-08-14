@@ -1,3 +1,4 @@
-p-1
-bg-indigo-100
+bg-white
 w-full
+table
+p-4

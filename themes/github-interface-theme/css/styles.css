@@ -2442,9 +2442,6 @@
     border-color: transparent transparent transparent #000;
     border-width: calc(8px/2) 0 calc(8px/2) 8px; }
 
-.content_max_height {
-  max-height: 200px; }
-
 .modal_controller:checked ~ .modal_container {
   display: flex;
   position: fixed;

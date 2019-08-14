@@ -10,4 +10,3 @@ md:column-fill-3
 
 border
 border-transparent
-md:border-gray-500
