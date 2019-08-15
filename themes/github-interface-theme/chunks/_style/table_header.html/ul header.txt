@@ -5,4 +5,3 @@ md:columns-14
 grid_headers
 
 bg-blue-200
-rounded-t-lg

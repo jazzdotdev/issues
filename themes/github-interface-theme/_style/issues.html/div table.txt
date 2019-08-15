@@ -1,0 +1,10 @@
+table
+rounded-lg
+overflow-hidden
+bg-white
+
+border-t
+border-b
+border-l
+
+border-gray-500

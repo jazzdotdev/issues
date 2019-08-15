@@ -7,6 +7,5 @@ lg:columns-3
 
 column-fill-1
 md:column-fill-3
-
-border
-border-transparent
+border-r
+border-gray-500

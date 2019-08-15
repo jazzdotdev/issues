@@ -2,5 +2,6 @@ modal
 bg-white
 m-4
 shadow-lg
+rounded-lg
 overflow-hidden
 relative

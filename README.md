@@ -13,7 +13,7 @@ The url will also accept multiple filters at once, with each different filter se
 Example:
 
 ```url
-http://localhost:3000/issues?filters=model:change,size:0.5&previous_filters=+label%3A"focus%2Fecosystem"
+http://localhost:3000/issues?filters=model:change,size:0.5
 ```
 
 Note: also the page will fail to load if given an uncomplete filter or a filter with a wrong format.

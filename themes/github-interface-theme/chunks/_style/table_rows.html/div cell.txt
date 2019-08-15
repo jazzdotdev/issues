@@ -1,4 +1,6 @@
 break-words
 cell_data
 p-1
+pl-4
 overflow-hidden
+text-justify

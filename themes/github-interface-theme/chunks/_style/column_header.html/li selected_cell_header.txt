@@ -1,8 +1,7 @@
 flex
 items-center
 justify-center
-font-bold
 relative
-break-all
 bg-blue-400
-p-3
+p-1
+pl-4

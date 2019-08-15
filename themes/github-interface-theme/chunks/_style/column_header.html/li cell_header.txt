@@ -2,4 +2,5 @@ flex
 items-center
 justify-center
 relative
-p-2
+p-1
+pl-4

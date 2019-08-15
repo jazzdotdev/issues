@@ -1,0 +1,10 @@
+bg-blue-300
+p-2
+px-6
+m-4
+cursor-pointer
+capitalize
+font-bold
+rounded-lg
+shadow-md
+button__pressed--depth

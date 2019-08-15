@@ -2,11 +2,11 @@ grid_container
 columns-1
 md:columns-14
 
-bg-gray-200
+bg-indigo-100
 mb-4
 md:mb-0
 
 border
 border-gray-500
 md:border-0
-md:border-transparent
+md:border-t

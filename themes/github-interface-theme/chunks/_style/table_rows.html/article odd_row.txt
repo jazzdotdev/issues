@@ -9,4 +9,4 @@ md:mb-0
 border
 border-gray-500
 md:border-0
-md:border-transparent
+md:border-t

@@ -43,7 +43,12 @@
                     {% if loop.index > 1  %}
                         </div>
                     {% endif %}
-                    <div three_cell_group >
+                    {% if loop.last %}
+                        <div big_cell >
+                    {% else %}
+                        <div three_cell_group >
+
+                    {% endif %}
                 {% endif %}
 
                 <div cell data_label="{{tag.name | capitalize }}">
