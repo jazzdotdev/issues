@@ -33,27 +33,6 @@
         .modal__body {
             height: 60%;
 
-            .view{
-                display: none;
-                visibility: hidden;
-            }
-            .preview{
-                display: block;
-                visibility: visible;
-            }
-
-            .preview_controller:checked{
-                ~{
-                    .view {
-                        display: block;
-                        visibility: visible;
-                    }
-                    .preview {
-                        display: none;
-                        visibility: hidden;
-                    }
-                }
-            }
         }
     }
 }

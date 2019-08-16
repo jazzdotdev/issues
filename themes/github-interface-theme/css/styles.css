@@ -2464,18 +2464,6 @@
 
 .modal_container .modal__content .modal__body {
   height: 60%; }
-  .modal_container .modal__content .modal__body .view {
-    display: none;
-    visibility: hidden; }
-  .modal_container .modal__content .modal__body .preview {
-    display: block;
-    visibility: visible; }
-  .modal_container .modal__content .modal__body .preview_controller:checked ~ .view {
-    display: block;
-    visibility: visible; }
-  .modal_container .modal__content .modal__body .preview_controller:checked ~ .preview {
-    display: none;
-    visibility: hidden; }
 
 .grid_container {
   display: grid; }

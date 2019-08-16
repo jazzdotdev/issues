@@ -6,16 +6,6 @@
         <div content_modal>
             <h1 title_modal>{{ issue.title }} </h1>
             <div body_modal>
-                <h2 subtitle_modal>
-                    Body:
-                </h2>
-                <input preview_controller id="{{issue.id}}_body_preview" type="checkbox">
-                <div preview>
-                    <p body>{{ issue.min_body }}</p>
-                    <label preview_label for="{{issue.id}}_body_preview">
-                        Read more and {{issue.comments}} Comments
-                    </label>
-                </div>
                 <div view >
                     <p body>{{ issue.body }}</p> <!-- Body  -->
                     {% if issue.el_comments %}
@@ -31,9 +21,6 @@
                         {% endfor %}
                     </ul>
                     {% endif %}
-                    <label preview_label for="{{issue.id}}_body_preview">
-                        Read less
-                    </label>
                 </div>
             </div>
             <div footer_modal>

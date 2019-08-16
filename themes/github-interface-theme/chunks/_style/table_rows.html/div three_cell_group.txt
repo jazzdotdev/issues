@@ -3,9 +3,7 @@ m-0
 
 grid_container
 columns-1
-lg:columns-3
-
 column-fill-1
-md:column-fill-3
+
 border-r
 border-gray-500
