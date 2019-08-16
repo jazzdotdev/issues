@@ -1,14 +1,18 @@
 <ul header><!-- Begin header-->
 
     <div title_cell>
-        {% set pos_left = true -%}
-        {% set col_name = "title" -%}
+        <!-- {% set pos_left = true -%}
+        {% set col_name = "Title #id" -%}
         {% include "chunks/column_header.html" %}
+        <div second_title_cell>
+
+            {# set pos_left = false -#}
+            {# set col_name = "Id" -#}
+            {# include "chunks/column_header.html" #}
+        
+        </div>
 
         <div sub_title_cell>
-            {% set pos_left = false -%}
-            {% set col_name = "Id" -%}
-            {% include "chunks/column_header.html" %}
 
             <div body_cell >
                 {% set col_name = "Body" -%}
@@ -17,7 +21,11 @@
 
             {% set col_name = "Author" -%}
             {% include "chunks/column_header.html" %}
-        </div>
+        </div> -->
+
+        {% set pos_left = true -%}
+        {% set col_name = "Summary" -%}
+        {% include "chunks/column_header.html" %}
     </div>
     {% if all_tags %}
         {% for key,tag in all_tags %}

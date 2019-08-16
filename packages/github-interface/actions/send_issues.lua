@@ -188,6 +188,10 @@ for _, issue in ipairs(issues) do
     end
   end -- end Issue comments
 
+  -- Right id number
+
+  issue.number_id = send_request(addAuth(issue.url)).body.number
+
 end
 
 

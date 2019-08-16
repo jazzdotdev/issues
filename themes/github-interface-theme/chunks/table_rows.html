@@ -11,12 +11,17 @@
 
         <div title_cell >
             <div cell data_label="Title">
-                <a title_issue href="{{issue.html_url}}" target="_blank">{{ issue.title }}</a><!-- Title  -->
+                <a title_issue href="{{issue.html_url}}" target="_blank">
+                    {{ issue.title }}
+                    <p id_num>
+                        #({{issue.number_id}})
+                    </p>
+                </a><!-- Title  -->
             </div>
+            <!-- <div second_title_cell >
+
+            </div> -->
             <div sub_title_cell >
-                <div cell  data_label="Id">
-                    {{issue.id}}
-                </div>
 
 
                 <div body_cell >

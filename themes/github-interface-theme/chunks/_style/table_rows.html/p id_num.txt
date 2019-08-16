@@ -1,0 +1,3 @@
+font-normal
+text-lg
+text-gray-600
