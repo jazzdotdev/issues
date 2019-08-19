@@ -3402,6 +3402,7 @@
     .table_header__filter ~ .header__popup .selection .options {
       display: none;
       visibility: hidden;
+      z-index: 3;
       top: 20px;
       position: absolute;
       background-color: #fff;
@@ -3411,6 +3412,9 @@
       .table_header__filter ~ .header__popup .selection .options.pos_right {
         right: 0; }
     .table_header__filter ~ .header__popup .selection:hover .options {
+      display: block;
+      visibility: visible; }
+    .table_header__filter ~ .header__popup .selection .options:hover {
       display: block;
       visibility: visible; }
 .table_header__filter ~ .label__close_popup {

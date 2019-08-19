@@ -235,6 +235,7 @@ response = {
     issues = issues,
     all_tags = all_tags,
     previous_filters = query_filters,
+    test_tags = json.from_table(all_tags)
   })
 }
 

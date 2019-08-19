@@ -1,4 +1,6 @@
-hover:text-blue-600
-hover:bg-yellow-200
+hover:bg-blue-200
+hover:font-bold
 cursor-pointer
+selection_option
+bg-white
 p-1

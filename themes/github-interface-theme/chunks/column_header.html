@@ -6,7 +6,7 @@
     <label cell_name for="{{col_name}}__table__header">
         {{col_name}}
     </label>
-    {% if col_options %}
+    {% if col_tags %}
         <input filter_control type="checkbox" id="{{col_name}}__table__header">
         <label close_out for="{{col_name}}__table__header">
         </label>
@@ -17,28 +17,30 @@
             <div right_header_popup>
         {% endif %}
 
+            {% for tag in col_tags %}
             <div selection>
-                <p tag>
-                    Show Only
-                    <i triangle>
-                    </i>
-                </p>
-                <ul options>
-                    {% for key,option in col_options %}
-                        <label for="{{col_name}}_{{option.value}}">
-                            <li option>
-                                <input checkbox
-                                    type="checkbox"
-                                    id="{{col_name}}_{{option.value}}" name="selection_{{col_index}}_{{loop.index}}"
-                                    value="{{col_name}}:{{option.value}}"
-                                    {% if option.is_checked %}checked{% endif %}
-                                >
-                                {{option.value}}
-                            </li>
-                        </label>
-                    {% endfor %}
-                </ul>
+                    <p tag>
+                        {{tag.name}}
+                        <i triangle>
+                        </i>
+                    </p>
+                    <ul options>
+                        {% for key,option in tag.values %}
+                            <label for="{{tag.name}}_{{option.value}}">
+                                <li option>
+                                    <input checkbox
+                                        type="checkbox"
+                                        id="{{tag.name}}_{{option.value}}" name="selection_{{tag.name}}_{{loop.index}}"
+                                        value="{{tag.name}}:{{option.value}}"
+                                        {% if option.is_checked %}checked{% endif %}
+                                    >
+                                    {{option.value}}
+                                </li>
+                            </label>
+                        {% endfor %}
+                    </ul>
             </div>
+            {% endfor %}
         </div>
     {% endif %}
 </li>
