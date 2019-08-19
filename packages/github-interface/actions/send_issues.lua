@@ -194,7 +194,6 @@ for _, issue in ipairs(issues) do
 
 end
 
-
 -- log.debug("Status: ", github_response.status)
 -- log.debug("Content length: ", #github_response.body_raw)
 
@@ -235,7 +234,6 @@ response = {
     issues = issues,
     all_tags = all_tags,
     previous_filters = query_filters,
-    test_tags = json.from_table(all_tags)
   })
 }
 

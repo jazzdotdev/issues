@@ -1,5 +1,3 @@
-
-{{ test_tags | safe }}
 <ul header><!-- Begin header-->
 
     <div title_cell>
@@ -7,21 +5,21 @@
         {% set col_name = "Summary" -%}
         {% include "chunks/column_header.html" %}
     </div>
+
     {% set pos_left = false -%}
+
+    {% set col_tags = all_tags %}
     <div bordered_cell >
         {% set col_name = "Basics" -%}
-        {% set col_tags = [all_tags['component'],all_tags['feature'],all_tags['focus']] %}
         {% include "chunks/column_header.html" %}
     </div>
     <div bordered_cell >
         {% set col_name = "Measure" -%}
-        {% set col_tags = [all_tags['model'],all_tags['progress'],all_tags['size']] %}
 
         {% include "chunks/column_header.html" %}
     </div>
     <div bordered_cell >
         {% set col_name = "Status" -%}
-        {% set col_tags = [all_tags['track'],all_tags['value'],all_tags['weight']] %}
 
         {% include "chunks/column_header.html" %}
     </div>
