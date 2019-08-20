@@ -20,11 +20,8 @@
                     </p>
                 </a><!-- Title  -->
             </div>
-            <!-- <div second_title_cell >
 
-            </div> -->
             <div sub_title_cell >
-
 
                 <div body_cell >
                     <div cell  data_label="Body">
@@ -44,32 +41,21 @@
                 </div>
             </div>
         </div>
-            {# tag columns #}
-            {% for key,tag in all_tags %}
-                {% if loop.index0 % 3 == 0 or loop.index == 1 %}
-                {# if index is multiple of 3 or is the first index #}
-                    {% if loop.index0 > 0  %} {# for any cicle after the first one #}
-                        </div>
-                    {% endif %}
-                    {% if loop.last %}
-                        <div big_cell >
-                    {% else %}
-                        <div three_cell_group >
+        {# tag columns #}
+        {% for tags in tags_array %}
+            <div three_cell_group >
+                {% for tag in tags %}
+                    <div cell data_label="{{tag.name | capitalize }}">
+                        {% if issue.tags[tag.name] %}
+                            <b>{{issue.tags[tag.name]}}</b>
+                        {% else %}
+                            <b>----</b>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
 
-                    {% endif %}
-                {% endif %}
-
-                <div cell data_label="{{tag.name | capitalize }}">
-                    {% if issue.tags[tag.name] %}
-                        <b>{{issue.tags[tag.name]}}</b>
-                    {% else %}
-                        <b>----</b>
-                    {% endif %}
-                </div>
-                    {% if loop.last %}
-                        </div>
-                    {% endif %}
-            {% endfor %}
+        {% endfor %}
 
         </article>
     {% endfor %}

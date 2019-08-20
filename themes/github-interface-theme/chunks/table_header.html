@@ -7,20 +7,13 @@
     </div>
 
     {% set pos_left = false -%}
+    {% set col_names = ["Basics","Measure","Status","Extras"] -%}
 
-    {% set col_tags = all_tags %}
-    <div bordered_cell >
-        {% set col_name = "Basics" -%}
-        {% include "chunks/column_header.html" %}
-    </div>
-    <div bordered_cell >
-        {% set col_name = "Measure" -%}
-
-        {% include "chunks/column_header.html" %}
-    </div>
-    <div bordered_cell >
-        {% set col_name = "Status" -%}
-
-        {% include "chunks/column_header.html" %}
-    </div>
+    {% for tags in tags_array %}
+        <div bordered_cell >
+            {% set col_name = col_names[loop.index0] -%}
+            {% set col_tags = tags %}
+            {% include "chunks/column_header.html" %}
+        </div>
+    {% endfor %}
 </ul> <!-- End header-->

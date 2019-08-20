@@ -197,7 +197,7 @@ end
 -- log.debug("Status: ", github_response.status)
 -- log.debug("Content length: ", #github_response.body_raw)
 
-log.debug("Query: " .. json.from_table(request.query))
+-- log.debug("Query: " .. json.from_table(request.query))
 
 for k,v in pairs(request.query) do
   if string.find(k,"selection") then
@@ -226,14 +226,33 @@ for k,v in pairs(request.query) do
   end
 end
 
+
+local i = 1
+local j = 1
+local tags_array = {}
+
+for k,value in pairs(all_tags) do
+  if tags_array[i] == nil then
+    tags_array[i] = {}
+  end
+  tags_array[i][j] = value
+
+  j = j + 1
+  if j > 3 then
+    j = 1
+    i = i + 1
+  end
+end
+
 response = {
   headers = {
     ["content-type"] = "text/html",
   },
   body = render("issues.html", {
     issues = issues,
-    all_tags = all_tags,
+    -- all_tags = all_tags,
     previous_filters = query_filters,
+    tags_array = tags_array,
   })
 }
 
