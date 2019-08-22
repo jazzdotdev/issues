@@ -2,8 +2,16 @@ grid_container
 columns-1
 sm:columns-1
 md:columns-8
-rounded-t-lg
 
-grid_headers
+
+rounded-lg
+md:rounded-none
+md:rounded-t-lg
+my-2
+md:my-0
+border
+border-gray-500
+
+md:border-0
 
 bg-blue-200

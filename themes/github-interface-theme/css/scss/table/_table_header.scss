@@ -1,14 +1,16 @@
 $popup_width: 130px;
-.table_header__filter:checked {
-    ~.header__popup {
-        display: block;
-        visibility: visible;
+@include screen_md(){
+    .table_header__filter:checked {
+        ~.header__popup {
+            display: block;
+            visibility: visible;
+        }
+        ~.label__close_popup {
+            display: block;
+            visibility: visible;
+        }
     }
 
-    ~.label__close_popup {
-        display: block;
-        visibility: visible;
-    }
 }
 
 .table_header__filter{

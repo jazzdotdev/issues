@@ -3378,13 +3378,13 @@
       .grid_container.grid_headers {
         display: grid; } }
 
-.table_header__filter:checked ~ .header__popup {
-  display: block;
-  visibility: visible; }
-.table_header__filter:checked ~ .label__close_popup {
-  display: block;
-  visibility: visible; }
-
+@media (min-width: 768px) {
+  .table_header__filter:checked ~ .header__popup {
+    display: block;
+    visibility: visible; }
+  .table_header__filter:checked ~ .label__close_popup {
+    display: block;
+    visibility: visible; } }
 .table_header__filter ~ .header__popup {
   display: none;
   visibility: hidden;
