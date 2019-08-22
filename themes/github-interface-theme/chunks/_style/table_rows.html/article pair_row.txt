@@ -1,5 +1,6 @@
 grid_container
 columns-1
+sm:columns-1
 md:columns-8
 table__row
 bg-indigo-100

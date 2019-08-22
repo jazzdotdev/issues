@@ -1,3 +1,5 @@
 w-full
 p-4
 bg-gray-300
+grid-container
+columns-1
