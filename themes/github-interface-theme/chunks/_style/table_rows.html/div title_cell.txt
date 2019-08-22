@@ -5,5 +5,6 @@ grid_container
 column-fill-1
 sm:column-fill-1
 md:column-fill-5
-border-r
+border-0
+md:border-r
 border-gray-500

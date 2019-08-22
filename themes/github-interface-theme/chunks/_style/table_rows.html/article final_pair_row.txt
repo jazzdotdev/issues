@@ -14,3 +14,4 @@ md:border-t
 
 rounded-lg
 md:rounded-none
+md:rounded-b-lg

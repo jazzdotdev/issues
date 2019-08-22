@@ -2,8 +2,5 @@ table
 rounded-lg
 bg-transparent
 border-0
-md:border-t
-md:border-b
-md:border-l
-
+md:border
 border-gray-500

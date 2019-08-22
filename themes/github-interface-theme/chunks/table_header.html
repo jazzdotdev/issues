@@ -10,7 +10,12 @@
     {% set col_names = ["Basics","Measure","Status","Extras"] -%}
 
     {% for tags in tags_matrix %}
+        {% if loop.last %}
+        <div closing_bordered_cell >
+        {% else %}
         <div bordered_cell >
+
+        {% endif %}
             {% set col_name = col_names[loop.index0] -%}
             {% set col_tags = tags %}
             {% include "chunks/column_header.html" %}

@@ -3,7 +3,7 @@ columns-1
 sm:columns-1
 md:columns-8
 table__row
-bg-indigo-100
+bg-white
 mb-4
 md:mb-0
 
@@ -14,3 +14,4 @@ md:border-t
 
 rounded-lg
 md:rounded-none
+md:rounded-b-lg

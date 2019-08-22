@@ -1,12 +1,21 @@
 {% if issues[0] %}
     {% for issue in issues %}
     {# to give different color depending of the row number#}
+    
     {% if loop.index % 2 == 0 %}
-        <article pair_row  >
+        {% if loop.last %}
+            <article final_pair_row  >
+        {% else %}
+            <article pair_row  >
+
+        {% endif %}
 
     {% else %}
-        <article odd_row  >
-
+        {% if loop.last %}
+            <article final_odd_row  >
+        {% else %}
+            <article odd_row  >
+        {% endif %}
     {% endif %}
 
         <div title_cell >
@@ -43,7 +52,13 @@
         </div>
         {# tag columns #}
         {% for tags in tags_matrix %}
-            <div three_cell_group >
+            {% if loop.last %}
+                <div closing_three_cell_group>
+            {% else %}
+
+                <div three_cell_group >
+            {% endif %}
+
                 {% for tag in tags %}
                     <div cell data_label="{{tag.name | capitalize }}">
                         {% if issue.tags[tag.name] %}

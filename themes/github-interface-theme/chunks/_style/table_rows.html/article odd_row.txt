@@ -11,3 +11,6 @@ border
 border-gray-500
 md:border-0
 md:border-t
+
+rounded-lg
+md:rounded-none
