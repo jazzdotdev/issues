@@ -1,10 +1,9 @@
 table
 rounded-lg
-overflow-hidden
-bg-white
-
-border-t
-border-b
-border-l
+bg-transparent
+border-0
+md:border-t
+md:border-b
+md:border-l
 
 border-gray-500

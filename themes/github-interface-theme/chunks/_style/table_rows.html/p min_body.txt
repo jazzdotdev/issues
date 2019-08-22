@@ -1,0 +1,3 @@
+text-justify
+break-words
+minified_body

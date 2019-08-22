@@ -9,7 +9,7 @@
     {% set pos_left = false -%}
     {% set col_names = ["Basics","Measure","Status","Extras"] -%}
 
-    {% for tags in tags_array %}
+    {% for tags in tags_matrix %}
         <div bordered_cell >
             {% set col_name = col_names[loop.index0] -%}
             {% set col_tags = tags %}

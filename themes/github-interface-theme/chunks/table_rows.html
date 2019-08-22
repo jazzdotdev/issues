@@ -26,7 +26,7 @@
                 <div body_cell >
                     <div cell  data_label="Body">
                         {% if issue.body %}
-                            <p body> {{ issue.min_body }} </p> <!-- Body  -->
+                            <p min_body> {{ issue.min_body }} </p> <!-- Body  -->
                             {% set issue = issue %}
                             {% include "chunks/comments_modal.html" %}
                         {% endif %}
@@ -42,7 +42,7 @@
             </div>
         </div>
         {# tag columns #}
-        {% for tags in tags_array %}
+        {% for tags in tags_matrix %}
             <div three_cell_group >
                 {% for tag in tags %}
                     <div cell data_label="{{tag.name | capitalize }}">

@@ -3423,6 +3423,14 @@
   background: transparent;
   z-index: 2; }
 
+.table .table__row .minified_body {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-height: 1.625rem;
+  max-height: calc(1.625rem * 2); }
+
 .bg__blue {
   background-color: #007bff; }
 

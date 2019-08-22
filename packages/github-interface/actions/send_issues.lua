@@ -228,14 +228,24 @@ end
 
 
 local i = 1
-local j = 1
 local tags_array = {}
 
 for k,value in pairs(all_tags) do
-  if tags_array[i] == nil then
-    tags_array[i] = {}
+  tags_array[i] = value
+  i = i + 1
+end
+
+table.sort(tags_array,function(a, b) return a.name < b.name end)
+
+i = 1
+local j = 1
+local tags_matrix = {}
+
+for _,value in ipairs(tags_array) do
+  if tags_matrix[i] == nil then
+    tags_matrix[i] = {}
   end
-  tags_array[i][j] = value
+  tags_matrix[i][j] = value
 
   j = j + 1
   if j > 3 then
@@ -250,9 +260,8 @@ response = {
   },
   body = render("issues.html", {
     issues = issues,
-    -- all_tags = all_tags,
     previous_filters = query_filters,
-    tags_array = tags_array,
+    tags_matrix = tags_matrix,
   })
 }
 

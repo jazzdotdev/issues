@@ -1,0 +1,15 @@
+$line_height: 1.625rem;
+
+.table{
+    .table__row{
+        .minified_body{
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            line-height: $line_height;
+            max-height: calc(#{$line_height} * 2);
+
+        }
+    }
+}

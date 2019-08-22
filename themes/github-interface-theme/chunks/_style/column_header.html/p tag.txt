@@ -1,3 +1,4 @@
 p-2
 capitalize
 font-bold
+cursor-pointer
