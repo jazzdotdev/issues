@@ -1,2 +1,2 @@
 selection
-hover:bg-blue-200
+hover:bg-blue-100

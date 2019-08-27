@@ -3378,39 +3378,22 @@
       .grid_container.grid_headers {
         display: grid; } }
 
-@media (min-width: 768px) {
-  .table_header__filter:checked ~ .header__popup {
-    display: block;
-    visibility: visible; }
-  .table_header__filter:checked ~ .label__close_popup {
-    display: block;
-    visibility: visible; } }
+.table_header__filter:checked ~ .header__popup {
+  display: block;
+  visibility: visible; }
+.table_header__filter:checked ~ .label__close_popup {
+  display: block;
+  visibility: visible; }
+
 .table_header__filter ~ .header__popup {
   display: none;
   visibility: hidden;
-  top: 30px;
-  z-index: 3;
-  width: 130px;
-  background-color: #fff;
-  border: 1px solid #000; }
-  .table_header__filter ~ .header__popup.pos_left {
-    left: 0; }
-  .table_header__filter ~ .header__popup.pos_right {
-    right: 0; }
+  width: 100%; }
   .table_header__filter ~ .header__popup .selection {
     position: relative; }
     .table_header__filter ~ .header__popup .selection .options {
       display: none;
-      visibility: hidden;
-      z-index: 3;
-      top: 20px;
-      position: absolute;
-      background-color: #fff;
-      border: 1px solid #000; }
-      .table_header__filter ~ .header__popup .selection .options.pos_left {
-        left: 0; }
-      .table_header__filter ~ .header__popup .selection .options.pos_right {
-        right: 0; }
+      visibility: hidden; }
     .table_header__filter ~ .header__popup .selection:hover .options {
       display: block;
       visibility: visible; }
@@ -3419,10 +3402,27 @@
       visibility: visible; }
 .table_header__filter ~ .label__close_popup {
   display: none;
-  visibility: hidden;
-  background: transparent;
-  z-index: 2; }
+  visibility: hidden; }
 
+@media (min-width: 768px) {
+  .table_header__filter ~ .header__popup {
+    top: 30px;
+    z-index: 3;
+    width: 130px;
+    border: 1px solid #000; }
+    .table_header__filter ~ .header__popup.pos_left {
+      left: 0; }
+    .table_header__filter ~ .header__popup.pos_right {
+      right: 0; }
+    .table_header__filter ~ .header__popup .selection .options {
+      z-index: 3;
+      top: 20px; }
+      .table_header__filter ~ .header__popup .selection .options.pos_left {
+        left: 0; }
+      .table_header__filter ~ .header__popup .selection .options.pos_right {
+        right: 0; }
+  .table_header__filter ~ .label__close_popup {
+    z-index: 2; } }
 .table .table__row .minified_body {
   overflow: hidden;
   display: -webkit-box;

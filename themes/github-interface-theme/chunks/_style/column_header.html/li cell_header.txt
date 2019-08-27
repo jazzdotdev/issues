@@ -1,6 +1,5 @@
 flex
+flex-col
 items-center
 justify-center
 relative
-p-1
-pl-4

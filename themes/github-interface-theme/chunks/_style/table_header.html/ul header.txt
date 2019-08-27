@@ -15,3 +15,5 @@ border-gray-500
 md:border-0
 
 bg-blue-200
+md:overflow-visible
+overflow-hidden

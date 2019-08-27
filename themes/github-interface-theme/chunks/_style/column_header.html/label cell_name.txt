@@ -2,3 +2,4 @@ capitalize
 cursor-pointer
 break-all
 font-bold
+m-1

@@ -1,4 +1,6 @@
 header__popup
-absolute
+md:absolute
+relative
 text-sm
 pos_right
+bg-white

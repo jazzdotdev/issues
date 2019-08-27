@@ -1,3 +1,8 @@
 options
 pos_right
 bg-white
+border-0
+md:absolute
+relative
+md:border
+border-black
