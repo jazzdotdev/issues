@@ -26,7 +26,7 @@ $popup_width: 130px;
                 visibility: hidden;
             }
 
-            &:hover {
+            &:hover, &:focus {
 
                 .options {
                     display: block;
@@ -35,7 +35,7 @@ $popup_width: 130px;
             }
 
             .options {
-                &:hover {
+                &:hover, &:focus  {
                     display: block;
                     visibility: visible;
                 }
@@ -62,27 +62,12 @@ $popup_width: 130px;
             width: $popup_width;
             border: 1px solid #000;
 
-            &.pos_left{
-                left: 0;
-            }
-            &.pos_right{
-                right: 0;
-            }
-
             .selection {
                 .options {
 
                     z-index: 3;
 
                     top: 20px;
-
-                    &.pos_left {
-                        left: 0;
-                    }
-
-                    &.pos_right {
-                        right: 0;
-                    }
                 }
             }
 

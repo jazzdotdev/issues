@@ -2,5 +2,5 @@ header__popup
 md:absolute
 relative
 text-sm
-pos_right
+right-0
 bg-white

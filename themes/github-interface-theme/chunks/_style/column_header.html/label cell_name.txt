@@ -3,3 +3,6 @@ cursor-pointer
 break-all
 font-bold
 m-1
+px-4
+flex
+relative

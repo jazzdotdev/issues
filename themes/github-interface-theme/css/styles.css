@@ -2441,6 +2441,8 @@
     top: 4px;
     border-color: transparent transparent transparent #000;
     border-width: calc(8px/2) 0 calc(8px/2) 8px; }
+  .triangle-sm.rotated-90 {
+    transform: rotate(90deg); }
 
 .modal_controller:checked ~ .modal_container {
   display: flex;
@@ -3394,10 +3396,10 @@
     .table_header__filter ~ .header__popup .selection .options {
       display: none;
       visibility: hidden; }
-    .table_header__filter ~ .header__popup .selection:hover .options {
+    .table_header__filter ~ .header__popup .selection:hover .options, .table_header__filter ~ .header__popup .selection:focus .options {
       display: block;
       visibility: visible; }
-    .table_header__filter ~ .header__popup .selection .options:hover {
+    .table_header__filter ~ .header__popup .selection .options:hover, .table_header__filter ~ .header__popup .selection .options:focus {
       display: block;
       visibility: visible; }
 .table_header__filter ~ .label__close_popup {
@@ -3410,17 +3412,9 @@
     z-index: 3;
     width: 130px;
     border: 1px solid #000; }
-    .table_header__filter ~ .header__popup.pos_left {
-      left: 0; }
-    .table_header__filter ~ .header__popup.pos_right {
-      right: 0; }
     .table_header__filter ~ .header__popup .selection .options {
       z-index: 3;
       top: 20px; }
-      .table_header__filter ~ .header__popup .selection .options.pos_left {
-        left: 0; }
-      .table_header__filter ~ .header__popup .selection .options.pos_right {
-        right: 0; }
   .table_header__filter ~ .label__close_popup {
     z-index: 2; } }
 .table .table__row .minified_body {
