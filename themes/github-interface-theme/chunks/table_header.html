@@ -9,6 +9,7 @@
     {% set pos_left = false -%}
     {% set col_names = ["Basics","Measure","Status","Extras"] -%}
 
+    {% set has_selected = false %}
     {% for tags in tags_matrix %}
         {% if loop.last %}
         <div closing_bordered_cell >
@@ -16,9 +17,12 @@
         <div bordered_cell >
 
         {% endif %}
+            {% set has_selected = tags_selected_row[loop.index0] %}
             {% set col_name = col_names[loop.index0] -%}
             {% set col_tags = tags %}
             {% include "chunks/column_header.html" %}
+
+            {% set has_selected = false %}
         </div>
     {% endfor %}
 </ul> <!-- End header-->

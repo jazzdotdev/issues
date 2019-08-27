@@ -217,7 +217,6 @@ for k,v in pairs(request.query) do
       all_tags[name]['values'][value]['value'] = value
     end
     -- end special check for empty values
-
     --average check for values
     if all_tags[name]['values'][value]['value'] then
       all_tags[name]['has_checked'] = true
@@ -237,15 +236,22 @@ end
 
 table.sort(tags_array,function(a, b) return a.name < b.name end)
 
-i = 1
-local j = 1
+i = 1 -- rows
+local j = 1 --columns
 local tags_matrix = {}
+local tags_selected_row = {}
 
 for _,value in ipairs(tags_array) do
   if tags_matrix[i] == nil then
     tags_matrix[i] = {}
   end
-  tags_matrix[i][j] = value
+  tags_matrix[i][j] = value  -- Row i and column j of the matrix
+
+  if value['has_checked'] == true then
+    tags_selected_row[i] = true
+  elseif not tags_selected_row[i] then -- if it is false left it in false
+    tags_selected_row[i] = false
+  end
 
   j = j + 1
   if j > 3 then
@@ -262,6 +268,7 @@ response = {
     issues = issues,
     previous_filters = query_filters,
     tags_matrix = tags_matrix,
+    tags_selected_row = tags_selected_row,
   })
 }
 

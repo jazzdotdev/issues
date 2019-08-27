@@ -23,7 +23,11 @@
 
             {% for tag in col_tags %}
             <div selection>
+                    {% if tag.has_checked %}
+                    <p check_tag>
+                    {% else %}
                     <p tag>
+                    {% endif %}
                         {{tag.name}}
                         <i triangle>
                         </i>
