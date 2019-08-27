@@ -12,68 +12,51 @@ $popup_width: 130px;
 }
 
 .table_header__filter {
-
     ~.header__popup {
-
         display: none;
         visibility: hidden;
         width: 100%;
-
         .selection {
             position: relative;
             .options {
                 display: none;
                 visibility: hidden;
             }
-
             &:hover, &:focus {
-
                 .options {
                     display: block;
                     visibility: visible;
                 }
             }
-
             .options {
                 &:hover, &:focus  {
                     display: block;
                     visibility: visible;
                 }
-
             }
         }
-
     }
-
     ~.label__close_popup {
         display: none;
         visibility: hidden;
     }
 }
 
-
 @include screen_md() {
     .table_header__filter{
-
         ~.header__popup{
-
             top: 30px;
             z-index: 3;
             width: $popup_width;
             border: 1px solid #000;
-
             .selection {
                 .options {
-
                     z-index: 3;
-
                     top: 20px;
                 }
             }
-
         }
         ~.label__close_popup{
-
             z-index: 2;
         }
     }
