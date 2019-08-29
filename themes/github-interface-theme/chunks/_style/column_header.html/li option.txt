@@ -4,3 +4,4 @@ cursor-pointer
 selection_option
 bg-white
 p-1
+rounded

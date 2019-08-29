@@ -260,6 +260,21 @@ for _,value in ipairs(tags_array) do
   end
 end
 
+local summary_fields = {
+  {
+    name = 'title',
+    value = ''
+  },
+  {
+    name = 'body',
+    value = ''
+  },
+  {
+    name = 'comments',
+    value = ''
+  },
+}
+
 response = {
   headers = {
     ["content-type"] = "text/html",
@@ -269,6 +284,7 @@ response = {
     previous_filters = query_filters,
     tags_matrix = tags_matrix,
     tags_selected_row = tags_selected_row,
+    summary_fields = summary_fields,
   })
 }
 

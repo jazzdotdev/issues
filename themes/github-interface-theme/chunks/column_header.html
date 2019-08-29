@@ -8,20 +8,18 @@
         <i side_triangle>
         </i>
     </label>
-
     {% if col_tags %}
         <input filter_control type="checkbox" id="{{col_name}}__table__header">
         <label close_out for="{{col_name}}__table__header">
         </label>
 
-
         {% if pos_left %}
-            <div left_header_popup>
+        <div left_header_popup>
         {% else %}
-            <div right_header_popup>
+        <div right_header_popup>
         {% endif %}
 
-            {% for tag in col_tags %}
+        {% for tag in col_tags %}
             <div selection>
                     {% if tag.has_checked %}
                     <p check_tag>
@@ -48,7 +46,32 @@
                         {% endfor %}
                     </ul>
             </div>
-            {% endfor %}
+        {% endfor %}
         </div>
+    {% elif col_fields %}
+        <input filter_control type="checkbox" id="{{col_name}}__table__header">
+        <label close_out for="{{col_name}}__table__header">
+        </label>
+        {% if pos_left %}
+        <div left_header_popup>
+        {% else %}
+        <div right_header_popup>
+        {% endif %}
+        {% for field in col_fields %}
+            <div selection>
+                <p tag>
+                    {{field.name}}
+                    <i triangle>
+                    </i>
+                </p>
+                <ul options>
+                    <li option>
+                        <input search placeholder="Search in {{field.name}}" type="text" name="{{field.name}}" value="{{field.value}}" >
+                    </li>
+                </ul>
+            </div>
+        {% endfor %}
+        </div>
+
     {% endif %}
 </li>

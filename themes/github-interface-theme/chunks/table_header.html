@@ -1,12 +1,13 @@
 <ul header><!-- Begin header-->
 
     <div title_cell>
-        {% set pos_left = true -%}
+        {% set pos_left = false -%}
         {% set col_name = "Summary" -%}
+        {% set col_fields = summary_fields %}
         {% include "chunks/column_header.html" %}
+        {% set col_fields = false %}
     </div>
 
-    {% set pos_left = false -%}
     {% set col_names = ["Basics","Measure","Status","Extras"] -%}
 
     {% set has_selected = false %}

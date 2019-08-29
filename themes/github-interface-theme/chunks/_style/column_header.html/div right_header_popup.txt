@@ -3,4 +3,7 @@ md:absolute
 relative
 text-sm
 right-0
+border
+border-black
 bg-white
+rounded
