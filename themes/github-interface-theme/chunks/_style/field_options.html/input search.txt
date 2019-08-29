@@ -1,0 +1,14 @@
+p-1
+
+rounded-lg
+
+appearance-none
+
+border
+border-gray-500
+
+bg-gray-100
+focus:bg-white
+text-gray-700
+
+option_input

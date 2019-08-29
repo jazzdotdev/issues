@@ -1,0 +1,3 @@
+selection
+hover:bg-blue-100
+rounded

@@ -8,7 +8,7 @@
         <i side_triangle>
         </i>
     </label>
-    {% if col_tags %}
+    {% if col_tags or col_fields %}
         <input filter_control type="checkbox" id="{{col_name}}__table__header">
         <label close_out for="{{col_name}}__table__header">
         </label>
@@ -18,63 +18,11 @@
         {% else %}
         <div right_header_popup>
         {% endif %}
-
-        {% for tag in col_tags %}
-            <div selection>
-                    {% if tag.has_checked %}
-                    <p check_tag>
-                    {% else %}
-                    <p tag>
-                    {% endif %}
-                        {{tag.name}}
-                        <i triangle>
-                        </i>
-                    </p>
-                    <ul options>
-                        {% for key,option in tag.values %}
-                            <label for="{{tag.name}}_{{option.value}}">
-                                <li option>
-                                    <input checkbox
-                                        type="checkbox"
-                                        id="{{tag.name}}_{{option.value}}" name="selection_{{tag.name}}_{{loop.index}}"
-                                        value="{{tag.name}}:{{option.value}}"
-                                        {% if option.is_checked %}checked{% endif %}
-                                    >
-                                    {{option.value}}
-                                </li>
-                            </label>
-                        {% endfor %}
-                    </ul>
-            </div>
-        {% endfor %}
-        </div>
-    {% elif col_fields %}
-        <input filter_control type="checkbox" id="{{col_name}}__table__header">
-        <label close_out for="{{col_name}}__table__header">
-        </label>
-        {% if pos_left %}
-        <div left_header_popup>
+        {% if col_tags %}
+            {% include 'chunks/tag_options.html' %}
         {% else %}
-        <div right_header_popup>
+            {% include 'chunks/field_options.html' %}
         {% endif %}
-        {% for _,field in col_fields %}
-            <div selection>
-                <p tag>
-                    {{field.name}}
-                    <i triangle>
-                    </i>
-                </p>
-                <ul options>
-                    <li option>
-                        <input search
-                            placeholder="Search in {{field.name}}"
-                            type="text"
-                            name="{{field.name}}"
-                            value="{% if field.value %}{{field.value}}{% endif %}" >
-                    </li>
-                </ul>
-            </div>
-        {% endfor %}
         </div>
 
     {% endif %}

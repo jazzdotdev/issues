@@ -3386,7 +3386,6 @@
 .table_header__filter:checked ~ .label__close_popup {
   display: block;
   visibility: visible; }
-
 .table_header__filter ~ .header__popup {
   display: none;
   visibility: hidden;
@@ -3405,7 +3404,6 @@
 .table_header__filter ~ .label__close_popup {
   display: none;
   visibility: hidden; }
-
 @media (min-width: 768px) {
   .table_header__filter ~ .header__popup {
     top: 30px;
@@ -3416,6 +3414,7 @@
       top: 30px; }
   .table_header__filter ~ .label__close_popup {
     z-index: 2; } }
+
 .table .table__row .minified_body {
   overflow: hidden;
   display: -webkit-box;

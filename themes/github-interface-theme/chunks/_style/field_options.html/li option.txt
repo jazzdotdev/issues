@@ -1,0 +1,8 @@
+hover:bg-blue-100
+hover:font-bold
+cursor-pointer
+option
+bg-white
+
+p-1
+rounded

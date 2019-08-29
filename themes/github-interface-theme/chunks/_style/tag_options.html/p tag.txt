@@ -2,5 +2,4 @@ p-2
 capitalize
 font-bold
 cursor-pointer
-
-bg-teal-200
+rounded

@@ -1,0 +1,28 @@
+{% for tag in col_tags %}
+    <div selection>
+        {% if tag.has_checked %}
+        <p check_tag>
+        {% else %}
+        <p tag>
+        {% endif %}
+            {{tag.name}}
+            <i triangle>
+            </i>
+        </p>
+        <ul options>
+            {% for key,option in tag.values %}
+                <label for="{{tag.name}}_{{option.value}}">
+                    <li option>
+                        <input checkbox
+                            type="checkbox"
+                            id="{{tag.name}}_{{option.value}}" name="selection_{{tag.name}}_{{loop.index}}"
+                            value="{{tag.name}}:{{option.value}}"
+                            {% if option.is_checked %}checked{% endif %}
+                        >
+                        {{option.value}}
+                    </li>
+                </label>
+            {% endfor %}
+        </ul>
+    </div>
+{% endfor %}

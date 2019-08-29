@@ -1,0 +1,14 @@
+options
+
+right-0
+
+bg-white
+
+md:absolute
+relative
+
+border-0
+md:border
+border-black
+
+rounded
