@@ -3396,10 +3396,10 @@
     .table_header__filter ~ .header__popup .selection .options {
       display: none;
       visibility: hidden; }
-    .table_header__filter ~ .header__popup .selection:hover .options, .table_header__filter ~ .header__popup .selection:focus .options {
+    .table_header__filter ~ .header__popup .selection:hover .options, .table_header__filter ~ .header__popup .selection:focus .options, .table_header__filter ~ .header__popup .selection:active .options {
       display: block;
       visibility: visible; }
-    .table_header__filter ~ .header__popup .selection .options:hover, .table_header__filter ~ .header__popup .selection .options:focus {
+    .table_header__filter ~ .header__popup .selection .options:hover, .table_header__filter ~ .header__popup .selection .options:focus, .table_header__filter ~ .header__popup .selection .options:active {
       display: block;
       visibility: visible; }
 .table_header__filter ~ .label__close_popup {

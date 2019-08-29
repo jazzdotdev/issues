@@ -10,6 +10,9 @@ $popup_width: 130px;
         visibility: visible;
     }
 }
+.table_header{
+    // min-width: 250px;
+}
 
 .table_header__filter {
     ~.header__popup {
@@ -22,14 +25,18 @@ $popup_width: 130px;
                 display: none;
                 visibility: hidden;
             }
-            &:hover, &:focus {
+            &:hover,
+            &:focus,
+            &:active {
                 .options {
                     display: block;
                     visibility: visible;
                 }
             }
             .options {
-                &:hover, &:focus  {
+                &:hover,
+                &:focus,
+                &:active {
                     display: block;
                     visibility: visible;
                 }

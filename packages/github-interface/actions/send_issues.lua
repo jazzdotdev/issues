@@ -2,6 +2,36 @@ event = ["issues_request_received"]
 priority = 1
 input_parameters = ["request"]
 
+local summary_fields = {
+  title = {
+    name = 'title',
+  },
+  body =  {
+    name = 'body',
+  },
+  comments = {
+    name = 'comments',
+  },
+}
+
+function summaryFilters( f_title, f_body, f_comments )
+  summaryFilters = ""
+  if f_title then
+    summaryFilters = summaryFilters .. ',title:' .. f_title
+    summary_fields['title']['value'] = f_title
+  end
+  if f_body then
+    summaryFilters = summaryFilters .. ',body:' .. f_body
+    summary_fields['body']['value'] = f_body
+
+  end
+  if f_comments then
+    summaryFilters = summaryFilters .. ',comments:' .. f_comments
+    summary_fields['comments']['value'] = f_comments
+  end
+
+  return summaryFilters
+end
 
 --Method to add extra parameters to a github request
 function addParameterToURL( url,name,value)
@@ -54,9 +84,6 @@ function sanitizeString(main_s, added_s )
 end
 
 
-
-
-
 function formatFilters( string_filter )
   --formats the filter into the github query format
   local result = ""
@@ -83,8 +110,6 @@ function formatFilters( string_filter )
 
   return result
 end
-
-
 
 
 -- filters selected with the checkbox inputs
@@ -117,21 +142,27 @@ function combineFilters(filters_1 , filters_2) --combines previouse filters and 
   return combined_filters
 end
 
+
 --currently only filtering labels
-function createFilters( filters ,query)
+function createFilters(query, summary_filters)
   -- returns an array of the clean filters in the query format and in github format
   local all_filters = ""
 
-  all_filters = combineFilters(filters , selectionFilters(query))
+  all_filters = combineFilters(summary_filters , selectionFilters(query))
+  -- all_filters = selectionFilters(query)
+
 
   return formatFilters(all_filters), all_filters
 end
 
 
-
 local github_filters, query_filters = createFilters(
-  request.query.filters,
-  request.query
+  request.query,
+  summaryFilters(
+    request.query.title,
+    request.query.body,
+    request.query.comments
+  )
 )
 
 local url = "https://api.github.com/search/issues?q={ type:issue ".. github_filters .." lighttouch }" --adding query filters in the url before making the requests
@@ -143,56 +174,59 @@ local github_response = send_request(url) --get request to the api
 local issues = github_response.body.items
 local all_tags = {}
 
-for _, issue in ipairs(issues) do
+function organizeIssues()
+  for _, issue in ipairs(issues) do
+    issue.min_body = string.sub(issue.body,0,150)
 
-  issue.min_body = string.sub(issue.body,0,150)
+    issue.tags = {}
+    for _, label in ipairs(issue.labels) do
+      local name, value = label.name:match("^(.+)/(.+)$")
+      if name then
+        -- each name "issue, value, size, etc.."
+        issue.tags[name] = value
 
-  issue.tags = {}
-  for _, label in ipairs(issue.labels) do
-    local name, value = label.name:match("^(.+)/(.+)$")
-    if name then
-      -- each name "issue, value, size, etc.."
-      issue.tags[name] = value
+        -- if the name storage is nil create it
+        if all_tags[name] == nil then
+          all_tags[name] = {} --all the custom fields names are in variable to show them in columns
+        end
+        -- if the values storage is nil create it
+        if all_tags[name]['values'] == nil then
+          all_tags[name]['values'] = {}
+        end
+        -- for each name store the name
+        all_tags[name]['name'] = name
+        -- for each name store all possible values
+        all_tags[name]['values'][value] = {}
+        all_tags[name]['values'][value]['value'] = value
+        all_tags[name]['values'][value]['is_checked'] = false
 
-      -- if the name storage is nil create it
-      if all_tags[name] == nil then
-        all_tags[name] = {} --all the custom fields names are in variable to show them in columns
       end
-      -- if the values storage is nil create it
-      if all_tags[name]['values'] == nil then
-        all_tags[name]['values'] = {}
-      end
-      -- for each name store the name
-      all_tags[name]['name'] = name
-      -- for each name store all possible values
-      all_tags[name]['values'][value] = {}
-      all_tags[name]['values'][value]['value'] = value
-      all_tags[name]['values'][value]['is_checked'] = false
-
     end
+
+    -- Issue comments
+    --structuring comments in a table of all comments of the issue with
+    -- the fields author and body
+    issue.el_comments = {}
+    if issue.comments > 0 then
+      local comment_response = send_request(addAuth(issue.comments_url)) --get request to the comments
+      local comments = comment_response.body
+      for _,comment in ipairs(comments) do
+        table.insert(issue.el_comments,{
+            author = comment.user.login,
+            body = comment.body
+          }
+        )
+      end
+    end -- end Issue comments
+
+    -- Right id number
+
+    issue.number_id = send_request(addAuth(issue.url)).body.number
+
   end
-
-  -- Issue comments
-  --structuring comments in a table of all comments of the issue with
-  -- the fields author and body
-  issue.el_comments = {}
-  if issue.comments > 0 then
-    local comment_response = send_request(addAuth(issue.comments_url)) --get request to the comments
-    local comments = comment_response.body
-    for _,comment in ipairs(comments) do
-      table.insert(issue.el_comments,{
-          author = comment.user.login,
-          body = comment.body
-        }
-      )
-    end
-  end -- end Issue comments
-
-  -- Right id number
-
-  issue.number_id = send_request(addAuth(issue.url)).body.number
-
 end
+
+organizeIssues()
 
 -- log.debug("Status: ", github_response.status)
 -- log.debug("Content length: ", #github_response.body_raw)
@@ -259,21 +293,6 @@ for _,value in ipairs(tags_array) do
     i = i + 1
   end
 end
-
-local summary_fields = {
-  {
-    name = 'title',
-    value = ''
-  },
-  {
-    name = 'body',
-    value = ''
-  },
-  {
-    name = 'comments',
-    value = ''
-  },
-}
 
 response = {
   headers = {

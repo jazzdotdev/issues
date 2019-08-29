@@ -57,7 +57,7 @@
         {% else %}
         <div right_header_popup>
         {% endif %}
-        {% for field in col_fields %}
+        {% for _,field in col_fields %}
             <div selection>
                 <p tag>
                     {{field.name}}
@@ -66,7 +66,11 @@
                 </p>
                 <ul options>
                     <li option>
-                        <input search placeholder="Search in {{field.name}}" type="text" name="{{field.name}}" value="{{field.value}}" >
+                        <input search
+                            placeholder="Search in {{field.name}}"
+                            type="text"
+                            name="{{field.name}}"
+                            value="{% if field.value %}{{field.value}}{% endif %}" >
                     </li>
                 </ul>
             </div>

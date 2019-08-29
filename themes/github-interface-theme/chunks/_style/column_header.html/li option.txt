@@ -1,7 +1,8 @@
 hover:bg-blue-100
 hover:font-bold
 cursor-pointer
-selection_option
+option
 bg-white
+
 p-1
 rounded

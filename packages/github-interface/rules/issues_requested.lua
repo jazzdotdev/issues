@@ -8,6 +8,10 @@ and
 and
 request.path_segments[1] == "issues"
 or
-request.query.filters
-or
 request.query.selection
+or
+request.query.title
+or
+request.query.body
+or
+request.query.comments
