@@ -8,118 +8,22 @@ require "packages.github-interface.github-api-functions.check_repeated"
 require "packages.github-interface.github-api-functions.add_request_param"
 require "packages.github-interface.github-api-functions.organize_issues"
 require "packages.github-interface.github-api-functions.add_api_authentication"
-
-local summary_fields = {
-  title = {
-    name = 'title',
-  },
-  body =  {
-    name = 'body',
-  },
-  comments = {
-    name = 'comments',
-  },
-}
-
-function summaryFilters( f_title, f_body, f_comments )
-  summaryFilters = ""
-  if f_title then
-    summaryFilters = summaryFilters .. ',title:' .. f_title
-    summary_fields['title']['value'] = f_title
-  end
-  if f_body then
-    summaryFilters = summaryFilters .. ',body:' .. f_body
-    summary_fields['body']['value'] = f_body
-
-  end
-  if f_comments then
-    summaryFilters = summaryFilters .. ',comments:' .. f_comments
-    summary_fields['comments']['value'] = f_comments
-  end
-
-  return summaryFilters
-end
+require "packages.github-interface.github-api-functions.summary_field_filters"
+require "packages.github-interface.github-api-functions.filter_formatter"
+require "packages.github-interface.github-api-functions.combine_filters"
+require "packages.github-interface.github-api-functions.checkbox_filters"
+require "packages.github-interface.github-api-functions.generate_filters"
 
 
-function formatFilters( string_filter )
-  --formats the filter into the github query format
-  local result = ""
-  for _,field in pairs(github_api.split_string(string_filter,",")) do
-    local name, value = field:match("^(.+):(.+)$")
-
-    if value then --if the filter has the right format value will not be null
-      if name == "body" or name == "title" or name == "comments" then
-        -- filter for text in body or title or comments
-        result = github_api.check_repeated(result,' \"' .. value .. '\"in:' .. name)
-
-      elseif name == "label" then
-        -- will filter for the specific written label
-        result = github_api.check_repeated(result,' ' .. name .. ':\"' .. value .. '\"')
-      else
-        -- default filter is a label filter
-        result = github_api.check_repeated(result , ' label:\"' .. name .. "/".. value ..  '\"')
-
-      end--end if types of filters
-
-    end --end if value not null
-
-  end -- end for adding filters
-
-  return result
-end
-
-
--- filters selected with the checkbox inputs
-function selectionFilters(query)
-  local selected_filters = ""
-  for k,value in pairs(query) do
-    if string.find(k,"selection") then
-      selected_filters = selected_filters .. "," .. value
-    end
-  end
-  return selected_filters
-end
-
-
-function combineFilters(filters_1 , filters_2) --combines previouse filters and current ones
-  local combined_filters = ""
-
-  if filters_1 then
-    for _,field in pairs(github_api.split_string(filters_1,",")) do
-      --cleaning current filters
-      combined_filters = github_api.check_repeated(combined_filters,field .. ',')
-    end
-  end
-  if filters_2 then
-    for _,field in pairs(github_api.split_string(filters_2,",")) do
-      -- cleaning previous filters
-      combined_filters = github_api.check_repeated(combined_filters,field .. ',')
-    end
-  end
-  return combined_filters
-end
-
-
---currently only filtering labels
-function createFilters(query, summary_filters)
-  -- returns an array of the clean filters in the query format and in github format
-  local all_filters = ""
-
-  all_filters = combineFilters(summary_filters , selectionFilters(query))
-  -- all_filters = selectionFilters(query)
-
-
-  return formatFilters(all_filters), all_filters
-end
-
-
-local github_filters, query_filters = createFilters(
-  request.query,
-  summaryFilters(
+local summary_filters, summary_fields = github_api.summary_field_filters(
     request.query.title,
     request.query.body,
     request.query.comments
   )
+
+local github_filters, query_filters = github_api.generate_filters(
+  request.query,
+  summary_filters
 )
 
 local url = "https://api.github.com/search/issues?q={ type:issue ".. github_filters .." lighttouch }" --adding query filters in the url before making the requests
