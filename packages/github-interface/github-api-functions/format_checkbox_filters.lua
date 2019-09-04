@@ -1,5 +1,5 @@
 -- filters selected with the checkbox inputs
-function github_api.checkbox_filters(query)
+function github_api.format_checkbox_filters(query)
     local selected_filters = ""
     for k,value in pairs(query) do
         if string.find(k,"selection") then
