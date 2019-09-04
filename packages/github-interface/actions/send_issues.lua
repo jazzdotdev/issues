@@ -16,46 +16,24 @@ require "packages.github-interface.github-api-functions.format_filters"
 require "packages.github-interface.github-api-functions.tags_to_array"
 require "packages.github-interface.github-api-functions.tags_to_matrix"
 require "packages.github-interface.github-api-functions.set_selected_filters"
+require "packages.github-interface.github-api-functions.create_filters"
+require "packages.github-interface.github-api-functions.execute_issues_petition"
+require "packages.github-interface.github-api-functions.issues_main"
 
 
-local summary_filters, summary_fields = github_api.summary_field_filters(
-    request.query.title,
-    request.query.body,
-    request.query.comments
-  )
-
-local github_filters, query_filters = github_api.format_filters(
-  request.query,
-  summary_filters
-)
-
-local url = "https://api.github.com/search/issues?q={ type:issue ".. github_filters .." lighttouch }" --adding query filters in the url before making the requests
-
-url = github_api.add_api_authentication(url) --adding github app auth if it was added in the lighttouch.scl
-
-local github_response = send_request(url) --get request to the api
-
-local issues = github_response.body.items
-local all_tags = {}
-
-issues, all_tags = github_api.organize_issues(issues, all_tags)
-
-all_tags = github_api.set_selected_filters(request.query, all_tags)
-
-local tags_matrix, tags_selected_row = github_api.tags_to_matrix(all_tags)
+local issues, summary_fields_values, tags_matrix, tags_selected_row = github_api.issues_main(request.query)
 
 
 response = {
-  headers = {
-    ["content-type"] = "text/html",
-  },
-  body = render("issues.html", {
-    issues = issues,
-    previous_filters = query_filters,
-    tags_matrix = tags_matrix,
-    tags_selected_row = tags_selected_row,
-    summary_fields = summary_fields,
-  })
+    headers = {
+        ["content-type"] = "text/html",
+    },
+    body = render("issues.html", {
+        issues = issues,
+        summary_fields = summary_fields_values,
+        tags_matrix = tags_matrix,
+        tags_selected_row = tags_selected_row,
+    })
 }
 
 return response
