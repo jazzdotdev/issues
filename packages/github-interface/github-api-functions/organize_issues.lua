@@ -1,4 +1,5 @@
 function github_api.organize_issues(issues, issues_tags)
+    -- for each issue
     for _, issue in ipairs(issues) do
         -- set minified body
         issue.min_body = string.sub(issue.body,0,150)
@@ -21,7 +22,6 @@ function github_api.organize_issues(issues, issues_tags)
 
         -- Issue id number
         issue.number_id = send_request(github_api.add_api_authentication(issue.url)).body.number
-
     end
     return issues, issues_tags
 end

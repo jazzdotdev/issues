@@ -1,5 +1,5 @@
 function github_api.set_selected_filters(query, issues_tags)
-    -- Sets a centinel value to show the selected values 
+    -- Sets a centinel value to show the selected values
     -- in checkboxes of the frontend
 
     for k,v in pairs(query) do -- for each query parameter

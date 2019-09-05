@@ -1,4 +1,5 @@
 function github_api.create_filters(query)
+    -- creating the title,body,comments filters and savinf their values
     local summary_filters, summary_fields_values = github_api.summary_field_filters(
         query.title,
         query.body,
