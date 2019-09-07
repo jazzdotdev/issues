@@ -2,7 +2,7 @@ function github_api.tags_to_matrix(issues_tags)
 
     local tags_matrix = {}
     local selected_tags_row = {}
-    local tags_array = github_api.tags_to_array( issues_tags )
+    local tags_array = github_api.table_to_array(issues_tags, function(a, b) return a.name < b.name end)
 
     local j = 1 --columns
     local i = 1 -- rows
