@@ -20,7 +20,7 @@ require "packages.github-interface.github-api-functions.create_filters"
 require "packages.github-interface.github-api-functions.execute_issues_petition"
 require "packages.github-interface.github-api-functions.issues_main"
 require "packages.github-interface.github-api-functions.set_issues_tags_values"
-require "packages.github-interface.github-api-functions.labels_to_tags"
+-- require "packages.github-interface.github-api-functions.labels_to_tags"
 
 
 local issues, summary_fields_values, tags_matrix, tags_selected_row = github_api.issues_main(request.query)
