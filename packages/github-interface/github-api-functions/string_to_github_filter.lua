@@ -1,4 +1,4 @@
-function github_api.clean_filters( string_filter )
+function github_api.string_to_github_filter( string_filter )
     --formats the filter into the github query format
     local result = ""
     for _,field in pairs(github_api.split_string_to_array(string_filter,",")) do

@@ -7,8 +7,11 @@ function github_api.create_filters(query)
         )
 
 
-    local github_filters = github_api.clean_filters(
-        summary_filters .. ',' .. github_api.get_table_values_by_key(query,"selection")
+    local github_filters = github_api.string_to_github_filter(
+        summary_filters .. ',' .. github_api.get_table_values_by_key(
+            query,
+            "selection"
+        )
     )
     return github_filters, summary_fields_values
 end
