@@ -1,5 +1,6 @@
-function github_api.summary_field_filters( title, body, comments)
+function github_api.get_table_summary_filters( title, body, comments)
     -- Setting values fot the fields of the column summary
+    -- setting the filters values of summary
     local fields_table = {
         title = {
             name = 'title',

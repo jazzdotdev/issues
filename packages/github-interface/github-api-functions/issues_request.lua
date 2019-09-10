@@ -1,4 +1,4 @@
-function github_api.execute_issues_petition(query)
+function github_api.issues_request(query)
 
     local github_filters, summary_fields_values = github_api.create_filters(query)
     -- GitHub api Url
