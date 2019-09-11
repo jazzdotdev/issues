@@ -1,17 +1,17 @@
-{% for _,field in col_fields %}
+{% for key,field in col_fields %}
     <div selection>
         <p tag>
-            {{field.name}}
+            {{key}}
             <i triangle>
             </i>
         </p>
         <ul options>
             <li option>
                 <input search
-                    placeholder="Search in {{field.name}}"
+                    placeholder="Search in {{key}}"
                     type="text"
-                    name="{{field.name}}"
-                    value="{% if field.value %}{{field.value}}{% endif %}" >
+                    name="{{key}}"
+                    value="{% if field %}{{field}}{% endif %}" >
             </li>
         </ul>
     </div>

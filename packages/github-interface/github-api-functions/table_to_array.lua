@@ -7,7 +7,7 @@ function github_api.table_to_array( table_map, sort_function )
         array[i] = value
         i = i + 1
     end
-    
+
     -- order the array with the sort function
     if sort_function then
         table.sort(array, sort_function)

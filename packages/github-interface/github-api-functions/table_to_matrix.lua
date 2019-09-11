@@ -1,9 +1,9 @@
-function github_api.table_to_matrix(table, columns_amount)
+function github_api.table_to_matrix(table, columns_amount, sort_function)
 
     local matrix = {}
     local array = github_api.table_to_array(
         table,
-        function(a, b) return a.name < b.name end
+        sort_function
     )
 
     local j = 1 --columns
