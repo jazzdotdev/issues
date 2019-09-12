@@ -16,9 +16,10 @@ require "packages.github-interface.github-api-functions.get_selected_tags"
 require "packages.github-interface.github-api-functions.table_to_gitfilters"
 require "packages.github-interface.github-api-functions.values_to_filter_table"
 require "packages.github-interface.github-api-functions.tag_to_label"
+require "packages.github-interface.github-api-functions.build_api_url"
 
 
-local issues, summary_fields_values, tags_matrix, tags_selected_row = github_api.issues_main(request.query)
+local issues, summary_fields, tags_matrix, tags_selected_row = github_api.issues_main(request.query)
 
 
 response = {
@@ -27,7 +28,7 @@ response = {
     },
     body = render("issues.html", {
         issues = issues,
-        summary_fields = summary_fields_values,
+        summary_fields = summary_fields,
         tags_matrix = tags_matrix,
         tags_selected_row = tags_selected_row,
     })

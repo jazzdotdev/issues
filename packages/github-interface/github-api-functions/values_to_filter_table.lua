@@ -1,7 +1,11 @@
-function github_api.values_to_filter_table(query, table_filters_format)
-    local label_key = "selection"
+function github_api.values_to_filter_table(query, table_filters_format, tag_key)
+    -- local tag_key = "selection"
     local filters = {}
-    local filters_values = {}
+    local filters_values = {
+        title = "",
+        body = "",
+        comments = ""
+    }
 
     for k,value in pairs(query) do
         if table_filters_format[k] then
@@ -9,7 +13,7 @@ function github_api.values_to_filter_table(query, table_filters_format)
         end
 
         if value ~= "" then
-            if string.find(k,label_key) then
+            if string.find(k,tag_key) then
                 table.insert(filters, { label = github_api.tag_to_label(value) })
             elseif table_filters_format[k] then
                 local temp_table = {}

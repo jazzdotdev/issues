@@ -1,5 +1,5 @@
 function github_api.issues_main(query)
-    local issues, summary_fields_values = github_api.issues_request(
+    local issues, summary_fields = github_api.issues_request(
         query,
         "lighttouch",
         "issue"
@@ -19,7 +19,7 @@ function github_api.issues_main(query)
     local tags_selected_row = github_api.get_selected_tags(tags_matrix)
 
 
-    return issues, summary_fields_values, tags_matrix, tags_selected_row
+    return issues, summary_fields, tags_matrix, tags_selected_row
 
 
 
