@@ -1,11 +1,6 @@
-function github_api.values_to_filter_table(query, table_filters_format, tag_key)
+function github_api.values_to_filter_table(query, table_filters_format, tag_key, filters_values)
     -- local tag_key = "selection"
     local filters = {}
-    local filters_values = {
-        title = "",
-        body = "",
-        comments = ""
-    }
 
     for k,value in pairs(query) do
         if table_filters_format[k] then

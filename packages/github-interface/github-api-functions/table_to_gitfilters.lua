@@ -1,9 +1,11 @@
-function github_api.table_to_gitfilters(query, filters_format, flag)
+function github_api.table_to_gitfilters(query, filters_format, flag, filters_values)
     local gitfilter = ""
-    local filter_val, filters_values = github_api.values_to_filter_table(
+    local filter_val
+    filter_val, filters_values = github_api.values_to_filter_table(
         query,
         filters_format,
-        "selection"
+        "selection",
+        filters_values
     )
 
     for _,value in ipairs(filter_val) do

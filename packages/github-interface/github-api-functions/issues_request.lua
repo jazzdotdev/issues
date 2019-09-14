@@ -7,11 +7,18 @@ function github_api.issues_request(query, search_keyword, type)
         comments = "\"~\"in:comments",
         label = "label:\"~\"",
     }
+    local summary_fields_values = { -- default fields that will go in the summary column
+        title = "",
+        body = "",
+        comments = ""
+    }
+    local github_filters
 
-    local github_filters, summary_fields = github_api.table_to_gitfilters(
+    github_filters, summary_fields_values = github_api.table_to_gitfilters(
         query, -- query of data
         table_filters_format, -- filer format
-        delimiter -- flag within the filter format
+        delimiter, -- flag within the filter format
+        summary_fields_values
     )
     local url_params= {
         type = type,
@@ -36,6 +43,6 @@ function github_api.issues_request(query, search_keyword, type)
 
     local issues = github_response.body.items
 
-    return issues, summary_fields
+    return issues, summary_fields_values
 end
 
