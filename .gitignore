@@ -2,3 +2,7 @@
 /content
 /log
 .sass-cache/
+packages/send-file-package/
+packages/lighttouch-html-interface/
+themes/base-theme/
+themes/simple-base-theme/

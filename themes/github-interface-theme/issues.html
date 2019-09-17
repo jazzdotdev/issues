@@ -1,16 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width,initial-scale=1"> 
-    <title>Issues</title>
+{% extends "layouts/base.html" %}
+
+
+    {% block title %}
+        Issues
+    {% endblock title %}
+
+{% block style %}
+    {{ super() }}
     <style>
+
         {% include 'css/styles.css' %}
     </style>
-    <style>
-        {% include 'css/tailwind.min.css' %}
-    </style>
-</head>
-<body>
+
+{% endblock style %}
+
+{% block content %}
+
     <div page>
         <h1 title >Issues</h1>
         <form action="">
@@ -22,13 +27,11 @@
 
                     <!-- Rows below -->
                     {% include 'chunks/table_rows.html' %}
-                
+
                 </div>
 
             </div>
         </form>
 
     </div>
-
-</body>
-</html>
+{% endblock content %}

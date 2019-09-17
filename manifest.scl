@@ -1,1 +1,17 @@
-imports = {}
+imports = {
+    simple-base-theme = "themes/simple-base-theme",
+    send-file-package = "packages/send-file-package",
+    lighttouch-html-interface = "packages/lighttouch-html-interface",
+}
+
+simple-base-theme = {
+    url = "https://github.com/LuisReyes98/simple-base-theme",
+}
+
+send-file-package = {
+    url = "https://github.com/foundpatterns/send-file-package",
+}
+
+lighttouch-html-interface = {
+  url = "https://github.com/foundpatterns/lighttouch-html-interface",
+}
