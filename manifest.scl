@@ -2,6 +2,7 @@ imports = {
     simple-base-theme = "themes/simple-base-theme",
     send-file-package = "packages/send-file-package",
     lighttouch-html-interface = "packages/lighttouch-html-interface",
+    lighttouch-json-interface = "packages/lighttouch-json-interface",
 }
 
 simple-base-theme = {
@@ -13,5 +14,9 @@ send-file-package = {
 }
 
 lighttouch-html-interface = {
-  url = "https://github.com/foundpatterns/lighttouch-html-interface",
+    url = "https://github.com/foundpatterns/lighttouch-html-interface",
+}
+
+lighttouch-json-interface = {
+    url = "https://github.com/foundpatterns/lighttouch-json-interface",
 }

@@ -4,5 +4,6 @@
 .sass-cache/
 packages/send-file-package/
 packages/lighttouch-html-interface/
+packages/lighttouch-json-interface/
 themes/base-theme/
 themes/simple-base-theme/

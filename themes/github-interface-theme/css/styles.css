@@ -2442,6 +2442,7 @@
     border-color: transparent transparent transparent #000;
     border-width: calc(8px/2) 0 calc(8px/2) 8px; }
   .triangle-sm.rotated-90 {
+    top: -11px;
     transform: rotate(90deg); }
 
 .modal_controller:checked ~ .modal_container {

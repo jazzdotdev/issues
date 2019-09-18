@@ -5,8 +5,6 @@ function github_api.build_api_url( url_params_format, url_params, filters, delim
     local params_word = ""
     for k,val in pairs(url_params_format) do
         if url_params[k] then
-            log.debug(url_params[k])
-
             url_params_format[k] = string.gsub(
                 val,
                 delimiter,

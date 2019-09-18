@@ -3,4 +3,10 @@ fields = {
   title = {
     type = "string"
   }
+  body = {
+    type = "string"
+  }
+  comments = {
+    type = "string"
+  }
 }
