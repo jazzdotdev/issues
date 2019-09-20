@@ -39,7 +39,14 @@ function github_api.issues_request(query, search_keyword, type)
 
     log.debug('Executing request to: ' .. url)
 
-    local github_response = send_request(url) --get request to the api
+    local github_response = send_request({
+        uri=url,
+        method="get",
+        headers={
+            ["content-type"]="application/json",
+            ["Accept"]="application/vnd.github.v3+json",
+        },
+    }) --get request to the api
 
     local issues = github_response.body.items
 

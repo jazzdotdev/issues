@@ -31,7 +31,14 @@ function github_api.organize_issues(issues, issues_tags)
         -- Setting comments of the issues
         issue.el_comments = {}
         if issue.comments > 0 then
-            local comment_response = send_request(github_api.add_api_authentication(issue.comments_url)) --get request to the comments
+            local comment_response = send_request({
+                uri = github_api.add_api_authentication(issue.comments_url),
+                method="get",
+                headers={
+                    ["content-type"]="application/json",
+                    ["Accept"]="application/vnd.github.v3+json",
+                },
+            }) --get request to the comments
             local comments = comment_response.body
             for _,comment in ipairs(comments) do
                 table.insert(issue.el_comments,{
@@ -42,7 +49,14 @@ function github_api.organize_issues(issues, issues_tags)
         end -- end Issue comments
 
         -- Issue id number
-        issue.number_id = send_request(github_api.add_api_authentication(issue.url)).body.number
+        issue.number_id = send_request({
+            uri = github_api.add_api_authentication(issue.url),
+            method="get",
+            headers={
+                ["content-type"]="application/json",
+                ["Accept"]="application/vnd.github.v3+json",
+            },
+        }).body.number
     end
 
     return issues, issues_tags

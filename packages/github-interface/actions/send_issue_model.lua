@@ -1,6 +1,7 @@
-event = ["issues_request_received"]
-priority = 1
+event = ["request_model_table"]
+priority = 2
 input_parameters = ["request"]
+
 
 require "packages.github-interface.github-api-functions.base"
 require "packages.github-interface.github-api-functions.split_string_to_array"
@@ -19,24 +20,29 @@ require "packages.github-interface.github-api-functions.tag_to_label"
 require "packages.github-interface.github-api-functions.build_api_url"
 
 
--- local basic_config = {
---     query = request.query,
---     key_word = "lighttouch",
---     type = "issue",
--- }
+-- local issues, summary_fields, tags_matrix, tags_selected_row = github_api.issues_main(request.query)
+-- local server_url = "http://localhost:3002"
 
-local issues, summary_fields, tags_matrix, tags_selected_row = github_api.issues_main(request.query)
+-- local test_response = send_request({
+--     uri=server_url .. "/issue/",
+--     method="get",
+--     headers={
+--         ["Accept"]="application/json",
+--     },
+-- })
 
+-- log.debug("Test response")
+-- log.debug(json.from_table(test_response))
 
 response = {
     headers = {
         ["content-type"] = "text/html",
     },
-    body = render("issues.html", {
-        issues = issues,
-        summary_fields = summary_fields,
-        tags_matrix = tags_matrix,
-        tags_selected_row = tags_selected_row,
+    body = render("issue_model.html", {
+        -- issues = issues,
+        -- summary_fields = summary_fields,
+        -- tags_matrix = tags_matrix,
+        -- tags_selected_row = tags_selected_row,
     })
 }
 

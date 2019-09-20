@@ -1,0 +1,37 @@
+{% extends "layouts/base.html" %}
+
+
+    {% block title %}
+        Issues
+    {% endblock title %}
+
+{% block style %}
+    {{ super() }}
+    <style>
+
+        {% include 'css/styles.css' %}
+    </style>
+
+{% endblock style %}
+
+{% block content %}
+
+    <div page>
+        <h1 title >Issues</h1>
+        <form action="">
+
+            <div container>
+                {# include 'chunks/search_button.html' #}
+                <div table >
+                    {# include 'chunks/table_header.html' #}
+
+                    <!-- Rows below -->
+                    {# include 'chunks/table_rows.html' #}
+
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+{% endblock content %}
