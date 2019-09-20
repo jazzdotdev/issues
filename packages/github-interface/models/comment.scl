@@ -1,9 +1,12 @@
-description = "Issue"
+description = "Comment"
 fields = {
-  title = {
+  author = {
     type = "string"
   },
   body = {
     type = "string"
+  },
+  issue = {
+    type = "uuid"
   }
 }

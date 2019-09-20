@@ -1,0 +1,12 @@
+description = "Tag"
+fields = {
+  name = {
+    type = "string"
+  },
+  value = {
+    type = "string"
+  },
+  issue = {
+    type = "uuid"
+  }
+}

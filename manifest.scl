@@ -6,17 +6,17 @@ imports = {
 }
 
 simple-base-theme = {
-    url = "https://github.com/LuisReyes98/simple-base-theme",
+    url = "https://github.com/LuisReyes98/simple-base-theme.git",
 }
 
 send-file-package = {
-    url = "https://github.com/foundpatterns/send-file-package",
+    url = "https://github.com/LuisReyes98/send-file.git",
 }
 
 lighttouch-html-interface = {
-    url = "https://github.com/foundpatterns/lighttouch-html-interface",
+    url = "https://github.com/LuisReyes98/lighttouch-html-interface.git",
 }
 
 lighttouch-json-interface = {
-    url = "https://github.com/foundpatterns/lighttouch-json-interface",
+    url = "https://github.com/LuisReyes98/json-interface.git",
 }
