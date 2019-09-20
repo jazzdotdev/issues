@@ -18,14 +18,13 @@ require "packages.github-interface.github-api-functions.values_to_filter_table"
 require "packages.github-interface.github-api-functions.tag_to_label"
 require "packages.github-interface.github-api-functions.build_api_url"
 
+local basic_config = {
+    query = request.query,
+    key_word = "lighttouch",
+    type = "issue",
+}
 
--- local basic_config = {
---     query = request.query,
---     key_word = "lighttouch",
---     type = "issue",
--- }
-
-local issues, summary_fields, tags_matrix, tags_selected_row = github_api.issues_main(request.query)
+local issues, summary_fields, tags_matrix, tags_selected_row = github_api.issues_main(basic_config)
 
 
 response = {

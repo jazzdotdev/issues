@@ -1,8 +1,8 @@
 function github_api.issues_main(query)
     local issues, summary_fields = github_api.issues_request(
-        query,
-        "lighttouch",
-        "issue"
+        query['query'],
+        query['key_word'],
+        query['type']
     )
     local all_tags = {}
 
