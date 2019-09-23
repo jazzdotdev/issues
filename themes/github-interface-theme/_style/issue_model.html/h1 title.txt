@@ -1,0 +1,5 @@
+font-bold
+text-3xl
+text-center
+bg-gray-200
+p-3

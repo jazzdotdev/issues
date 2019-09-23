@@ -21,16 +21,17 @@ input_parameters = ["request"]
 
 require "packages.github-interface.issue-model-functions.base"
 require "packages.github-interface.issue-model-functions.list_documents"
+require "packages.github-interface.issue-model-functions.list_subdocuments"
 
 log.debug("Issue model table action")
 
--- local issues, summary_fields, tags_matrix, tags_selected_row = github_api.issues_main(request.query)
+local filters = {}
 
--- test_response = documents_model.list_documents('issue',{ title="title titel"})
-test_response = documents_model.list_documents('issue',{ title="title titel"})
+test_response = documents_model.list_documents('issue',filters, true, true)
 
-log.debug("Test response")
-log.debug(json.from_table(test_response))
+for k,v in pairs(test_response.documents) do
+    local temp = documents_model.list_subdocuments('issue',v.uuid, true)
+end
 
 response = {
     headers = {

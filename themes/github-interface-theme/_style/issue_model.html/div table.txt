@@ -1,0 +1,7 @@
+table
+rounded-lg
+bg-transparent
+border-0
+md:border
+border-gray-500
+w-full
