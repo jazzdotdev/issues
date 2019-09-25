@@ -1,0 +1,9 @@
+description = "Issue Tag"
+fields = {
+  issue = {
+    type = "uuid"
+  },
+  tag = {
+    type = "uuid"
+  }
+}

@@ -3,13 +3,10 @@ priority = 2
 input_parameters = ["request"]
 
 
--- require "packages.github-interface.github-api-functions.base"
 -- require "packages.github-interface.github-api-functions.split_string_to_array"
 -- require "packages.github-interface.github-api-functions.add_request_param"
 -- require "packages.github-interface.github-api-functions.organize_issues"
 -- require "packages.github-interface.github-api-functions.add_api_authentication"
--- require "packages.github-interface.github-api-functions.table_to_array"
--- require "packages.github-interface.github-api-functions.table_to_matrix"
 -- require "packages.github-interface.github-api-functions.set_selected_filters"
 -- require "packages.github-interface.github-api-functions.issues_request"
 -- require "packages.github-interface.github-api-functions.issues_main"
@@ -18,27 +15,48 @@ input_parameters = ["request"]
 -- require "packages.github-interface.github-api-functions.values_to_filter_table"
 -- require "packages.github-interface.github-api-functions.tag_to_label"
 -- require "packages.github-interface.github-api-functions.build_api_url"
+require "packages.github-interface.github-api-functions.base"
+require "packages.github-interface.github-api-functions.table_to_array"
+require "packages.github-interface.github-api-functions.table_to_matrix"
+
 
 require "packages.github-interface.issue-model-functions.base"
 require "packages.github-interface.issue-model-functions.list_documents"
 require "packages.github-interface.issue-model-functions.list_subdocuments"
 
-log.debug("Issue model table action")
 
 local filters = {}
+local model_name = 'issue'
 
-test_response = documents_model.list_documents('issue',filters, true, true)
+local issues = documents_model.list_documents(model_name, filters, true, true)
 
-for k,v in pairs(test_response.documents) do
-    local temp = documents_model.list_subdocuments('issue',v.uuid, true)
+for i,issue in ipairs(issues.documents) do
+    local subdocuments = documents_model.list_subdocuments(model_name, issue.uuid, true)
+    issues.documents[i]['subdocuments'] = subdocuments
+    issues.documents[i]['html_url'] = '/' .. issue.model .. '/' .. issue.uuid
+    issues.documents[i]['min_body'] = string.sub(issue.body,0,150)
+    issues.documents[i]['id'] = issue.uuid
+    issues.documents[i]['el_comments'] = issue.subdocuments.comment
+
 end
+
+log.debug(json.from_table(issues.documents[1]))
+
+
+local tags = documents_model.list_documents('tag', filters, true, true)
+tags = github_api.table_to_matrix(
+    tags,
+    3,
+    function(a, b) return a.name < b.name end
+)
+log.debug(json.from_table(tags))
 
 response = {
     headers = {
         ["content-type"] = "text/html",
     },
     body = render("issue_model.html", {
-        -- issues = issues,
+        issues = issues.documents,
         -- summary_fields = summary_fields,
         -- tags_matrix = tags_matrix,
         -- tags_selected_row = tags_selected_row,

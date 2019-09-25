@@ -25,7 +25,7 @@ function documents_model.list_subdocuments(model_name,id, all_fields)
         end
     end)
 
-    if count_pairs(subdocuments) == 0 then subdocuments = nil end
+    if count_pairs(subdocuments) == 0 then subdocuments = {} end
 
     return subdocuments
 end

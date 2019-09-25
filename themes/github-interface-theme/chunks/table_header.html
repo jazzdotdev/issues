@@ -3,7 +3,9 @@
     <div title_cell>
         {% set pos_left = false -%}
         {% set col_name = "Summary" -%}
-        {% set col_fields = summary_fields %}
+        {% if summary_fields %}
+            {% set col_fields = summary_fields %}
+        {% endif %}
         {% include "chunks/column_header.html" %}
         {% set col_fields = false %}
     </div>

@@ -32,7 +32,5 @@ function documents_model.list_documents(model_name, filters, lazy_filter, all_fi
         end
     )
 
-    -- if #uuid == 0 then uuid = nil end
-
     return {documents=documents}
 end

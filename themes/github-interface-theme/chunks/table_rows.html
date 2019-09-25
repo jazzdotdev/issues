@@ -20,13 +20,15 @@
 
         <div title_cell >
             <div cell data_label="Title">
-                <a title_issue href="{{issue.html_url}}" target="_blank">
+                <a title_issue href="{% if issue.html_url %}{{issue.html_url}}{% endif %}" target="_blank">
                     <p title>
                         {{ issue.title }}
                     </p>
-                    <p id_num>
-                        #({{issue.number_id}})
-                    </p>
+                    {% if issue.number_id %}
+                        <p id_num>
+                            #({{issue.number_id}})
+                        </p>
+                    {% endif %}
                 </a><!-- Title  -->
             </div>
 
@@ -44,33 +46,39 @@
                 </div>
 
                 <div cell data_label="Author">
-                    <strong>
-                        {{ issue.user.login }}
-                    </strong>
+                    <b>
+                        {% if issue.user.login %}
+                            {{ issue.user.login }}
+                        {% elif issue.author %}
+                            {{issue.author}}
+                        {% endif %}
+                    </b>
                 </div>
             </div>
         </div>
         {# tag columns #}
-        {% for tags in tags_matrix %}
-            {% if loop.last %}
-                <div closing_three_cell_group>
-            {% else %}
+        {% if tags_matrix[0][0] %}
+            {% for tags in tags_matrix %}
+                {% if loop.last %}
+                    <div closing_three_cell_group>
+                {% else %}
 
-                <div three_cell_group >
-            {% endif %}
+                    <div three_cell_group >
+                {% endif %}
 
-                {% for tag in tags %}
-                    <div cell data_label="{{tag.name | capitalize }}">
-                        {% if issue.tags[tag.name] %}
-                            <b>{{issue.tags[tag.name]}}</b>
-                        {% else %}
-                            <b>----</b>
-                        {% endif %}
-                    </div>
-                {% endfor %}
-            </div>
+                    {% for tag in tags %}
+                        <div cell data_label="{{tag.name | capitalize }}">
+                            {% if issue.tags[tag.name] %}
+                                <b>{{issue.tags[tag.name]}}</b>
+                            {% else %}
+                                <b>----</b>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
 
-        {% endfor %}
+            {% endfor %}
+        {% endif %}
 
         </article>
     {% endfor %}

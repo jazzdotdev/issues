@@ -9,4 +9,7 @@ fields = {
   author = {
     type = "string"
   },
+  number_id = {
+    type = "number"
+  },
 }
