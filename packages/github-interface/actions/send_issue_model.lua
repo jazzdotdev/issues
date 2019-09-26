@@ -21,35 +21,24 @@ require "packages.github-interface.github-api-functions.table_to_matrix"
 
 
 require "packages.github-interface.issue-model-functions.base"
+require "packages.github-interface.issue-model-functions.models_main"
 require "packages.github-interface.issue-model-functions.list_documents"
 require "packages.github-interface.issue-model-functions.list_subdocuments"
+require "packages.github-interface.issue-model-functions.read_m2m_model"
 
 
 local filters = {}
 local model_name = 'issue'
 
-local issues = documents_model.list_documents(model_name, filters, true, true)
+local issues = documents_model.models_main(model_name, filters)
 
-for i,issue in ipairs(issues.documents) do
-    local subdocuments = documents_model.list_subdocuments(model_name, issue.uuid, true)
-    issues.documents[i]['subdocuments'] = subdocuments
-    issues.documents[i]['html_url'] = '/' .. issue.model .. '/' .. issue.uuid
-    issues.documents[i]['min_body'] = string.sub(issue.body,0,150)
-    issues.documents[i]['id'] = issue.uuid
-    issues.documents[i]['el_comments'] = issue.subdocuments.comment
-
-end
-
-log.debug(json.from_table(issues.documents[1]))
-
-
-local tags = documents_model.list_documents('tag', filters, true, true)
-tags = github_api.table_to_matrix(
-    tags,
-    3,
-    function(a, b) return a.name < b.name end
-)
-log.debug(json.from_table(tags))
+-- local tags = documents_model.list_documents('tag', filters, true, true)
+-- tags = github_api.table_to_matrix(
+--     tags,
+--     3,
+--     function(a, b) return a.name < b.name end
+-- )
+-- log.debug(json.from_table(tags))
 
 response = {
     headers = {
