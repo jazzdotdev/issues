@@ -10,14 +10,15 @@ function documents_model.models_main(model_name, filters)
         issues.documents[i]['min_body'] = string.sub(issue.body,0,150)
         issues.documents[i]['id'] = issue.uuid
         issues.documents[i]['el_comments'] = issue.subdocuments.comment
+        issues.documents[i]['tags'] = documents_model.read_m2m_model(issue.uuid,'issue','issue_tag','tag')
 
     end
 
     -- log.debug(json.from_table(issues.documents[1].subdocuments.issue_tag))
-    local test_uuid = issues.documents[1].uuid
+    -- local test_uuid = issues.documents[1].uuid
     -- log.debug(test_uuid)
-    local tags = documents_model.read_m2m_model(test_uuid,'issue','issue_tag','tag')
-    log.debug(json.from_table(tags))
+    -- local tags = documents_model.read_m2m_model(test_uuid,'issue','issue_tag','tag')
+    -- log.debug(json.from_table(tags))
 
     return issues
 end
