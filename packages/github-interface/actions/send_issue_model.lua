@@ -26,29 +26,30 @@ require "packages.github-interface.issue-model-functions.list_documents"
 require "packages.github-interface.issue-model-functions.list_subdocuments"
 require "packages.github-interface.issue-model-functions.read_m2m_model"
 require "packages.github-interface.issue-model-functions.group_documents"
+require "packages.github-interface.issue-model-functions.array_to_table"
 
 
 local filters = {}
 local model_name = 'issue'
 local tag_filters = {}
 
-local issues = documents_model.models_main(model_name, filters)
+local issues, tags = documents_model.models_main(model_name, filters,tag_filters)
 
-local tags = documents_model.group_documents(
-    'tag', --
-    'name', --
-    'value', --
-    'values', --
-    tag_filters, --
-    true --
-)
-tags = github_api.table_to_matrix(
-    tags,
-    3,
-    function(a, b) return a.name < b.name end
-)
+-- local tags = documents_model.group_documents(
+--     'tag', --
+--     'name', --
+--     'value', --
+--     'values', --
+--     tag_filters, --
+--     true --
+-- )
+-- tags = github_api.table_to_matrix(
+--     tags,
+--     3,
+--     function(a, b) return a.name < b.name end
+-- )
 -- log.debug(json.from_table(tags))
-log.debug(json.from_table(issues.documents[1]['tags']))
+-- log.debug(json.from_table(issues.documents[1]['tags']))
 
 response = {
     headers = {
