@@ -21,7 +21,10 @@
             <div bordered_cell >
 
             {% endif %}
-                {% set has_selected = tags_selected_row[loop.index0] %}
+                {% if tags_selected_row %}
+                    {% set has_selected = tags_selected_row[loop.index0] %}
+                {% endif %}
+
                 {% set col_name = col_names[loop.index0] -%}
                 {% set col_tags = tags %}
                 {% include "chunks/column_header.html" %}

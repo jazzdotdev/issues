@@ -34,14 +34,21 @@ local tag_filters = {}
 
 local issues = documents_model.models_main(model_name, filters)
 
-local tags = documents_model.group_documents('tag','name','value',tag_filters,true)
-log.debug(json.from_table(tags))
--- tags = github_api.table_to_matrix(
---     tags,
---     3,
---     function(a, b) return a.name < b.name end
--- )
--- log.debug(json.from_table(issues.documents[1]))
+local tags = documents_model.group_documents(
+    'tag', --
+    'name', --
+    'value', --
+    'values', --
+    tag_filters, --
+    true --
+)
+tags = github_api.table_to_matrix(
+    tags,
+    3,
+    function(a, b) return a.name < b.name end
+)
+-- log.debug(json.from_table(tags))
+log.debug(json.from_table(issues.documents[1]['tags']))
 
 response = {
     headers = {
@@ -50,7 +57,7 @@ response = {
     body = render("issue_model.html", {
         issues = issues.documents,
         -- summary_fields = summary_fields,
-        -- tags_matrix = tags_matrix,
+        tags_matrix = tags,
         -- tags_selected_row = tags_selected_row,
     })
 }
