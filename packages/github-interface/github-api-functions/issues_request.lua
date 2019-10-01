@@ -7,8 +7,14 @@ function github_api.issues_request(query, search_keyword, type)
         comments = "\"~\"in:comments",
         label = "label:\"~\"",
     }
-    -- summary column fields
+
+    -- data format to show in the frontend
     local summary_fields_values = { -- default fields that will go in the summary column
+        -- has_selected = false,
+        has_selected = {
+            name="has_selected",
+            value=false
+        },
         title = {
             name="title",
             value=""

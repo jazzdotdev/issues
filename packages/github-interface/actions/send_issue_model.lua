@@ -35,7 +35,10 @@ local tag_filters = {}
 
 local issues, tags = documents_model.models_main(model_name, filters,tag_filters)
 
+log.debug(json.from_table(request.query))
+
 local summary_fields = { -- default fields that will go in the summary column
+        has_values = false,
         title_model = {
             name="title",
             value=""
@@ -49,6 +52,12 @@ local summary_fields = { -- default fields that will go in the summary column
             value=""
         }
     }
+
+for k,v in pairs(request.query) do
+    if summary_fields[k] then
+        summary_fields[k].value = v
+    end
+end
 
 response = {
     headers = {

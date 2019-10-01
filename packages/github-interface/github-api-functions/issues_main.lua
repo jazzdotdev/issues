@@ -6,11 +6,11 @@ function github_api.issues_main(query)
     )
     local all_tags = {}
 
+    -- getting all the tags and  issues in the request
     issues, all_tags = github_api.organize_issues(issues, all_tags)
 
-    -- log.debug(json.from_table(all_tags))
+    --- in the tags that are in the request set the selected ones for the frontend
     all_tags = github_api.set_selected_filters(query, all_tags)
-    -- log.debug(json.from_table(all_tags))
 
     local tags_matrix = github_api.table_to_matrix(
         all_tags,
@@ -20,9 +20,6 @@ function github_api.issues_main(query)
 
     local tags_selected_row = github_api.get_selected_tags(tags_matrix)
 
-
     return issues, summary_fields, tags_matrix, tags_selected_row
-
-
 
 end

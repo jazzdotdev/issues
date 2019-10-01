@@ -6,6 +6,7 @@ function github_api.values_to_filter_table(query, table_filters_format, tag_key,
         -- building values to show in the frontend that were in the form
         if table_filters_format[k] then
             filters_values[k].value = value
+            filters_values["has_selected"].value = true
         end
         -- if the value has an already existing value
         if value ~= "" then

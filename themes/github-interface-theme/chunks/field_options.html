@@ -1,18 +1,25 @@
 {% for key,field in col_fields %}
-    <div selection>
-        <p tag>
-            {{field.name}}
-            <i triangle>
-            </i>
-        </p>
-        <ul options>
-            <li option>
-                <input search
-                    placeholder="Search in {{key}}"
-                    type="text"
-                    name="{{key}}"
-                    value="{% if field %}{{field.value}}{% endif %}" >
-            </li>
-        </ul>
-    </div>
+    {% if key != 'has_selected' %}
+        <div selection>
+            {% if field.value != "" %}
+            <p check_tag>
+
+            {% else %}
+            <p tag>
+            {% endif %}
+                {{field.name}}
+                <i triangle>
+                </i>
+            </p>
+            <ul options>
+                <li option>
+                    <input search
+                        placeholder="Search in {{field.name}}"
+                        type="text"
+                        name="{{key}}"
+                        value="{% if field %}{{field.value}}{% endif %}" >
+                </li>
+            </ul>
+        </div>
+    {% endif %}
 {% endfor %}
