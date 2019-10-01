@@ -1,7 +1,7 @@
 {% for key,field in col_fields %}
     <div selection>
         <p tag>
-            {{key}}
+            {{field.name}}
             <i triangle>
             </i>
         </p>
@@ -11,7 +11,7 @@
                     placeholder="Search in {{key}}"
                     type="text"
                     name="{{key}}"
-                    value="{% if field %}{{field}}{% endif %}" >
+                    value="{% if field %}{{field.value}}{% endif %}" >
             </li>
         </ul>
     </div>

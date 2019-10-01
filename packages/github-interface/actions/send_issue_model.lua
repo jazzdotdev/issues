@@ -1,5 +1,5 @@
 event = ["request_model_table"]
-priority = 2
+priority = 4
 input_parameters = ["request"]
 
 
@@ -35,21 +35,20 @@ local tag_filters = {}
 
 local issues, tags = documents_model.models_main(model_name, filters,tag_filters)
 
--- local tags = documents_model.group_documents(
---     'tag', --
---     'name', --
---     'value', --
---     'values', --
---     tag_filters, --
---     true --
--- )
--- tags = github_api.table_to_matrix(
---     tags,
---     3,
---     function(a, b) return a.name < b.name end
--- )
--- log.debug(json.from_table(tags))
--- log.debug(json.from_table(issues.documents[1]['tags']))
+local summary_fields = { -- default fields that will go in the summary column
+        title_model = {
+            name="title",
+            value=""
+        },
+        body_model = {
+            name="body",
+            value=""
+        },
+        comments_model = {
+            name="comments",
+            value=""
+        }
+    }
 
 response = {
     headers = {
@@ -57,8 +56,9 @@ response = {
     },
     body = render("issue_model.html", {
         issues = issues.documents,
-        -- summary_fields = summary_fields,
+        summary_fields = summary_fields,
         tags_matrix = tags,
+        model_table = true,
         -- tags_selected_row = tags_selected_row,
     })
 }

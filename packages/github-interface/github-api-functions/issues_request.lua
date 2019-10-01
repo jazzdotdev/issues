@@ -7,10 +7,20 @@ function github_api.issues_request(query, search_keyword, type)
         comments = "\"~\"in:comments",
         label = "label:\"~\"",
     }
+    -- summary column fields
     local summary_fields_values = { -- default fields that will go in the summary column
-        title = "",
-        body = "",
-        comments = ""
+        title = {
+            name="title",
+            value=""
+        },
+        body = {
+            name="body",
+            value=""
+        },
+        comments = {
+            name="comments",
+            value=""
+        }
     }
     local github_filters
 

@@ -1,4 +1,4 @@
-priority = 3
+priority = 4
 input_parameter = "request"
 events_table = ["issues_request_received"]
 

@@ -8,7 +8,9 @@ function github_api.issues_main(query)
 
     issues, all_tags = github_api.organize_issues(issues, all_tags)
 
+    -- log.debug(json.from_table(all_tags))
     all_tags = github_api.set_selected_filters(query, all_tags)
+    -- log.debug(json.from_table(all_tags))
 
     local tags_matrix = github_api.table_to_matrix(
         all_tags,
