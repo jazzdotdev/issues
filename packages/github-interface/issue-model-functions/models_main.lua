@@ -1,9 +1,10 @@
-function documents_model.models_main(model_name, filters,tag_filters, filters_table, query)
+function documents_model.models_main(model_name, filters, filter_map,tag_filters, filters_table, query)
 
+    filters = documents_model.build_mapped_filters(filters,filter_map,query)
 
     local issues = documents_model.list_documents(model_name, filters, true, true)
 
-    issues = documents_model.build_issues(issues.documents)
+    issues = documents_model.build_issues(issues.documents,model_name)
 
     local tags = documents_model.build_tags(tag_filters,query)
 

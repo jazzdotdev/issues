@@ -1,4 +1,4 @@
-function documents_model.build_issues(issues)
+function documents_model.build_issues(issues,model_name)
 
     for i,issue in ipairs(issues) do
         local subdocuments = documents_model.list_subdocuments(model_name, issue.uuid, true)

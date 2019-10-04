@@ -32,9 +32,29 @@ require "packages.github-interface.issue-model-functions.array_to_table"
 require "packages.github-interface.issue-model-functions.set_table_filters"
 require "packages.github-interface.issue-model-functions.build_issues"
 require "packages.github-interface.issue-model-functions.build_tags"
+require "packages.github-interface.issue-model-functions.build_mapped_filters"
+
+-- local title=""
+-- local body=""
+
+-- if request.title_model ~= "" then
+--     title = request.query.title_model
+-- end
+-- if request.body_model ~= "" then
+--     body = request.query.body_model
+-- end
+
+local issue_filters = {
+    title="",
+    body="",
+}
+local filter_map = {
+    -- name of field in the model = name of the field in the query
+    title = "title_model",
+    body = "body_model",
+}
 
 
-local filters = {}
 local model_name = 'issue'
 local tag_filters = {}
 local summary_fields = { -- default fields that will go in the summary column
@@ -56,17 +76,14 @@ local summary_fields = { -- default fields that will go in the summary column
     }
 }
 
-local issues, tags,summary_fields, tags_selected_row = documents_model.models_main(
+local issues, tags, summary_fields, tags_selected_row = documents_model.models_main(
     model_name,
-    filters,
+    issue_filters,
+    filter_map,
     tag_filters,
     summary_fields,
     request.query
 )
-
-log.debug(json.from_table(tags))
-
-
 
 
 response = {
