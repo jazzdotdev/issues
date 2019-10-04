@@ -33,16 +33,8 @@ require "packages.github-interface.issue-model-functions.set_table_filters"
 require "packages.github-interface.issue-model-functions.build_issues"
 require "packages.github-interface.issue-model-functions.build_tags"
 require "packages.github-interface.issue-model-functions.build_mapped_filters"
+require "packages.github-interface.issue-model-functions.filter_doc_by_subdoc"
 
--- local title=""
--- local body=""
-
--- if request.title_model ~= "" then
---     title = request.query.title_model
--- end
--- if request.body_model ~= "" then
---     body = request.query.body_model
--- end
 
 local issue_filters = {
     title="",
@@ -53,7 +45,6 @@ local filter_map = {
     title = "title_model",
     body = "body_model",
 }
-
 
 local model_name = 'issue'
 local tag_filters = {}
@@ -84,7 +75,7 @@ local issues, tags, summary_fields, tags_selected_row = documents_model.models_m
     summary_fields,
     request.query
 )
-
+documents_model.filter_doc_by_subdoc()
 
 response = {
     headers = {
