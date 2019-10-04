@@ -10,8 +10,7 @@ function github_api.issues_request(query, search_keyword, type)
 
     -- data format to show in the frontend
     local summary_fields_values = { -- default fields that will go in the summary column
-        -- has_selected = false,
-        has_selected = {
+        has_selected = { -- centinel value to control if any of the other values in the table are not empty
             name="has_selected",
             value=false
         },

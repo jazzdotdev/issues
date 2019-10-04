@@ -18,6 +18,8 @@ input_parameters = ["request"]
 require "packages.github-interface.github-api-functions.base"
 require "packages.github-interface.github-api-functions.table_to_array"
 require "packages.github-interface.github-api-functions.table_to_matrix"
+require "packages.github-interface.github-api-functions.set_selected_filters"
+require "packages.github-interface.github-api-functions.get_selected_tags"
 
 
 require "packages.github-interface.issue-model-functions.base"
@@ -27,48 +29,55 @@ require "packages.github-interface.issue-model-functions.list_subdocuments"
 require "packages.github-interface.issue-model-functions.read_m2m_model"
 require "packages.github-interface.issue-model-functions.group_documents"
 require "packages.github-interface.issue-model-functions.array_to_table"
+require "packages.github-interface.issue-model-functions.set_table_filters"
+require "packages.github-interface.issue-model-functions.build_issues"
+require "packages.github-interface.issue-model-functions.build_tags"
 
 
 local filters = {}
 local model_name = 'issue'
 local tag_filters = {}
-
-local issues, tags = documents_model.models_main(model_name, filters,tag_filters)
-
-log.debug(json.from_table(request.query))
-
 local summary_fields = { -- default fields that will go in the summary column
-        has_values = false,
-        title_model = {
-            name="title",
-            value=""
-        },
-        body_model = {
-            name="body",
-            value=""
-        },
-        comments_model = {
-            name="comments",
-            value=""
-        }
+    has_selected = { -- centinel value to control if any of the other values in the table are not empty
+        name="has_selected",
+        value=false
+    },
+    title_model = {
+        name="title",
+        value=""
+    },
+    body_model = {
+        name="body",
+        value=""
+    },
+    comments_model = {
+        name="comments",
+        value=""
     }
+}
 
-for k,v in pairs(request.query) do
-    if summary_fields[k] then
-        summary_fields[k].value = v
-    end
-end
+local issues, tags,summary_fields, tags_selected_row = documents_model.models_main(
+    model_name,
+    filters,
+    tag_filters,
+    summary_fields,
+    request.query
+)
+
+log.debug(json.from_table(tags))
+
+
+
 
 response = {
     headers = {
         ["content-type"] = "text/html",
     },
     body = render("issue_model.html", {
-        issues = issues.documents,
+        issues = issues,
         summary_fields = summary_fields,
         tags_matrix = tags,
-        model_table = true,
-        -- tags_selected_row = tags_selected_row,
+        tags_selected_row = tags_selected_row,
     })
 }
 
