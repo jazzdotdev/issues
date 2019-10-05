@@ -34,6 +34,7 @@ require "packages.github-interface.issue-model-functions.build_issues"
 require "packages.github-interface.issue-model-functions.build_tags"
 require "packages.github-interface.issue-model-functions.build_mapped_filters"
 require "packages.github-interface.issue-model-functions.filter_doc_by_subdoc"
+require "packages.github-interface.issue-model-functions.filter_doc_array"
 
 
 local issue_filters = {
@@ -75,7 +76,18 @@ local issues, tags, summary_fields, tags_selected_row = documents_model.models_m
     summary_fields,
     request.query
 )
-documents_model.filter_doc_by_subdoc()
+
+local document_list = documents_model.filter_doc_by_subdoc(
+    'comment','issue',{body="lorem"}, true
+)
+
+log.debug(json.from_table(document_list))
+
+document_list = documents_model.filter_doc_array(
+    document_list, {title="Issue"},true
+)
+
+log.debug(json.from_table(document_list))
 
 response = {
     headers = {

@@ -7,8 +7,6 @@ function documents_model.read_m2m_model(parent_uuid, parent_model_name, conector
     if subdocuments[conector_model_name] then
         for _,doc in pairs(subdocuments[conector_model_name]) do
             local fields, body, store = contentdb.read_document(doc[child_model_name])
-            log.debug(doc[child_model_name])
-    
             fields['body'] = body
             fields['store'] = store
     

@@ -1,25 +1,16 @@
-function documents_model.filter_doc_by_subdoc()
-    comments_test = documents_model.list_documents('comment', {body="lorem"}, true, true)
+function documents_model.filter_doc_by_subdoc(submodel_name, main_model_name, submodel_filters, lazy_filter)
 
-    -- log.debug(json.from_table(
-    --     comments_test.documents
-    -- ))
-    local count = 0
-    for _ in pairs(comments_test.documents) do count = count + 1 end
-    log.debug(count)
+    local subdocuments = documents_model.list_documents(submodel_name, submodel_filters, lazy_filter, true)
 
-    local fields, body, store = contentdb.read_document(comments_test.documents[1].issue)
-    -- log.debug(json.from_table(
-    --     comments_test.documents[1]
-    -- ))
+    local documents = {}
 
-    log.debug(
-        json.from_table(fields)
-    )
-    log.debug(
-        body
-    )
-    log.debug(
-        store
-    )
+    for _,val in pairs(subdocuments.documents) do
+        local fields, body, store = contentdb.read_document(val[main_model_name])
+        fields['uuid'] = val[main_model_name]
+        fields['__body__'] = body
+        fields['__store__'] = store
+        documents[val[main_model_name]] = fields
+    end
+
+    return documents
 end
