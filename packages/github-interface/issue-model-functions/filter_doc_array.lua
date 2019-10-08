@@ -1,16 +1,17 @@
 function documents_model.filter_doc_array(model_array, filters, lazy_filter)
-    local result = {}
+    local result = {} -- table array of all the valid documents
+    local valid
 
-    for k,value in pairs(model_array) do
-        local valid = false
+    for _,value in pairs(model_array) do
+        valid = true
         for key,val in pairs(filters) do
             if lazy_filter then
-                if string.find(value[key], val) then
-                    valid = true
+                if not string.find(value[key], val) then
+                    valid = false
                 end
             else
-                if value[key] == val then
-                    valid = true
+                if value[key] ~= val then
+                    valid = false
                 end
             end
 

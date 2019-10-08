@@ -2,7 +2,6 @@ function documents_model.build_issues(issues,model_name)
     local result = {}
     local i = 1 -- initial value
     for k,issue in pairs(issues) do
-        log.debug(json.from_table(issue))
         local subdocuments = documents_model.list_subdocuments(
             model_name,
             issue.uuid,
@@ -20,7 +19,6 @@ function documents_model.build_issues(issues,model_name)
             result[i]['tags'] = documents_model.array_to_table(issue_tags,'name',true,'value')
         end
         i = i + 1
-
     end
 
     return result
