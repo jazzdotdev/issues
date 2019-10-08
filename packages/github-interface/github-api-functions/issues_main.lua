@@ -10,7 +10,10 @@ function github_api.issues_main(basic_config)
     issues, all_tags = github_api.organize_issues(issues, all_tags)
 
     --- in the tags that are in the request set the selected ones for the frontend
-    all_tags = github_api.set_selected_filters(basic_config['query'], all_tags)
+    all_tags = github_api.set_selected_filters(
+        basic_config['query'],
+        all_tags
+    )
 
 
     local tags_matrix = github_api.table_to_matrix(
