@@ -77,17 +77,20 @@ local issues, tags, summary_fields, tags_selected_row = documents_model.models_m
     request.query
 )
 
-local document_list = documents_model.filter_doc_by_subdoc(
-    'comment','issue',{body="lorem"}, true
-)
+-- local document_list = documents_model.filter_doc_by_subdoc(
+--     'comment',
+--     'issue',
+--     {body=request.query.comments_model},
+--     true
+-- )
 
-log.debug(json.from_table(document_list))
+-- log.debug(json.from_table(document_list))
 
-document_list = documents_model.filter_doc_array(
-    document_list, {title="Issue"},true
-)
+-- document_list = documents_model.filter_doc_array(
+--     document_list, {title="Issue"},true
+-- )
 
-log.debug(json.from_table(document_list))
+-- log.debug(json.from_table(document_list))
 
 response = {
     headers = {

@@ -1,11 +1,33 @@
 function documents_model.models_main(model_name, filters, filter_map,tag_filters, filters_table, query)
+    local issues
+
 
     filters = documents_model.build_mapped_filters(filters,filter_map,query)
 
-    local issues = documents_model.list_documents(model_name, filters, true, true)
+    -- log.debug(json.from_table(filters))
 
-    issues = documents_model.build_issues(issues.documents,model_name)
+    if query.comments_model ~= "" and query.comments_model ~= nil  then
+        -- if the comments search query is not null nor empty
+        -- first filtering by the comments
+        log.debug("filtering by comments")
+        issues = documents_model.filter_doc_by_subdoc(
+            'comment',
+            model_name,
+            {body=query.comments_model},
+            true
+        )
+    else
+        log.debug("standart filters")
+        issues = documents_model.list_documents(model_name, filters, true, true).documents
 
+    end
+
+    -- log.debug(json.from_table(issues))
+
+
+    issues = documents_model.build_issues(issues,model_name)
+    -- log.debug(json.from_table(issues))
+    
     local tags = documents_model.build_tags(tag_filters,query)
 
     local tags_selected_row = github_api.get_selected_tags(tags)
