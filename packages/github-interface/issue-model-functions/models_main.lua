@@ -29,7 +29,7 @@ function documents_model.models_main(model_name, filters, filter_map,tag_filters
         tag_filters,
         query
     )
-    log.debug(json.from_table(tags))
+    -- log.debug(json.from_table(tags))
 
     local tags_selected_row = github_api.get_selected_tags(tags)
 
