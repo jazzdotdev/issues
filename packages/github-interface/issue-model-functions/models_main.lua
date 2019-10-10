@@ -32,11 +32,13 @@ function documents_model.models_main(model_name, filters, filter_map,tag_filters
 
     log.debug(json.from_table(chosen_tags))
 
-    issues = documents_model.group_docs_table_fields(
-        issues,
-        'issue_tags',
-        chosen_tags
-    )
+    -- issues = documents_model.group_docs_table_fields(
+    --     issues,
+    --     'issue_tags',
+    --     chosen_tags
+    -- )
+
+    
 
     local tags_selected_row = github_api.get_selected_tags(tags)
 

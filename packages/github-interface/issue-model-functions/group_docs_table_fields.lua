@@ -17,11 +17,13 @@ function documents_model.group_docs_table_fields(
         -- for all documents
         valid = true
         local documents = doc[field_table_name]
+
         if documents and next(documents) ~= nil then
             for _k,value in pairs(documents) do
                 -- for all elements in the field array
                 for __k,filter in pairs(filters) do
                     -- for each filter table
+                    log.debug(json.from_table(filter))
                     for k,v in pairs(filter) do
 
                         if value[k] ~= v then
@@ -42,11 +44,13 @@ function documents_model.group_docs_table_fields(
 
                 end
             end
-        else
+        elseif filters and next(filters) ~= nil then
             valid = false
+        else
+            valid = true
         end
         if valid then
-            log.debug(json.from_table(doc))
+            -- log.debug(json.from_table(doc))
             table.insert(result, doc)
         end
 

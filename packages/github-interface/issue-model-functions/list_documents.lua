@@ -1,4 +1,9 @@
-function documents_model.list_documents(model_name, filters, lazy_filter, all_fields)
+function documents_model.list_documents(
+    model_name,
+    filters,
+    lazy_filter,
+    all_fields
+)
     local documents = {}
 
     contentdb.walk_documents(nil,

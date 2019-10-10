@@ -36,14 +36,15 @@ require "packages.github-interface.issue-model-functions.build_mapped_filters"
 require "packages.github-interface.issue-model-functions.filter_doc_by_subdoc"
 require "packages.github-interface.issue-model-functions.filter_doc_array"
 require "packages.github-interface.issue-model-functions.group_docs_table_fields"
+require "packages.github-interface.issue-model-functions.filter_m2m_doc"
 
 
 local issue_filters = {
     title="",
     body="",
 }
+-- name of field in the model = name of the field in the query
 local filter_map = {
-    -- name of field in the model = name of the field in the query
     title = "title_model",
     body = "body_model",
 }
