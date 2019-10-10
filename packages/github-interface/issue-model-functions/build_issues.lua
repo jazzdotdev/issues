@@ -14,10 +14,24 @@ function documents_model.build_issues(issues,model_name)
         result[i]['id'] = issue.uuid
         result[i]['el_comments'] = issue.subdocuments.comment
 
-        local issue_tags = documents_model.read_m2m_model(issue.uuid,'issue','issue_tag','tag')
+        local issue_tags = documents_model.read_m2m_model(
+            issue.uuid,
+            'issue',
+            'issue_tag',
+            'tag'
+        )
         if issue_tags ~= nil then
-            result[i]['tags'] = documents_model.array_to_table(issue_tags,'name',true,'value')
+            result[i]['issue_tags'] = issue_tags
+            result[i]['tags'] = documents_model.array_to_table(
+                issue_tags,
+                'name',
+                true,
+                'value'
+            )
         end
+
+        -- log.debug(json.from_table(result[i]['issue_tags']))
+
         i = i + 1
     end
 

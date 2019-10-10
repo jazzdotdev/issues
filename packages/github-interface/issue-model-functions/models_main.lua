@@ -25,11 +25,18 @@ function documents_model.models_main(model_name, filters, filter_map,tag_filters
 
     issues = documents_model.build_issues(issues,model_name)
 
-    local tags = documents_model.build_tags(
+    local tags, chosen_tags = documents_model.build_tags(
         tag_filters,
         query
     )
-    -- log.debug(json.from_table(tags))
+
+    log.debug(json.from_table(chosen_tags))
+
+    issues = documents_model.group_docs_table_fields(
+        issues,
+        'issue_tags',
+        chosen_tags
+    )
 
     local tags_selected_row = github_api.get_selected_tags(tags)
 

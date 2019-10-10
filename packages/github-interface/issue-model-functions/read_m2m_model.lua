@@ -9,7 +9,7 @@ function documents_model.read_m2m_model(parent_uuid, parent_model_name, conector
             local fields, body, store = contentdb.read_document(doc[child_model_name])
             fields['body'] = body
             fields['store'] = store
-    
+
             table.insert(result, fields)
         end
     end

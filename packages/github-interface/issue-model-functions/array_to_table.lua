@@ -1,7 +1,13 @@
-function documents_model.array_to_table(array, field_name, reduce_to_field, min_field)
+function documents_model.array_to_table(
+    array,
+    field_name,
+    reduce_to_field,
+    min_field
+)
     -- turns an array into a table dict using the values of
     -- the field name in each object of the array as delimiter
-    -- this will cause that there are no repeated values in the array
+    -- this will cause that there are no values with the same
+    -- key name in the array
     result = {}
 
     for i,value in ipairs(array) do

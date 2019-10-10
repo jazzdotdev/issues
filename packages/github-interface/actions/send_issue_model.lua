@@ -35,6 +35,7 @@ require "packages.github-interface.issue-model-functions.build_tags"
 require "packages.github-interface.issue-model-functions.build_mapped_filters"
 require "packages.github-interface.issue-model-functions.filter_doc_by_subdoc"
 require "packages.github-interface.issue-model-functions.filter_doc_array"
+require "packages.github-interface.issue-model-functions.group_docs_table_fields"
 
 
 local issue_filters = {

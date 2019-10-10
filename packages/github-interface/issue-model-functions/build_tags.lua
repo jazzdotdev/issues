@@ -10,8 +10,6 @@ function documents_model.build_tags(tag_filters,query)
     )
     tags = github_api.set_selected_filters(query, tags)
 
-    -- log.debug(json.from_table(tags))
-    
     local chosen_tags = {}
     for key,val in pairs(tags) do
         if val.has_checked then
@@ -25,14 +23,11 @@ function documents_model.build_tags(tag_filters,query)
             end
         end
     end
-    
-    -- log.debug(json.from_table(chosen_tags))
-
 
     tags = github_api.table_to_matrix(
         tags,
         3,
         function(a, b) return a.name < b.name end
     )
-    return tags
+    return tags, chosen_tags
 end
