@@ -30,15 +30,29 @@ function documents_model.models_main(model_name, filters, filter_map,tag_filters
         query
     )
 
+    
+    -- issues = documents_model.group_docs_table_fields(
+        --     issues,
+        --     'issue_tags',
+        --     chosen_tags
+        -- )
     log.debug(json.from_table(chosen_tags))
 
-    -- issues = documents_model.group_docs_table_fields(
-    --     issues,
-    --     'issue_tags',
-    --     chosen_tags
-    -- )
+    if chosen_tags[1] then
+        issue_temp = documents_model.filter_doc_by_m2m(
+            'issue',
+            'issue_tag',
+            'tag',
+            chosen_tags[1]
+        )
 
-    
+        issue_temp = documents_model.build_issues(issue_temp,model_name)
+        
+        for k,v in pairs(issue_temp) do
+            log.debug(json.from_table(v.issue_tags))
+        end
+    end
+
 
     local tags_selected_row = github_api.get_selected_tags(tags)
 
