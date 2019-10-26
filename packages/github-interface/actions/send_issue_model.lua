@@ -2,19 +2,6 @@ event = ["request_model_table"]
 priority = 4
 input_parameters = ["request"]
 
-
--- require "packages.github-interface.github-api-functions.split_string_to_array"
--- require "packages.github-interface.github-api-functions.add_request_param"
--- require "packages.github-interface.github-api-functions.organize_issues"
--- require "packages.github-interface.github-api-functions.add_api_authentication"
--- require "packages.github-interface.github-api-functions.set_selected_filters"
--- require "packages.github-interface.github-api-functions.issues_request"
--- require "packages.github-interface.github-api-functions.issues_main"
--- require "packages.github-interface.github-api-functions.get_selected_tags"
--- require "packages.github-interface.github-api-functions.table_to_gitfilters"
--- require "packages.github-interface.github-api-functions.values_to_filter_table"
--- require "packages.github-interface.github-api-functions.tag_to_label"
--- require "packages.github-interface.github-api-functions.build_api_url"
 require "packages.github-interface.github-api-functions.base"
 require "packages.github-interface.github-api-functions.table_to_array"
 require "packages.github-interface.github-api-functions.table_to_matrix"
@@ -37,6 +24,7 @@ require "packages.github-interface.issue-model-functions.filter_doc_by_subdoc"
 require "packages.github-interface.issue-model-functions.filter_doc_array"
 require "packages.github-interface.issue-model-functions.group_docs_table_fields"
 require "packages.github-interface.issue-model-functions.filter_doc_by_m2m"
+require "packages.github-interface.issue-model-functions.get_docs_intersection"
 
 
 local issue_filters = {

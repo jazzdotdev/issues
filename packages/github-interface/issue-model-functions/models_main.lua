@@ -1,6 +1,18 @@
-function documents_model.models_main(model_name, filters, filter_map,tag_filters, filters_table, query)
+function documents_model.models_main(
+    model_name,
+    filters,
+    filter_map,
+    tag_filters,
+    filters_table, query
+)
     local issues
 
+    local tags, chosen_tags = documents_model.build_tags(
+        tag_filters,
+        query
+    )
+    local tagged_issues = {}
+    local tagged_issues_matrix = {}
 
     filters = documents_model.build_mapped_filters(filters,filter_map,query)
 
@@ -25,34 +37,34 @@ function documents_model.models_main(model_name, filters, filter_map,tag_filters
 
     issues = documents_model.build_issues(issues,model_name)
 
-    local tags, chosen_tags = documents_model.build_tags(
-        tag_filters,
-        query
-    )
 
-    
-    -- issues = documents_model.group_docs_table_fields(
-        --     issues,
-        --     'issue_tags',
-        --     chosen_tags
-        -- )
-    log.debug(json.from_table(chosen_tags))
 
-    if chosen_tags[1] then
-        issue_temp = documents_model.filter_doc_by_m2m(
+    for i,tags in ipairs(chosen_tags) do
+        -- for each tag get all documents that have it and put them in a matrix
+        tagged_issues = documents_model.filter_doc_by_m2m(
             'issue',
             'issue_tag',
             'tag',
-            chosen_tags[1]
+            tags
         )
 
-        issue_temp = documents_model.build_issues(issue_temp,model_name)
-        
-        for k,v in pairs(issue_temp) do
-            log.debug(json.from_table(v.issue_tags))
-        end
+        tagged_issues = documents_model.build_issues(tagged_issues, model_name)
+
+        table.insert( tagged_issues_matrix, tagged_issues)
     end
 
+    if chosen_tags[1] then
+        -- if chosen tags has values compare with summary values
+        table.insert( tagged_issues_matrix, issues)
+
+        issues =  github_api.table_to_array(
+            documents_model.get_docs_intersection(
+                tagged_issues_matrix,
+                'uuid'
+            ),
+            nil
+        )
+    end
 
     local tags_selected_row = github_api.get_selected_tags(tags)
 
