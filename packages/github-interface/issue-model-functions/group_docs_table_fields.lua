@@ -9,7 +9,6 @@ function documents_model.group_docs_table_fields(
     -- this will return all documents that have
     -- in the elements of field_table_name the values of filters
 
-
     local result = {}
     local valid
 
@@ -30,15 +29,6 @@ function documents_model.group_docs_table_fields(
 
                             valid = false
 
-                        else
-
-                            log.debug('key')
-                            log.debug(k)
-                            log.debug('value f')
-                            log.debug(v)
-                            log.debug('value tag')
-                            log.debug(value[k])
-
                         end
                     end
 
@@ -50,7 +40,6 @@ function documents_model.group_docs_table_fields(
             valid = true
         end
         if valid then
-            -- log.debug(json.from_table(doc))
             table.insert(result, doc)
         end
 
